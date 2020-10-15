@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/nav_graph"
+  app:startDestination="@id/HomeFragment">
+  <fragment
+    android:id="@+id/HomeFragment"
+    android:name="com.chass.gsms.ui.home.HomeFragment"
+    android:label="Home"
+    tools:layout="@layout/fragment_home"/>
+  <fragment
+    android:id="@+id/ClassListFragment"
+    android:name="com.chass.gsms.ui.classlist.ClassListFragment"
+    android:label="Class List"
+    tools:layout="@layout/fragment_class_list"/>
+  <fragment
+    android:id="@+id/NewClassFragment"
+    android:name="com.chass.gsms.ui.newclass.NewClassFragment"
+    android:label="New Class"
+    tools:layout="@layout/fragment_new_class"/>
+  <fragment
+    android:id="@+id/ClassDetailsFragment"
+    android:name="com.chass.gsms.ui.classdetails.ClassDetailsFragment"
+    android:label="Class Details"
+    tools:layout="@layout/fragment_class_details"/>
+  <fragment
+    android:id="@+id/NewStudentFragment"
+    android:name="com.chass.gsms.ui.newstudent.NewStudentFragment"
+    android:label="Add Student"
+    tools:layout="@layout/fragment_new_student"/>
+  <fragment
+    android:id="@+id/AttendanceFragment"
+    android:name="com.chass.gsms.ui.attendance.AttendanceFragment"
+    android:label="Attendance"
+    tools:layout="@layout/fragment_attendance"/>
+  <fragment
+    android:id="@+id/StudentProfileFragment"
+    android:name="com.chass.gsms.ui.studentprofile.StudentProfileFragment"
+    android:label="Student Profile"
+    tools:layout="@layout/fragment_student_profile"/>
+</navigation>
