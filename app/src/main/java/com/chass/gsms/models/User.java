@@ -34,31 +34,24 @@ public class User {
     return role;
   }
 
-  public User(String firstname, String lastname, String email, String phoneNumber, Roles role) {
+  public User(String firstname, String lastname, String email, String phoneNumber, String role) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
     this.phoneNumber = phoneNumber;
-    this.role = role;
+    this.role = "admin".equals(role)? Roles.ADMIN : "teacher".equals(role)? Roles.TEACHER : Roles.PARENT;
   }
 
   public static User parse(String text){
     try {
       JSONObject obj = new JSONObject(text);
-      String roleText = obj.getString(ROLE);
-      if("admin".equals(roleText)){
-        return new User(
-            obj.getString(FIRSTNAME),
-            obj.getString(LASTNAME),
-            obj.getString(EMAIL),
-            obj.getString(PHONE_NUMBER),
-            Roles.ADMIN
-        );
-      }
-      if("teacher".equals(roleText)){
-        return Teacher.parse(text);
-      }
-      return Parent.parse(text);
+      return new User(
+          obj.getString(FIRSTNAME),
+          obj.getString(LASTNAME),
+          obj.getString(EMAIL),
+          obj.getString(PHONE_NUMBER),
+          obj.getString(ROLE)
+      );
     } catch (JSONException e) {
       e.printStackTrace();
     }
