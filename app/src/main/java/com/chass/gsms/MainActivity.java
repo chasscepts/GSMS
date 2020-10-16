@@ -2,18 +2,23 @@ package com.chass.gsms;
 
 import android.os.Bundle;
 
+import com.chass.gsms.ui.classdetails.ClassDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavHostController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IMain {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +57,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override
+  public void selectClass(String className) {
+    ClassDetailsViewModel viewModel = new ViewModelProvider(this).get(ClassDetailsViewModel.class);
+    viewModel.setClassName(className);
+    View view = findViewById(R.id.nav_host_fragment);
+    Navigation.findNavController(view).navigate(R.id.ClassDetailsFragment);
   }
 }

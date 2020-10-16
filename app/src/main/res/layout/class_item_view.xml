@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <data>
+    <variable
+      name="viewModel"
+      type="com.chass.gsms.viewmodels.ClassViewModel" />
+  </data>
+
+  <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="2dp"
+    app:contentPadding="16dp"
+    android:clickable="true"
+    android:onClick="@{()->viewModel.select(context)}"
+    android:focusable="true">
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@{viewModel.className}"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textColor="@color/design_default_color_on_secondary"
+      tools:text="S S 1 A" />
+  </androidx.cardview.widget.CardView>
+</layout>
