@@ -3,9 +3,11 @@ package com.chass.gsms.networks.retrofit;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface GetDataService {
 
@@ -36,7 +38,7 @@ public interface GetDataService {
   );
 
   @FormUrlEncoded
-  @POST("user")
+  @POST("school/class")
   Call<String> addClass(
       @Field("school_id") String schoolId,
       @Field("class_name") String className,
@@ -45,4 +47,7 @@ public interface GetDataService {
       @Field("teacher_email") String teacherEmail,
       @Field("teacher_phone_number") String teacherPhoneNumber
   );
+
+  @GET("school/class/{name}")
+  Call<String> getClass(@Path("name") String className);
 }
