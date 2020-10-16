@@ -56,6 +56,8 @@ public interface GetDataService {
   Call<String> addStudent(
       @Field("school_id") String schoolId,
       @Field("class_name") String className,
+      @Field("student_firstname") String studentFirstname,
+      @Field("student_lastname") String studentLastname,
       @Field("parent1_firstname") String parent1Firstname,
       @Field("parent1_lastname") String parent1Lastname,
       @Field("parent1_email") String parent1Email,
