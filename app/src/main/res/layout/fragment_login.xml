@@ -14,63 +14,58 @@
       android:layout_height="match_parent"
       android:textAlignment="center"
       tools:context=".ui.login.LoginFragment">
+    <ImageView
+        android:id="@+id/img_gsmsLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
     <Button
         android:id="@+id/btn_login"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/round_btn"
+        android:onClick="launchHome"
         android:text="@string/login"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/edtTxtPassword"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtTxtPassword"
         app:layout_constraintTop_toBottomOf="@+id/edtTxtPassword" />
-
-    <Button
-        android:id="@+id/btn_createNewSchool"
-        android:layout_width="152dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/no_border_btn"
-        android:drawableStart="@android:drawable/ic_input_add"
-        android:drawableTint="#020202"
-        android:drawingCacheQuality="auto"
-        android:text="@string/create_new_school"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="@+id/edtTxtGsmsId"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/txt_SignIn"
-        app:layout_constraintTop_toTopOf="@+id/txt_SignIn" />
 
     <EditText
         android:id="@+id/edtTxtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
+        android:autofillHints="true"
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtTxtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail"
-        android:autofillHints="true" />
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail" />
 
     <EditText
         android:id="@+id/edtTxtGsmsId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:autofillHints=""
         android:background="@drawable/edit_text_border"
@@ -81,45 +76,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_gsmsLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_SignIn" />
 
     <EditText
         android:id="@+id/edtTxtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
+        android:autofillHints="true"
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/edtTxtGsmsId"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtTxtGsmsId"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtGsmsId"
-        android:autofillHints="true" />
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtGsmsId" />
 
     <TextView
         android:id="@+id/txt_SignIn"
         android:layout_width="147dp"
         android:layout_height="73dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/sign_in"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/img_gsmsLogo"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/img_gsmsLogo"
+        app:layout_constraintTop_toBottomOf="@+id/img_gsmsLogo" />
 
-    <ImageView
-        android:id="@+id/img_gsmsLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/edtTxtGsmsId"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/edtTxtGsmsId"
-        app:layout_constraintTop_toBottomOf="@+id/txt_SignIn"
-        app:srcCompat="@drawable/logo" />
+    <Button
+        android:id="@+id/btn_createNewSchool"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="24dp"
+
+        android:background="@drawable/no_border_btn"
+        android:drawableStart="@android:drawable/ic_input_add"
+        android:drawableTint="#020202"
+        android:drawingCacheQuality="auto"
+        android:text="@string/create_new_school"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/createNewSchColor"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

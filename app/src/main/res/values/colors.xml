@@ -4,6 +4,7 @@
   <color name="colorPrimaryDark">#FF290103</color>
   <color name="colorAccent">#F88A8A</color>
   <color name="alert">#A80303</color>
+  <color name="createNewSchColor">#F83030</color>
   <color name="dim">#50000000</color>
   <color name="linkColor">#0E5AC5</color>
   <color name="transparent">#00000000</color>
