@@ -5,6 +5,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface GetDataService {
 
@@ -26,7 +27,7 @@ public interface GetDataService {
     @Field("school_address") String schoolAddress,
     @Field("school_email") String schoolEmail,
     @Field("school_phone_number") String schoolPhoneNumber,
-    @Field("school_picture") String schoolProfilePicture,
+    @Part("school_picture") String schoolProfilePicture,
     @Field("admin_firstname") String adminFirstname,
     @Field("admin_lastname") String adminLastname,
     @Field("admin_email") String adminEmail,
