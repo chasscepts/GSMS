@@ -34,4 +34,15 @@ public interface GetDataService {
     @Field("admin_phone_number") String adminPhoneNumber,
     @Field("admin_password") String password
   );
+
+  @FormUrlEncoded
+  @POST("user")
+  Call<String> addClass(
+      @Field("school_id") String schoolId,
+      @Field("class_name") String className,
+      @Field("teacher_firstname") String teacherFirstname,
+      @Field("teacher_lastname") String teacherLastname,
+      @Field("teacher_email") String teacherEmail,
+      @Field("teacher_phone_number") String teacherPhoneNumber
+  );
 }
