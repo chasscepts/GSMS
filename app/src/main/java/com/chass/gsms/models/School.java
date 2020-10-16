@@ -12,7 +12,8 @@ public class School {
   public static final String EMAIL = "email";
   public static final String PHONE_NUMBER = "phone_number";
   public static final String PICTURE = "picture";
-  private String id, name, address, email, phoneNumber, picture;
+  public static final String ADMIN_EMAIL = "admin_email";
+  private final String id, name, address, email, phoneNumber, picture, adminEmail;
   private String[] classes;
 
   public String getId() {
@@ -39,17 +40,22 @@ public class School {
     return picture;
   }
 
+  public String getAdminEmail() {
+    return adminEmail;
+  }
+
   public String[] getClasses() {
     return classes;
   }
 
-  public School(String id, String name, String address, String email, String phoneNumber, String picture, String[] classes) {
+  public School(String id, String name, String address, String email, String phoneNumber, String picture, String adminEmail, String[] classes) {
     this.id = id;
     this.name = name;
     this.address = address;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.picture = picture;
+    this.adminEmail = adminEmail;
     this.classes = classes;
   }
 
@@ -75,6 +81,7 @@ public class School {
           obj.getString(EMAIL),
           obj.getString(PHONE_NUMBER),
           obj.getString(PICTURE),
+          obj.getString(ADMIN_EMAIL),
           classes
       );
     } catch (JSONException e) {
@@ -82,4 +89,5 @@ public class School {
     }
     return null;
   }
+
 }
