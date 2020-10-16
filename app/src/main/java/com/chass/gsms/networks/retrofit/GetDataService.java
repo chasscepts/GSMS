@@ -48,6 +48,17 @@ public interface GetDataService {
       @Field("teacher_phone_number") String teacherPhoneNumber
   );
 
-  @GET("school/class/{name}")
-  Call<String> getClass(@Path("name") String className);
+  @GET("school/class/{id}/{name}")
+  Call<String> getClass(@Path("id") String schoolId, @Path("name") String className);
+
+  @FormUrlEncoded
+  @POST("school/student")
+  Call<String> addStudent(
+      @Field("school_id") String schoolId,
+      @Field("class_name") String className,
+      @Field("teacher_firstname") String teacherFirstname,
+      @Field("teacher_lastname") String teacherLastname,
+      @Field("teacher_email") String teacherEmail,
+      @Field("teacher_phone_number") String teacherPhoneNumber
+  );
 }
