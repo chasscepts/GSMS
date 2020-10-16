@@ -1,4 +1,5 @@
 <resources>
+
   <string name="app_name">GSMS</string>
   <string name="action_settings">Settings</string>
   <!-- Strings used for fragments for navigation -->
@@ -14,4 +15,25 @@
   <string name="add_sign">+</string>
   <string name="add_class_btn_description">Add a new class to this school</string>
   <string name="add_class">Add Class</string>
+  
+  <string name="app_name">GSMS</string>
+  <string name="action_settings">Settings</string>
+  <!-- Strings used for fragments for navigation -->
+  <string name="first_fragment_label">First Fragment</string>
+  <string name="second_fragment_label">Second Fragment</string>
+  <string name="next">Next</string>
+  <string name="previous">Previous</string>
+  <string name="hello_first_fragment">Hello first fragment</string>
+  <string name="hello_second_fragment">Hello second fragment</string>
+  <string name="title_activity_login">LoginActivity</string>
+  <string name="logo_label">Logo</string>
+  <string name="login">Login</string>
+  <string name="create_new_school">Create New School</string>
+  <string name="password">Password</string>
+  <string name="gsms_id">GSMS ID</string>
+  <string name="email">Email</string>
+  <string name="sign_in">Sign In</string>
+  <string name="name_of_school">Name Of School</string>
+  <string name="school_s_address">School\'s Address</string>
+  <string name="contact_details">Contact Details</string>
 </resources>
