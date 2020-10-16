@@ -36,7 +36,7 @@ public interface GetDataService {
   );
 
   @FormUrlEncoded
-  @POST("user")
+  @POST("school/class")
   Call<String> addClass(
       @Field("school_id") String schoolId,
       @Field("class_name") String className,
