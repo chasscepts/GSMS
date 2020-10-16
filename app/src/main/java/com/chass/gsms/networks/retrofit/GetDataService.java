@@ -54,17 +54,34 @@ public interface GetDataService {
   @FormUrlEncoded
   @POST("school/student")
   Call<String> addStudent(
-      @Field("school_id") String schoolId,
-      @Field("class_name") String className,
-      @Field("student_firstname") String studentFirstname,
-      @Field("student_lastname") String studentLastname,
-      @Field("parent1_firstname") String parent1Firstname,
-      @Field("parent1_lastname") String parent1Lastname,
-      @Field("parent1_email") String parent1Email,
-      @Field("parent1_phone_number") String parent1PhoneNumber,
-      @Field("parent2_firstname") String parent2Firstname,
-      @Field("parent2_lastname") String parent2Lastname,
-      @Field("parent2_email") String parent2Email,
-      @Field("parent2_phone_number") String parent2PhoneNumber
+    @Field("school_id") String schoolId,
+    @Field("class_name") String className,
+    @Field("student_firstname") String studentFirstname,
+    @Field("student_lastname") String studentLastname,
+    @Field("parent1_firstname") String parent1Firstname,
+    @Field("parent1_lastname") String parent1Lastname,
+    @Field("parent1_email") String parent1Email,
+    @Field("parent1_phone_number") String parent1PhoneNumber,
+    @Field("parent2_firstname") String parent2Firstname,
+    @Field("parent2_lastname") String parent2Lastname,
+    @Field("parent2_email") String parent2Email,
+    @Field("parent2_phone_number") String parent2PhoneNumber
+  );
+
+  /**
+   * Posts the attendance of a class to the endpoint
+   * @param schoolId GSMS id of school
+   * @param className Name of class
+   * @param date Date the attendance is taken
+   * @param jsonString JSON representation of Attendance Array. Each object should be of form {id: studentId, status: [0 or 1]}
+   * @return
+   */
+  @FormUrlEncoded
+  @POST("school/attendance")
+  Call<String> postAttendance(
+    @Field("school_id") String schoolId,
+    @Field("class_name") String className,
+    @Field("date") String date,
+    @Field("attendance") String jsonString
   );
 }
