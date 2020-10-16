@@ -14,7 +14,6 @@
       android:layout_height="match_parent"
       android:textAlignment="center"
       tools:context=".ui.login.LoginFragment">
-
     <ImageView
         android:id="@+id/img_gsmsLogo"
         android:layout_width="wrap_content"
@@ -115,6 +114,7 @@
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:layout_marginTop="24dp"
+
         android:background="@drawable/no_border_btn"
         android:drawableStart="@android:drawable/ic_input_add"
         android:drawableTint="#020202"
