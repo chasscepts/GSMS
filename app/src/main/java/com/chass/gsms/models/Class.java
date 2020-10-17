@@ -10,9 +10,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Class {
+  private int id;
   private String name;
   private User teacher;
   private Student[] students;
+
+  public int getId(){
+    return id;
+  }
 
   public String getName(){
     return name;
