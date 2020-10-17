@@ -72,6 +72,31 @@ public interface GetDataService {
   );
 
   /**
+   * If parent2 fields are not filled we use this overload to add student
+   * @param schoolId
+   * @param className
+   * @param studentFirstname
+   * @param studentLastname
+   * @param parent1Firstname
+   * @param parent1Lastname
+   * @param parent1Email
+   * @param parent1PhoneNumber
+   * @return
+   */
+  @FormUrlEncoded
+  @POST("school/student")
+  Call<PlainResponse> addStudent(
+      @Field("schoolId") int schoolId,
+      @Field("className") String className,
+      @Field("studentFirstname") String studentFirstname,
+      @Field("studentLastname") String studentLastname,
+      @Field("parent1Firstname") String parent1Firstname,
+      @Field("parent1Lastname") String parent1Lastname,
+      @Field("parent1Email") String parent1Email,
+      @Field("parent1PhoneNumber") String parent1PhoneNumber
+  );
+
+  /**
    * Posts the attendance of a class to the endpoint
    * @param schoolId GSMS id of school
    * @param className Name of class
