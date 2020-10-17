@@ -15,7 +15,7 @@ public interface GetDataService {
    *
    */
   @FormUrlEncoded
-  @POST("user")
+  @POST("school/user")
   Call<String> login(
       @Field("school_id") String schoolId,
       @Field("email") String email,
@@ -23,7 +23,7 @@ public interface GetDataService {
   );
 
   @Multipart
-  @POST("school")
+  @POST("school/register")
   Call<String> register(
     @Field("school_name") String schoolName,
     @Field("school_address") String schoolAddress,
