@@ -4,13 +4,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Class {
   private String name;
   private User teacher;
-  private List<Student> students;
+  private Student[] students;
 
   public String getName(){
     return name;
@@ -21,19 +23,30 @@ public class Class {
   }
 
   public Student[] getStudents(){
-    return (Student[]) students.toArray();
+    return students;
   }
 
+  /**
+   * There must be a more efficient way to do this but retrofit by converts JSON array to java Array and not ArrayList.
+   * @param student the student to add to this class
+   */
   public void addStudent(Student student){
-    students.add(student);
+    int length = students.length;
+    Student[] temp = new Student[length + 1];
+    System.arraycopy(students, 0, temp, 0, length);
+    temp[length] = student;
+    students = temp;
   }
 
-  public Class(String name, User teacher){
-    this.name = name;
-    this.teacher = teacher;
-    this.students = new ArrayList<>();
+  public Class(){
+
   }
 
+  /**
+   * This method is not useful if retrofit is handling our JSONs
+   * @param text
+   * @return
+   */
   public static Class parse(String text){
     Class instance = null;
     try {
@@ -42,16 +55,25 @@ public class Class {
       if(teacher == null){
         return null;
       }
-      instance = new Class(obj.getString("name"), teacher);
+      instance = new Class();
+      instance.name = obj.getString("name");
+      instance.teacher = teacher;
 
       JSONArray jsonArray = obj.getJSONArray("students");
       int length = jsonArray.length();
-      Student student;
-      for(int i = 0; i < length; i++){
-        student = Student.parse(jsonArray.getString(i));
-        if(student != null){
-          instance.addStudent(student);
+      if(length > 0){
+        List<Student> students = new ArrayList<>();
+        Student student;
+        for(int i = 0; i < length; i++){
+          student = Student.parse(jsonArray.getString(i));
+          if(student != null){
+            students.add(student);
+          }
         }
+        instance.students = (Student[]) students.toArray();
+      }
+      else{
+        instance.students = new Student[0];
       }
     } catch (JSONException e) {
       e.printStackTrace();

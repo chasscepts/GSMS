@@ -1,5 +1,8 @@
 package com.chass.gsms.networks.retrofit;
 
+import com.chass.gsms.models.LoginResponse;
+import com.chass.gsms.models.PlainResponse;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -16,7 +19,7 @@ public interface GetDataService {
    */
   @FormUrlEncoded
   @POST("school/user")
-  Call<String> login(
+  Call<LoginResponse> login(
       @Field("schoolId") String schoolId,
       @Field("email") String email,
       @Field("password") String password
@@ -24,7 +27,7 @@ public interface GetDataService {
 
   @Multipart
   @POST("school/register")
-  Call<String> register(
+  Call<LoginResponse> register(
     @Field("schoolName") String schoolName,
     @Field("schoolAddress") String schoolAddress,
     @Field("schoolEmail") String schoolEmail,
@@ -39,7 +42,7 @@ public interface GetDataService {
 
   @FormUrlEncoded
   @POST("school/class")
-  Call<String> addClass(
+  Call<PlainResponse> addClass(
       @Field("schoolId") String schoolId,
       @Field("className") String className,
       @Field("teacherFirstname") String teacherFirstname,
@@ -49,11 +52,11 @@ public interface GetDataService {
   );
 
   @GET("school/class/{id}/{name}")
-  Call<String> getClass(@Path("id") String schoolId, @Path("name") String className);
+  Call<PlainResponse> getClass(@Path("id") String schoolId, @Path("name") String className);
 
   @FormUrlEncoded
   @POST("school/student")
-  Call<String> addStudent(
+  Call<PlainResponse> addStudent(
     @Field("schoolId") String schoolId,
     @Field("className") String className,
     @Field("studentFirstname") String studentFirstname,
@@ -78,7 +81,7 @@ public interface GetDataService {
    */
   @FormUrlEncoded
   @POST("school/attendance")
-  Call<String> postAttendance(
+  Call<PlainResponse> postAttendance(
     @Field("schoolId") String schoolId,
     @Field("className") String className,
     @Field("date") String date,

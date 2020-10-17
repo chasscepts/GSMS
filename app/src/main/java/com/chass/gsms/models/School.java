@@ -5,15 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class School {
-  public static final String CLASSES = "classes";
-  public static final String ID = "id";
-  public static final String NAME = "name";
-  public static final String ADDRESS = "address";
-  public static final String EMAIL = "email";
-  public static final String PHONE_NUMBER = "phoneNumber";
-  public static final String PICTURE = "picture";
-  public static final String ADMIN_EMAIL = "adminEmail";
-  private final String id, name, address, email, phoneNumber, picture, adminEmail;
+  private String id, name, address, email, phoneNumber, picture, adminEmail;
   private String[] classes;
 
   public String getId() {
@@ -48,18 +40,19 @@ public class School {
     return classes;
   }
 
-  public School(String id, String name, String address, String email, String phoneNumber, String picture, String adminEmail, String[] classes) {
-    this.id = id;
-    this.name = name;
-    this.address = address;
-    this.email = email;
-    this.phoneNumber = phoneNumber;
-    this.picture = picture;
-    this.adminEmail = adminEmail;
-    this.classes = classes;
+  public School() {
+
   }
 
   public static School parse(String text){
+    String CLASSES = "classes";
+    String ID = "id";
+    String NAME = "name";
+    String ADDRESS = "address";
+    String EMAIL = "email";
+    String PHONE_NUMBER = "phoneNumber";
+    String PICTURE = "picture";
+    String ADMIN_EMAIL = "adminEmail";
     try {
       JSONObject obj = new JSONObject(text);
       String[] classes;
@@ -74,16 +67,17 @@ public class School {
       else {
         classes = new String[]{};
       }
-      return new School(
-          obj.getString(ID),
-          obj.getString(NAME),
-          obj.getString(ADDRESS),
-          obj.getString(EMAIL),
-          obj.getString(PHONE_NUMBER),
-          obj.getString(PICTURE),
-          obj.getString(ADMIN_EMAIL),
-          classes
-      );
+      School school = new School();
+      school.id = obj.getString(ID);
+      school.name = obj.getString(NAME);
+      school.address = obj.getString(ADDRESS);
+      school.email = obj.getString(EMAIL);
+      school.phoneNumber = obj.getString(PHONE_NUMBER);
+      school.picture = obj.getString(PICTURE);
+      school.adminEmail = obj.getString(ADMIN_EMAIL);
+      school.classes = classes;
+
+      return school;
     } catch (JSONException e) {
       e.printStackTrace();
     }

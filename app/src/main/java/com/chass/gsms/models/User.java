@@ -4,10 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class User {
-  public static final String FIRSTNAME = "firstname";
-  public static final String LASTNAME = "lastname";
-  public static final String EMAIL = "email";
-  public static final String PHONE_NUMBER = "phoneNumber";
   private String firstname, lastname, email, phoneNumber;
 
   public String getFirstname() {
@@ -26,22 +22,23 @@ public class User {
     return phoneNumber;
   }
 
-  public User(String firstname, String lastname, String email, String phoneNumber) {
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.email = email;
-    this.phoneNumber = phoneNumber;
+  public User() {
   }
 
   public static User parse(String text){
+    String FIRSTNAME = "firstname";
+    String LASTNAME = "lastname";
+    String EMAIL = "email";
+    String PHONE_NUMBER = "phoneNumber";
+
     try {
       JSONObject obj = new JSONObject(text);
-      return new User(
-          obj.getString(FIRSTNAME),
-          obj.getString(LASTNAME),
-          obj.getString(EMAIL),
-          obj.getString(PHONE_NUMBER)
-      );
+      User user = new User();
+      user.firstname = obj.getString(FIRSTNAME);
+      user.lastname = obj.getString(LASTNAME);
+      user.email = obj.getString(EMAIL);
+      user.phoneNumber = obj.getString(PHONE_NUMBER);
+      return user;
     } catch (JSONException e) {
       e.printStackTrace();
     }
