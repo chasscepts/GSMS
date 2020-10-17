@@ -5,7 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Student {
-  private int id;
+  private int id, schoolId;
   private String firstname, lastname, className;
   private User parent1, parent2;
 

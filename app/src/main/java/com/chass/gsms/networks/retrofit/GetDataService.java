@@ -20,7 +20,7 @@ public interface GetDataService {
   @FormUrlEncoded
   @POST("school/user")
   Call<LoginResponse> login(
-      @Field("schoolId") String schoolId,
+      @Field("schoolId") int schoolId,
       @Field("email") String email,
       @Field("password") String password
   );
@@ -43,7 +43,7 @@ public interface GetDataService {
   @FormUrlEncoded
   @POST("school/class")
   Call<PlainResponse> addClass(
-      @Field("schoolId") String schoolId,
+      @Field("schoolId") int schoolId,
       @Field("className") String className,
       @Field("teacherFirstname") String teacherFirstname,
       @Field("teacherLastname") String teacherLastname,
@@ -52,12 +52,12 @@ public interface GetDataService {
   );
 
   @GET("school/class/{id}/{name}")
-  Call<PlainResponse> getClass(@Path("id") String schoolId, @Path("name") String className);
+  Call<PlainResponse> getClass(@Path("id") int schoolId, @Path("name") String className);
 
   @FormUrlEncoded
   @POST("school/student")
   Call<PlainResponse> addStudent(
-    @Field("schoolId") String schoolId,
+    @Field("schoolId") int schoolId,
     @Field("className") String className,
     @Field("studentFirstname") String studentFirstname,
     @Field("studentLastname") String studentLastname,
@@ -82,7 +82,7 @@ public interface GetDataService {
   @FormUrlEncoded
   @POST("school/attendance")
   Call<PlainResponse> postAttendance(
-    @Field("schoolId") String schoolId,
+    @Field("schoolId") int schoolId,
     @Field("className") String className,
     @Field("date") String date,
     @Field("attendance") String jsonString

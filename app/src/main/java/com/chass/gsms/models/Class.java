@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Class {
-  private int id;
+  private int id, schoolId;
   private String name;
   private User teacher;
   private Student[] students;

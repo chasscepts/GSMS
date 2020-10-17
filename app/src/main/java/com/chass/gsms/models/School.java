@@ -5,10 +5,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class School {
-  private String id, name, address, email, phoneNumber, picture, adminEmail;
+  private int id;
+  private String name, address, email, phoneNumber, picture, adminEmail;
   private String[] classes;
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
@@ -68,7 +69,7 @@ public class School {
         classes = new String[]{};
       }
       School school = new School();
-      school.id = obj.getString(ID);
+      school.id = obj.getInt(ID);
       school.name = obj.getString(NAME);
       school.address = obj.getString(ADDRESS);
       school.email = obj.getString(EMAIL);
