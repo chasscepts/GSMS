@@ -19,6 +19,10 @@ public class Class {
     return id;
   }
 
+  public int getSchoolId(){
+    return schoolId;
+  }
+
   public String getName(){
     return name;
   }
@@ -61,6 +65,8 @@ public class Class {
         return null;
       }
       instance = new Class();
+      instance.id = obj.getInt("id");
+      instance.schoolId = obj.getInt("schoolId");
       instance.name = obj.getString("name");
       instance.teacher = teacher;
 
