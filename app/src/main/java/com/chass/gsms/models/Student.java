@@ -8,7 +8,7 @@ public class Student {
   public static final String ID = "id";
   public static final String FIRSTNAME = "firstname";
   public static final String LASTNAME = "lastname";
-  public static final String CLASS_NAME = "class_name";
+  public static final String CLASS_NAME = "className";
   private final int id;
   private final String firstname, lastname, className;
   private final User parent1, parent2;

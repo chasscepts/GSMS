@@ -7,7 +7,7 @@ public class User {
   public static final String FIRSTNAME = "firstname";
   public static final String LASTNAME = "lastname";
   public static final String EMAIL = "email";
-  public static final String PHONE_NUMBER = "phone_number";
+  public static final String PHONE_NUMBER = "phoneNumber";
   private String firstname, lastname, email, phoneNumber;
 
   public String getFirstname() {
