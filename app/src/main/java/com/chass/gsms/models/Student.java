@@ -5,13 +5,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Student {
-  public static final String ID = "id";
-  public static final String FIRSTNAME = "firstname";
-  public static final String LASTNAME = "lastname";
-  public static final String CLASS_NAME = "class_name";
-  private final int id;
-  private final String firstname, lastname, className;
-  private final User parent1, parent2;
+  private int id;
+  private String firstname, lastname, className;
+  private User parent1, parent2;
 
   public int getId() {
     return id;
@@ -37,16 +33,15 @@ public class Student {
     return parent2;
   }
 
-  public Student(int id, String firstname, String lastname, String className, User parent1, User parent2) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.className = className;
-    this.parent1 = parent1;
-    this.parent2 = parent2;
+  public Student() {
+
   }
 
   public static Student parse(String text){
+    String ID = "id";
+    String FIRSTNAME = "firstname";
+    String LASTNAME = "lastname";
+    String CLASS_NAME = "className";
     try {
       JSONObject obj = new JSONObject(text);
       User parent1 = null, parent2 = null;
@@ -61,14 +56,15 @@ public class Student {
       if(parent1 == null && parent2 == null){
         return null;
       }
-      return new Student(
-        obj.getInt(ID),
-        obj.getString(FIRSTNAME),
-        obj.getString(LASTNAME),
-        obj.getString(CLASS_NAME),
-        parent1,
-        parent2
-      );
+      Student student = new Student();
+      student.id = obj.getInt(ID);
+      student.firstname = obj.getString(FIRSTNAME);
+      student.lastname = obj.getString(LASTNAME);
+      student.className = obj.getString(CLASS_NAME);
+      student.parent1 = parent1;
+      student.parent2 = parent2;
+
+      return student;
     } catch (JSONException e) {
       e.printStackTrace();
     }
