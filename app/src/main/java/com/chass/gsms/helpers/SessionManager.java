@@ -3,6 +3,7 @@ package com.chass.gsms.helpers;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.School;
 import com.chass.gsms.models.User;
 
@@ -72,6 +73,16 @@ public class SessionManager {
     } catch (JSONException e) {
       e.printStackTrace();
     }
+  }
+
+  /**
+   * Retrofit is handling conversion for us
+   * @param response converted network response
+   */
+  public void login(LoginResponse response){
+    user = response.getUser();
+    school = response.getSchool();
+    loggedIn.setValue(user != null && school != null);
   }
 
   public void logout(){
