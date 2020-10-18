@@ -6,6 +6,8 @@ import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.PlainResponse;
 import com.chass.gsms.models.Student;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -114,5 +116,35 @@ public interface GetDataService {
     @Field("className") String className,
     @Field("date") String date,
     @Field("attendance") String jsonString
+  );
+
+  /**
+   * Makes an api request to retrieve class attendance for a single date
+   * @param schoolId The id of school
+   * @param className Name of class
+   * @param date Date to retrieve attendance [format: yyyy-MM-dd]
+   * @return A retrofit Call wrapper network response
+   */
+  @GET("school/attendance/{schoolId}/{className}/{date}")
+  Call<Attendance> getAttendance(
+      @Path("schoolId") int schoolId,
+      @Path("className") String className,
+      @Path("date") String date
+  );
+
+  /**
+   * Makes an api request to retrieve class attendances for a period
+   * @param schoolId The id of school
+   * @param className Name of class
+   * @param startDate  inclusive start date to retrieve attendances [format: yyyy-MM-dd]
+   * @param endDate  inclusive end date to retrieve attendances [format: yyyy-MM-dd]
+   * @return A retrofit Call wrapper network response
+   */
+  @GET("school/attendance/{schoolId}/{className}/{startDate}/{endDate}")
+  Call<List<Attendance>> getAttendances(
+      @Path("schoolId") int schoolId,
+      @Path("className") String className,
+      @Path("startDate") String startDate,
+      @Path("endDate") String endDate
   );
 }
