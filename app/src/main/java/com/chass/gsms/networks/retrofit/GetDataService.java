@@ -1,7 +1,10 @@
 package com.chass.gsms.networks.retrofit;
 
+import com.chass.gsms.models.Attendance;
+import com.chass.gsms.models.Class;
 import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.PlainResponse;
+import com.chass.gsms.models.Student;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -42,7 +45,7 @@ public interface GetDataService {
 
   @FormUrlEncoded
   @POST("school/class")
-  Call<PlainResponse> addClass(
+  Call<Class> addClass(
       @Field("schoolId") int schoolId,
       @Field("className") String className,
       @Field("teacherFirstname") String teacherFirstname,
@@ -52,11 +55,11 @@ public interface GetDataService {
   );
 
   @GET("school/class/{id}/{name}")
-  Call<PlainResponse> getClass(@Path("id") int schoolId, @Path("name") String className);
+  Call<Class> getClass(@Path("id") int schoolId, @Path("name") String className);
 
   @FormUrlEncoded
   @POST("school/student")
-  Call<PlainResponse> addStudent(
+  Call<Student> addStudent(
     @Field("schoolId") int schoolId,
     @Field("className") String className,
     @Field("studentFirstname") String studentFirstname,
@@ -85,7 +88,7 @@ public interface GetDataService {
    */
   @FormUrlEncoded
   @POST("school/student")
-  Call<PlainResponse> addStudent(
+  Call<Student> addStudent(
       @Field("schoolId") int schoolId,
       @Field("className") String className,
       @Field("studentFirstname") String studentFirstname,
@@ -106,7 +109,7 @@ public interface GetDataService {
    */
   @FormUrlEncoded
   @POST("school/attendance")
-  Call<PlainResponse> postAttendance(
+  Call<Attendance> postAttendance(
     @Field("schoolId") int schoolId,
     @Field("className") String className,
     @Field("date") String date,
