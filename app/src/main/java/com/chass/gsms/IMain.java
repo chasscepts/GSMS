@@ -1,5 +1,7 @@
 package com.chass.gsms;
 
+import com.chass.gsms.models.Student;
+
 /**
  * This interface is implemented by MainActivity.
  * We pass context from xml to methods of ViewModels used in binding.
@@ -7,4 +9,5 @@ package com.chass.gsms;
  */
 public interface IMain {
   void selectClass(String className);
+  void selectStudent(Student student);
 }
