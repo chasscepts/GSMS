@@ -1,7 +1,12 @@
 package com.chass.gsms.networks.retrofit;
 
+import com.chass.gsms.models.Attendance;
+import com.chass.gsms.models.Class;
 import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.PlainResponse;
+import com.chass.gsms.models.Student;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -20,7 +25,7 @@ public interface GetDataService {
   @FormUrlEncoded
   @POST("school/user")
   Call<LoginResponse> login(
-      @Field("schoolId") String schoolId,
+      @Field("schoolId") int schoolId,
       @Field("email") String email,
       @Field("password") String password
   );
@@ -42,8 +47,8 @@ public interface GetDataService {
 
   @FormUrlEncoded
   @POST("school/class")
-  Call<PlainResponse> addClass(
-      @Field("schoolId") String schoolId,
+  Call<Class> addClass(
+      @Field("schoolId") int schoolId,
       @Field("className") String className,
       @Field("teacherFirstname") String teacherFirstname,
       @Field("teacherLastname") String teacherLastname,
@@ -52,12 +57,12 @@ public interface GetDataService {
   );
 
   @GET("school/class/{id}/{name}")
-  Call<PlainResponse> getClass(@Path("id") String schoolId, @Path("name") String className);
+  Call<Class> getClass(@Path("id") int schoolId, @Path("name") String className);
 
   @FormUrlEncoded
   @POST("school/student")
-  Call<PlainResponse> addStudent(
-    @Field("schoolId") String schoolId,
+  Call<Student> addStudent(
+    @Field("schoolId") int schoolId,
     @Field("className") String className,
     @Field("studentFirstname") String studentFirstname,
     @Field("studentLastname") String studentLastname,
@@ -72,6 +77,31 @@ public interface GetDataService {
   );
 
   /**
+   * If parent2 fields are not filled we use this overload to add student
+   * @param schoolId
+   * @param className
+   * @param studentFirstname
+   * @param studentLastname
+   * @param parent1Firstname
+   * @param parent1Lastname
+   * @param parent1Email
+   * @param parent1PhoneNumber
+   * @return
+   */
+  @FormUrlEncoded
+  @POST("school/student")
+  Call<Student> addStudent(
+      @Field("schoolId") int schoolId,
+      @Field("className") String className,
+      @Field("studentFirstname") String studentFirstname,
+      @Field("studentLastname") String studentLastname,
+      @Field("parent1Firstname") String parent1Firstname,
+      @Field("parent1Lastname") String parent1Lastname,
+      @Field("parent1Email") String parent1Email,
+      @Field("parent1PhoneNumber") String parent1PhoneNumber
+  );
+
+  /**
    * Posts the attendance of a class to the endpoint
    * @param schoolId GSMS id of school
    * @param className Name of class
@@ -81,10 +111,74 @@ public interface GetDataService {
    */
   @FormUrlEncoded
   @POST("school/attendance")
-  Call<PlainResponse> postAttendance(
-    @Field("schoolId") String schoolId,
+  Call<Attendance> postAttendance(
+    @Field("schoolId") int schoolId,
     @Field("className") String className,
     @Field("date") String date,
     @Field("attendance") String jsonString
+  );
+
+  /**
+   * Makes an api request to retrieve class attendance for a single date
+   * @param schoolId The id of school
+   * @param className Name of class
+   * @param date Date to retrieve attendance [format: yyyy-MM-dd]
+   * @return A retrofit Call wrapper network response
+   */
+  @GET("school/attendance/{schoolId}/{className}/{date}")
+  Call<Attendance> getClassAttendance(
+      @Path("schoolId") int schoolId,
+      @Path("className") String className,
+      @Path("date") String date
+  );
+
+  /**
+   * Makes an api request to retrieve class attendances for a period
+   * @param schoolId The id of school
+   * @param className Name of class
+   * @param startDate  inclusive start date to retrieve attendances [format: yyyy-MM-dd]
+   * @param endDate  inclusive end date to retrieve attendances [format: yyyy-MM-dd]
+   * @return A retrofit Call wrapper network response
+   */
+  @GET("school/attendance/{schoolId}/{className}/{startDate}/{endDate}")
+  Call<List<Attendance>> getClassAttendances(
+      @Path("schoolId") int schoolId,
+      @Path("className") String className,
+      @Path("startDate") String startDate,
+      @Path("endDate") String endDate
+  );
+
+  /**
+   * Makes an api request to retrieve student attendance for a single date
+   * @param schoolId The id of school
+   * @param className Name of class
+   * @param studentId id of student
+   * @param date Date to retrieve attendance [format: yyyy-MM-dd]
+   * @return A retrofit Call wrapper network response
+   */
+  @GET("school/attendance/student/{schoolId}/{className}/{studentId}/{date}")
+  Call<Attendance> getStudentAttendance(
+      @Path("schoolId") int schoolId,
+      @Path("className") String className,
+      @Path("studentId") int studentId,
+      @Path("date") String date
+  );
+
+  /**
+   * Makes an api request to retrieve student attendances for a period
+   * @param schoolId The id of school
+   * @param className Name of class
+   * @param studentId id of student
+   * @param startDate  inclusive start date to retrieve attendances [format: yyyy-MM-dd]
+   * @param endDate  inclusive end date to retrieve attendances [format: yyyy-MM-dd]
+   * @return A retrofit Call wrapper network response
+   */
+  @GET("school/attendance/student/{schoolId}/{className}/{studentId}/{startDate}/{endDate}")
+  Call<List<Attendance>> getStudentAttendances(
+      @Path("schoolId") int schoolId,
+      @Path("className") String className,
+      @Path("studentId") int studentId,
+      @Path("startDate") String startDate,
+      @Path("endDate") String endDate
   );
 }

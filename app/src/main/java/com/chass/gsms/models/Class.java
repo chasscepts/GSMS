@@ -10,9 +10,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Class {
+  private int id, schoolId;
   private String name;
   private User teacher;
   private Student[] students;
+
+  public int getId(){
+    return id;
+  }
+
+  public int getSchoolId(){
+    return schoolId;
+  }
 
   public String getName(){
     return name;
@@ -56,6 +65,8 @@ public class Class {
         return null;
       }
       instance = new Class();
+      instance.id = obj.getInt("id");
+      instance.schoolId = obj.getInt("schoolId");
       instance.name = obj.getString("name");
       instance.teacher = teacher;
 

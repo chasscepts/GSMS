@@ -5,12 +5,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Student {
-  private int id;
+  private int id, schoolId;
   private String firstname, lastname, className;
   private User parent1, parent2;
 
   public int getId() {
     return id;
+  }
+
+  public int getSchoolId(){
+    return schoolId;
   }
 
   public String getFirstname() {
@@ -39,6 +43,7 @@ public class Student {
 
   public static Student parse(String text){
     String ID = "id";
+    String SCHOOL_ID = "schoolId";
     String FIRSTNAME = "firstname";
     String LASTNAME = "lastname";
     String CLASS_NAME = "className";
@@ -58,6 +63,7 @@ public class Student {
       }
       Student student = new Student();
       student.id = obj.getInt(ID);
+      student.schoolId = obj.getInt(SCHOOL_ID);
       student.firstname = obj.getString(FIRSTNAME);
       student.lastname = obj.getString(LASTNAME);
       student.className = obj.getString(CLASS_NAME);
