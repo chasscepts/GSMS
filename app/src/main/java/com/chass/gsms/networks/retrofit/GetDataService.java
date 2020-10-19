@@ -8,6 +8,8 @@ import com.chass.gsms.models.Student;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -33,16 +35,16 @@ public interface GetDataService {
   @Multipart
   @POST("school/register")
   Call<LoginResponse> register(
-    @Field("schoolName") String schoolName,
-    @Field("schoolAddress") String schoolAddress,
-    @Field("schoolEmail") String schoolEmail,
-    @Field("schoolPhoneNumber") String schoolPhoneNumber,
-    @Part("schoolPicture") String schoolProfilePicture,
-    @Field("adminFirstname") String adminFirstname,
-    @Field("adminLastname") String adminLastname,
-    @Field("adminEmail") String adminEmail,
-    @Field("adminPhoneNumber") String adminPhoneNumber,
-    @Field("adminPassword") String password
+    @Part("schoolName") ResponseBody schoolName,
+    @Part("schoolAddress") ResponseBody schoolAddress,
+    @Part("schoolEmail") ResponseBody schoolEmail,
+    @Part("schoolPhoneNumber") ResponseBody schoolPhoneNumber,
+    @Part MultipartBody.Part schoolProfilePicture,
+    @Part("adminFirstname") ResponseBody adminFirstname,
+    @Part("adminLastname") ResponseBody adminLastname,
+    @Part("adminEmail") ResponseBody adminEmail,
+    @Part("adminPhoneNumber") ResponseBody adminPhoneNumber,
+    @Part("adminPassword") ResponseBody password
   );
 
   @FormUrlEncoded
