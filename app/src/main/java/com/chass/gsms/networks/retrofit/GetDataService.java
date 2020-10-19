@@ -3,13 +3,12 @@ package com.chass.gsms.networks.retrofit;
 import com.chass.gsms.models.Attendance;
 import com.chass.gsms.models.Class;
 import com.chass.gsms.models.LoginResponse;
-import com.chass.gsms.models.PlainResponse;
 import com.chass.gsms.models.Student;
 
 import java.util.List;
 
 import okhttp3.MultipartBody;
-import okhttp3.ResponseBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -35,16 +34,16 @@ public interface GetDataService {
   @Multipart
   @POST("school/register")
   Call<LoginResponse> register(
-    @Part("schoolName") ResponseBody schoolName,
-    @Part("schoolAddress") ResponseBody schoolAddress,
-    @Part("schoolEmail") ResponseBody schoolEmail,
-    @Part("schoolPhoneNumber") ResponseBody schoolPhoneNumber,
+    @Part("schoolName") RequestBody schoolName,
+    @Part("schoolAddress") RequestBody schoolAddress,
+    @Part("schoolEmail") RequestBody schoolEmail,
+    @Part("schoolPhoneNumber") RequestBody schoolPhoneNumber,
     @Part MultipartBody.Part schoolProfilePicture,
-    @Part("adminFirstname") ResponseBody adminFirstname,
-    @Part("adminLastname") ResponseBody adminLastname,
-    @Part("adminEmail") ResponseBody adminEmail,
-    @Part("adminPhoneNumber") ResponseBody adminPhoneNumber,
-    @Part("adminPassword") ResponseBody password
+    @Part("adminFirstname") RequestBody adminFirstname,
+    @Part("adminLastname") RequestBody adminLastname,
+    @Part("adminEmail") RequestBody adminEmail,
+    @Part("adminPhoneNumber") RequestBody adminPhoneNumber,
+    @Part("adminPassword") RequestBody password
   );
 
   @FormUrlEncoded
