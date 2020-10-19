@@ -126,7 +126,7 @@ public interface GetDataService {
    * @return A retrofit Call wrapper network response
    */
   @GET("school/attendance/{schoolId}/{className}/{date}")
-  Call<Attendance> getAttendance(
+  Call<Attendance> getClassAttendance(
       @Path("schoolId") int schoolId,
       @Path("className") String className,
       @Path("date") String date
@@ -141,9 +141,43 @@ public interface GetDataService {
    * @return A retrofit Call wrapper network response
    */
   @GET("school/attendance/{schoolId}/{className}/{startDate}/{endDate}")
-  Call<List<Attendance>> getAttendances(
+  Call<List<Attendance>> getClassAttendances(
       @Path("schoolId") int schoolId,
       @Path("className") String className,
+      @Path("startDate") String startDate,
+      @Path("endDate") String endDate
+  );
+
+  /**
+   * Makes an api request to retrieve student attendance for a single date
+   * @param schoolId The id of school
+   * @param className Name of class
+   * @param studentId id of student
+   * @param date Date to retrieve attendance [format: yyyy-MM-dd]
+   * @return A retrofit Call wrapper network response
+   */
+  @GET("school/attendance/student/{schoolId}/{className}/{studentId}/{date}")
+  Call<Attendance> getStudentAttendance(
+      @Path("schoolId") int schoolId,
+      @Path("className") String className,
+      @Path("studentId") int studentId,
+      @Path("date") String date
+  );
+
+  /**
+   * Makes an api request to retrieve student attendances for a period
+   * @param schoolId The id of school
+   * @param className Name of class
+   * @param studentId id of student
+   * @param startDate  inclusive start date to retrieve attendances [format: yyyy-MM-dd]
+   * @param endDate  inclusive end date to retrieve attendances [format: yyyy-MM-dd]
+   * @return A retrofit Call wrapper network response
+   */
+  @GET("school/attendance/student/{schoolId}/{className}/{studentId}/{startDate}/{endDate}")
+  Call<List<Attendance>> getStudentAttendances(
+      @Path("schoolId") int schoolId,
+      @Path("className") String className,
+      @Path("studentId") int studentId,
       @Path("startDate") String startDate,
       @Path("endDate") String endDate
   );
