@@ -14,10 +14,15 @@ import com.chass.gsms.R;
 public class BusyViewModel extends BaseObservable {
   private static final String DEFAULT_BUSY_MESSAGE = "Application Busy. Please wait ...";
   private String message;
+  private boolean _on;
 
   @Bindable
   public String getMessage(){
     return message;
+  }
+
+  public boolean isOn(){
+    return _on;
   }
 
   public void on(){
@@ -26,10 +31,12 @@ public class BusyViewModel extends BaseObservable {
 
   public void on(String msg){
     message = message;
+    _on = true;
     notifyPropertyChanged(BR.message);
   }
 
   public void off(){
+    _on =  false;
     message = null;
     notifyPropertyChanged(BR.message);
   }

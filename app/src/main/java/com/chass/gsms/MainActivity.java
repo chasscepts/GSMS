@@ -5,6 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.chass.gsms.models.Student;
 import com.chass.gsms.ui.classdetails.ClassDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -69,5 +70,10 @@ public class MainActivity extends AppCompatActivity implements IMain {
     viewModel.setClassName(className);
     View view = findViewById(R.id.nav_host_fragment);
     Navigation.findNavController(view).navigate(R.id.ClassDetailsFragment);
+  }
+
+  @Override
+  public void selectStudent(Student student){
+
   }
 }
