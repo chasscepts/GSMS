@@ -9,12 +9,13 @@
         android:id="@+id/imgSchoolProfilePic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/school_image" />
 
     <TextView
         android:id="@+id/txtNameOfSchool"
@@ -27,7 +28,7 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimary"
-        android:textSize="36sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,7 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/txtNameOfSchool"
         app:layout_constraintStart_toStartOf="@+id/txtNameOfSchool"
         app:layout_constraintTop_toBottomOf="@+id/txtNameOfSchool" />
@@ -55,6 +56,7 @@
         android:text="@string/contact_details"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/txtSchoolAddress"
         app:layout_constraintStart_toStartOf="@+id/txtSchoolAddress"
         app:layout_constraintTop_toBottomOf="@+id/txtSchoolAddress" />
@@ -82,6 +84,7 @@
         android:text="@string/email"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorAccent"
+        android:textSize="24sp"
         android:textStyle="bold|italic"
         app:drawableStartCompat="@drawable/ic_baseline_email_24"
         app:drawableTint="@color/colorPrimaryDark"
@@ -100,6 +103,7 @@
         android:text="@android:string/emptyPhoneNumber"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorAccent"
+        android:textSize="24sp"
         android:textStyle="bold|italic"
         app:drawableStartCompat="@drawable/ic_baseline_phone_24"
         app:drawableTint="@color/colorPrimaryDark"

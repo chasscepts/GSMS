@@ -17,39 +17,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-      <TableRow
-          android:id="@+id/teacherHr"
-          android:layout_width="0dp"
-          android:layout_height="1dp"
-          android:layout_marginTop="4dp"
-          android:layout_marginEnd="8dp"
-          android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="@+id/txtTeacher"
-          app:layout_constraintTop_toBottomOf="@+id/txtTeacher" />
-
-      <TextView
-          android:id="@+id/txtTeacher"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
-          android:text="@string/teacher"
-          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-          android:textColor="@color/colorPrimary"
-          android:textColorHint="@color/colorPrimary"
-          android:textSize="24sp"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="@+id/classNameCardView"
-          app:layout_constraintStart_toStartOf="@+id/classNameCardView"
-          app:layout_constraintTop_toBottomOf="@+id/classNameCardView" />
-
       <androidx.cardview.widget.CardView
           android:id="@+id/classNameCardView"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_margin="8dp"
+          android:layout_marginStart="32dp"
           android:layout_marginTop="24dp"
+          android:layout_marginEnd="32dp"
           android:textAlignment="center"
           app:cardCornerRadius="8dp"
           app:cardElevation="8dp"
@@ -69,11 +44,12 @@
               android:id="@+id/txtClassName"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
+              android:layout_marginEnd="32dp"
               android:text="@string/classname"
               android:textAlignment="center"
               android:textAppearance="@style/TextAppearance.AppCompat.Large"
               android:textColor="@color/colorPrimary"
-              android:textSize="24sp"
+              android:textSize="36sp"
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent"
@@ -81,39 +57,62 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
 
+      <TextView
+          android:id="@+id/txtTeacher"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="40dp"
+          android:text="@string/teacher"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/colorPrimary"
+          android:textColorHint="@color/colorPrimary"
+          android:textSize="30sp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toStartOf="@+id/txtStudents"
+          app:layout_constraintStart_toStartOf="@+id/classNameCardView"
+          app:layout_constraintTop_toBottomOf="@+id/classNameCardView" />
+
+      <TableRow
+          android:id="@+id/teacherHr"
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_marginTop="4dp"
+          android:background="@color/colorPrimaryDark"
+          app:layout_constraintEnd_toEndOf="@+id/txtTeacher"
+          app:layout_constraintStart_toStartOf="@+id/txtTeacher"
+          app:layout_constraintTop_toBottomOf="@+id/txtTeacher" />
+
       <androidx.cardview.widget.CardView
           android:id="@+id/teacherCardView"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
+          android:layout_marginTop="12dp"
           app:cardCornerRadius="8dp"
           app:cardElevation="8dp"
           app:contentPadding="4dp"
-          app:layout_constraintEnd_toEndOf="@+id/classNameCardView"
-          app:layout_constraintStart_toStartOf="@+id/classNameCardView"
+          app:layout_constraintEnd_toEndOf="@+id/teacherHr"
+          app:layout_constraintStart_toStartOf="@+id/txtTeacher"
           app:layout_constraintTop_toBottomOf="@+id/txtTeacher">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="600dp"
+            android:layout_height="306dp">
 
-          <TextView
-              android:id="@+id/txtTeacherFullName"
+          <ImageView
+              android:id="@+id/imgTeacher"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_margin="8dp"
-              android:layout_marginStart="8dp"
-              android:layout_marginTop="16dp"
-              android:text="@string/teacher_s_full_name"
-              android:textAppearance="@style/TextAppearance.AppCompat.Small"
-              android:textColor="@color/colorPrimary"
-              android:textColorHighlight="@color/colorPrimary"
-              android:textColorHint="@color/colorPrimary"
-              android:textSize="16sp"
-              android:textStyle="bold"
-              app:layout_constraintEnd_toStartOf="@+id/imgTeacher"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="8dp"
+              android:layout_marginEnd="16dp"
+              android:contentDescription="@string/teacher_s_image"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.0"
               app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+              app:layout_constraintTop_toTopOf="parent"
+              tools:srcCompat="@tools:sample/avatars" />
 
           <TextView
               android:id="@+id/txtTeacherEmail"
@@ -124,6 +123,7 @@
               android:drawablePadding="8dp"
               android:text="@string/email"
               android:textColor="@color/colorAccent"
+              android:textSize="24sp"
               android:textStyle="bold|italic"
               app:drawableStartCompat="@drawable/ic_baseline_email_24"
               app:drawableTint="@color/colorPrimaryDark"
@@ -140,6 +140,7 @@
               android:drawablePadding="8dp"
               android:text="@string/phone_number"
               android:textColor="@color/colorAccent"
+              android:textSize="24sp"
               android:textStyle="bold|italic"
               app:drawableStartCompat="@drawable/ic_baseline_phone_24"
               app:drawableTint="@color/colorPrimaryDark"
@@ -147,43 +148,24 @@
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toBottomOf="@+id/txtTeacherEmail" />
 
-          <ImageView
-              android:id="@+id/imgTeacher"
-              android:layout_width="95dp"
-              android:layout_height="95dp"
-              android:layout_marginTop="8dp"
-              android:layout_marginEnd="8dp"
-              android:layout_marginBottom="8dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              tools:srcCompat="@tools:sample/avatars"
-              android:contentDescription="@string/teacher_s_image" />
+          <TextView
+              android:id="@+id/txtTeacherFullName"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_margin="8dp"
+              android:layout_marginTop="32dp"
+              android:text="@string/teacher_s_full_name"
+              android:textAppearance="@style/TextAppearance.AppCompat.Small"
+              android:textColor="@color/colorPrimary"
+              android:textColorHighlight="@color/colorPrimary"
+              android:textColorHint="@color/colorPrimary"
+              android:textSize="30sp"
+              android:textStyle="bold"
+              app:layout_constraintEnd_toEndOf="@+id/imgTeacher"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/imgTeacher" />
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
-
-      <TextView
-          android:id="@+id/txtStudents"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="28dp"
-          android:text="@string/students"
-          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-          android:textColor="@color/colorPrimary"
-          android:textSize="24sp"
-          android:textStyle="bold"
-          app:layout_constraintStart_toStartOf="@+id/teacherCardView"
-          app:layout_constraintTop_toBottomOf="@+id/teacherCardView" />
-
-      <TableRow
-          android:id="@+id/hrStudent"
-          android:layout_width="0dp"
-          android:layout_height="1dp"
-          android:layout_marginTop="4dp"
-          android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="@+id/teacherCardView"
-          app:layout_constraintStart_toStartOf="@+id/txtStudents"
-          app:layout_constraintTop_toBottomOf="@+id/txtStudents" />
 
       <androidx.recyclerview.widget.RecyclerView
           android:layout_width="0dp"
@@ -191,21 +173,48 @@
           android:layout_marginTop="16dp"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="@+id/txtStudentTotalNumber"
+          app:layout_constraintHorizontal_bias="1.0"
           app:layout_constraintStart_toStartOf="@+id/txtStudents"
           app:layout_constraintTop_toBottomOf="@+id/hrStudent"
+          app:layout_constraintVertical_bias="0.0"
           tools:listitem="@layout/student_item_view" />
+
+      <TextView
+          android:id="@+id/txtStudents"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="350dp"
+          android:text="@string/students"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/colorPrimary"
+          android:textSize="30sp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toStartOf="@+id/txtStudentTotalNumber"
+          app:layout_constraintTop_toBottomOf="@+id/classNameCardView" />
+
+      <TableRow
+          android:id="@+id/hrStudent"
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_marginTop="4dp"
+          android:background="@color/colorPrimaryDark"
+          app:layout_constraintEnd_toEndOf="@+id/txtStudentTotalNumber"
+          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintStart_toStartOf="@+id/txtStudents"
+          app:layout_constraintTop_toBottomOf="@+id/txtStudents" />
 
       <TextView
           android:id="@+id/txtStudentTotalNumber"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
           android:text="@string/total_number_of_students"
           android:textAppearance="@style/TextAppearance.AppCompat.Small"
           android:textColor="@color/colorPrimaryDark"
-          android:textSize="12sp"
+          android:textSize="18sp"
           app:layout_constraintBottom_toBottomOf="@+id/txtStudents"
-          app:layout_constraintEnd_toEndOf="@+id/teacherCardView"
-          app:layout_constraintTop_toTopOf="@+id/txtStudents" />
+          app:layout_constraintEnd_toEndOf="parent" />
 
       <com.google.android.material.floatingactionbutton.FloatingActionButton
           android:id="@+id/btnAddNewStudent"

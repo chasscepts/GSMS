@@ -33,7 +33,6 @@
         android:background="@drawable/round_btn"
         android:contentDescription="@string/add_class_btn_description"
         android:drawableStart="@drawable/ic_baseline_add_24"
-        android:paddingEnd="8dp"
         android:text="@string/add_class"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#fff"
