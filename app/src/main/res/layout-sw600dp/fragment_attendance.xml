@@ -36,7 +36,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/class_name"
             android:textColor="@color/colorPrimary"
-            android:textSize="30sp"
+            android:textSize="50sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
             android:layout_marginEnd="16dp"
             android:text="@string/date"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
+            android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="@+id/txtClassName"
             app:layout_constraintEnd_toEndOf="parent" />
       </androidx.constraintlayout.widget.ConstraintLayout>
@@ -61,7 +61,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/attendance"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -73,7 +73,7 @@
         android:text="@string/total_number_of_students"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="14sp"
+        android:textSize="30sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/txtAttendance"
         app:layout_constraintEnd_toEndOf="@+id/cardView" />

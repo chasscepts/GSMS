@@ -40,6 +40,7 @@
           android:text="@string/login"
           android:textAppearance="@style/TextAppearance.AppCompat.Small"
           android:textColor="@color/colorAccent"
+          android:textSize="12sp"
           android:textStyle="bold|italic"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.826"
@@ -65,9 +66,8 @@
           android:layout_height="1dp"
           android:layout_marginStart="16dp"
           android:layout_marginTop="4dp"
-          android:layout_marginEnd="8dp"
           android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintEnd_toEndOf="@+id/cardViewSchool"
           app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/txtSchool" />
@@ -76,9 +76,9 @@
           android:id="@+id/cardViewSchool"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
+          android:layout_marginStart="16dp"
           android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
+          android:layout_marginEnd="24dp"
           app:cardCornerRadius="8dp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
@@ -125,14 +125,6 @@
               android:hint="@string/phone_number"
               android:inputType="phone" />
 
-          <TextView
-              android:id="@+id/txtProfilePicture"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="4dp"
-              android:text="@string/profile_picture"
-              android:textSize="18sp" />
-
           <EditText
               android:id="@+id/edtTxtSchoolProfilePicture"
               android:layout_width="match_parent"
@@ -146,6 +138,14 @@
               android:inputType=""
               android:textSize="14sp" />
 
+          <TextView
+              android:id="@+id/txtProfilePicture"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="4dp"
+              android:text="@string/profile_picture"
+              android:textSize="18sp" />
+
 
         </LinearLayout>
       </androidx.cardview.widget.CardView>
@@ -154,7 +154,7 @@
           android:id="@+id/txtAdministrator"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
+          android:layout_marginTop="24dp"
           android:text="@string/administrator"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/colorPrimary"
@@ -169,9 +169,9 @@
           android:layout_height="1dp"
           android:layout_marginStart="16dp"
           android:layout_marginTop="4dp"
-          android:layout_marginEnd="8dp"
           android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="parent"
+          android:textSize="24sp"
+          app:layout_constraintEnd_toEndOf="@+id/cardViewAdmin"
           app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/txtAdministrator" />
@@ -180,9 +180,9 @@
           android:id="@+id/cardViewAdmin"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
+          android:layout_marginStart="16dp"
           android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
+          android:layout_marginEnd="16dp"
           app:cardCornerRadius="8dp"
           app:cardElevation="8dp"
           app:layout_constraintEnd_toEndOf="parent"
@@ -259,14 +259,14 @@
 
       <Button
           android:id="@+id/btnRegister"
-          android:layout_width="0dp"
+          android:layout_width="300dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
+          android:layout_marginStart="32dp"
           android:layout_marginTop="24dp"
-          android:layout_marginEnd="16dp"
+          android:layout_marginEnd="32dp"
           android:layout_marginBottom="32dp"
           android:background="@drawable/round_btn"
-          android:text="@string/register"
+          android:text="Register"
           android:textAllCaps="true"
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
           android:textColor="#FFFFFF"
@@ -276,6 +276,7 @@
           app:layout_constraintEnd_toEndOf="@+id/cardViewAdmin"
           app:layout_constraintStart_toStartOf="@+id/cardViewAdmin"
           app:layout_constraintTop_toBottomOf="@+id/cardViewAdmin" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>

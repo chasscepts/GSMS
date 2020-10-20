@@ -7,10 +7,11 @@
       name="viewModel"
       type="com.chass.gsms.ui.newclass.NewClassViewModel" />
   </data>
+
   <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-    android:fillViewport="true">
+      android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,15 +20,18 @@
       <Button
           android:id="@+id/btn_login2"
           style="@style/Widget.AppCompat.Button.Borderless.Colored"
-          android:layout_width="0dp"
+          android:layout_width="350dp"
           android:layout_height="wrap_content"
           android:layout_marginTop="32dp"
+          android:layout_marginBottom="32dp"
           android:background="@drawable/round_btn"
           android:text="@string/login"
           android:textAllCaps="true"
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
           android:textColor="#FFFFFF"
+          android:textSize="30sp"
           android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="@+id/regStudentCardView"
           app:layout_constraintStart_toStartOf="@+id/regStudentCardView"
           app:layout_constraintTop_toBottomOf="@+id/regStudentCardView" />
@@ -36,14 +40,14 @@
           android:id="@+id/addNewClass"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
+          android:layout_marginStart="24dp"
           android:layout_marginTop="32dp"
-          android:layout_marginEnd="8dp"
+          android:layout_marginEnd="24dp"
           android:text="@string/add_new_class"
           android:textAlignment="center"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/colorPrimary"
-          android:textSize="30sp"
+          android:textSize="36sp"
           android:textStyle="bold"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +68,9 @@
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginTop="8dp"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="8dp"
+          app:contentPadding="8dp"
           app:layout_constraintEnd_toEndOf="@+id/addNewClassTableRow"
           app:layout_constraintStart_toStartOf="@+id/addNewClassTableRow"
           app:layout_constraintTop_toBottomOf="@+id/addNewClassTableRow">
@@ -87,7 +94,7 @@
               android:inputType="textPersonName"
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="24sp"
+              android:textSize="30sp"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
@@ -104,8 +111,9 @@
               android:inputType="textPersonName"
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="24sp"
+              android:textSize="30sp"
               app:layout_constraintEnd_toEndOf="@id/txtTeacher"
+              app:layout_constraintHorizontal_bias="0.0"
               app:layout_constraintStart_toStartOf="@id/txtTeacher"
               app:layout_constraintTop_toBottomOf="@id/txtTeacher" />
 
@@ -114,7 +122,7 @@
               android:id="@+id/edtStudentLastName"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_marginTop="16dp"
+              android:layout_marginTop="12dp"
               android:autofillHints="no"
               android:background="@drawable/edit_text_border"
               android:ems="10"
@@ -122,8 +130,9 @@
               android:inputType="textPersonName"
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="24sp"
+              android:textSize="30sp"
               app:layout_constraintEnd_toEndOf="@id/edtStudentFirstName"
+              app:layout_constraintHorizontal_bias="0.0"
               app:layout_constraintStart_toStartOf="@id/edtStudentFirstName"
               app:layout_constraintTop_toBottomOf="@+id/edtStudentFirstName" />
 
@@ -142,22 +151,25 @@
               android:inputType="phone"
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="24sp"
+              android:textSize="30sp"
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintEnd_toEndOf="@id/txtStudentProfilePicture"
+              app:layout_constraintHorizontal_bias="0.0"
               app:layout_constraintStart_toStartOf="@id/txtStudentProfilePicture"
-              app:layout_constraintTop_toBottomOf="@+id/txtStudentProfilePicture" />
+              app:layout_constraintTop_toBottomOf="@+id/txtStudentProfilePicture"
+              app:layout_constraintVertical_bias="1.0" />
 
           <TextView
               android:id="@+id/txtTeacher"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_marginTop="24dp"
+              android:layout_marginTop="20dp"
               android:text="@string/teacher"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textColor="@color/colorPrimary"
-              android:textSize="24sp"
+              android:textSize="30sp"
               app:layout_constraintEnd_toEndOf="@+id/edtClassName"
+              app:layout_constraintHorizontal_bias="0.0"
               app:layout_constraintStart_toStartOf="@+id/edtClassName"
               app:layout_constraintTop_toBottomOf="@+id/edtClassName" />
 
@@ -168,8 +180,9 @@
               android:layout_marginTop="16dp"
               android:text="@string/profile_picture"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="24sp"
+              android:textSize="30sp"
               app:layout_constraintEnd_toEndOf="@+id/edtStudentLastName"
+              app:layout_constraintHorizontal_bias="0.0"
               app:layout_constraintStart_toStartOf="@+id/edtStudentLastName"
               app:layout_constraintTop_toBottomOf="@+id/edtStudentLastName" />
 
@@ -179,4 +192,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>
+
 </layout>
