@@ -7,9 +7,6 @@ import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.School;
 import com.chass.gsms.models.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.net.CookieHandler;
 import java.net.CookieManager;
 
@@ -18,19 +15,6 @@ import javax.inject.Singleton;
 
 @Singleton
 public class SessionManager {
-  private static SessionManager instance;
-  private static final Object LOCK = new Object();
-
-  public static SessionManager getInstance(){
-    if(instance == null){
-      synchronized (LOCK){
-        if(instance == null){
-          instance = new SessionManager();
-        }
-      }
-    }
-    return instance;
-  }
 
   @Inject
   public SessionManager(){
@@ -79,6 +63,7 @@ public class SessionManager {
   }
 
   public void logout(){
+    //Todo destroy local session and send request to server to do same
     user = null;
     school = null;
     loggedIn.setValue(false);
