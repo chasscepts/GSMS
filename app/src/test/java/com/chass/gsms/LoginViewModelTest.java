@@ -94,7 +94,7 @@ public class LoginViewModelTest {
   }
 
   @Test
-  public void RegisterWhenFormIsInvalidSetsStateToInfo() {
+  public void LoginWhenFormIsInvalidSetsStateToInfo() {
     when(form.isValid()).thenReturn(false);
     viewModel.login();
     assertEquals(ViewStates.INFO, viewState.getState());
@@ -103,7 +103,7 @@ public class LoginViewModelTest {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void RegisterWhenNetworkRequestFails(){
+  public void LoginWhenNetworkRequestFails(){
     sessionManager.logout();
     when(form.isValid()).thenReturn(true);
 
@@ -125,7 +125,7 @@ public class LoginViewModelTest {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void RegisterWhenNetworkRequestSucceeds(){
+  public void LoginWhenNetworkRequestSucceeds(){
     when(form.isValid()).thenReturn(true);
     when(loginResponse.getSchool()).thenReturn(new School());
     when(loginResponse.getUser()).thenReturn(new User());
