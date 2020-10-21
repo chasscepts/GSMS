@@ -1,10 +1,12 @@
 package com.chass.gsms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.chass.gsms.helpers.SessionManager;
 import com.chass.gsms.models.Student;
 import com.chass.gsms.ui.classdetails.ClassDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,7 +24,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity implements IMain {
+  @Inject
+  SessionManager sessionManager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements IMain {
     setContentView(R.layout.activity_main);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    setupSession();
 
     FloatingActionButton fab = findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +51,17 @@ public class MainActivity extends AppCompatActivity implements IMain {
     });
   }
 
+  /**
+   * Observe sessionManager for when user logs out and start LoginActivity
+   */
+  private void setupSession() {
+    sessionManager.isLoggedIn().observe(this, loggedIn -> {
+      if(!loggedIn){
+        startActivity(new Intent(this, LoginActivity.class));
+        finish(); //Don't come back to this Activity on Back Press
+      }
+    });
+  }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

@@ -13,6 +13,10 @@ import org.json.JSONObject;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class SessionManager {
   private static SessionManager instance;
   private static final Object LOCK = new Object();
@@ -28,12 +32,17 @@ public class SessionManager {
     return instance;
   }
 
-  //We initialize cookie for managing session on the server
-  //TODO: check if retrofit manages session
-  private CookieManager cookieManager;
+  @Inject
+  public SessionManager(){
+    initializeCookie();
+  }
 
-  private SessionManager(){
-    cookieManager = new CookieManager();
+  /**
+   * We initialize cookie for managing session with the server
+   * TODO: check if retrofit manages session automatically
+   */
+  private void initializeCookie() {
+    CookieManager cookieManager = new CookieManager();
     CookieHandler.setDefault(cookieManager);  //The system automatically handles session after this.
   }
 
@@ -57,22 +66,6 @@ public class SessionManager {
 
   public School getSchool() {
     return school;
-  }
-
-  /**
-   * This is called after success response from login or school registration attempts.
-   * It parses the text into user and school and sets loggedIn if successful.
-   * @param networkResponse response received from network request
-   */
-  public void login(String networkResponse){
-    try {
-      JSONObject obj = new JSONObject(networkResponse);
-      user = User.parse(obj.getString("user"));
-      school = School.parse(obj.getString("school"));
-      loggedIn.setValue(user != null && school != null);
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
   }
 
   /**

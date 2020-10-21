@@ -59,4 +59,5 @@
   <string name="add_new_class">Add new class</string>
   <string name="class_name">Class Name</string>
   <string name="school_image">School image</string>
+  <string name="close_button">Close Button</string>
 </resources>
