@@ -1,8 +1,8 @@
 package com.chass.gsms.models;
 
 /**
- * A class to hold server response after successful login or registration
- * retrofit will automatically parse the response for us
+ * A container for server response after successful login or registration.
+ * The purpose is for retrofit to parse the response for us.
  */
 public class LoginResponse {
   private School school;
