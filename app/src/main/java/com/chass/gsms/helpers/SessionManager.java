@@ -51,7 +51,7 @@ public class SessionManager {
    * In MainActivity, when this is set to false ie user logged out, we launch LoginActivity and call finish()
    * In LoginActivity, when this is set to true ie user successfully logged in, we launch MainActivity and call finish()
    */
-  private MutableLiveData<Boolean> loggedIn =  new MutableLiveData<>();
+  private MutableLiveData<Boolean> loggedIn =  new MutableLiveData<>(false);
   public LiveData<Boolean> isLoggedIn(){
     return loggedIn;
   }
@@ -60,7 +60,7 @@ public class SessionManager {
 
   public School school;
 
-  private User getUser(){
+  public User getUser(){
     return user;
   }
 
