@@ -56,11 +56,11 @@ public class SessionManager {
     return loggedIn;
   }
 
-  public User user;
+  private User user;
 
-  public School school;
+  private School school;
 
-  private User getUser(){
+  public User getUser(){
     return user;
   }
 
