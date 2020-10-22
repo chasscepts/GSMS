@@ -2,7 +2,7 @@ package com.chass.gsms.viewmodels;
 
 import android.content.Context;
 
-import com.chass.gsms.IMain;
+import com.chass.gsms.interfaces.IMain;
 
 /**
  * This class binds to
