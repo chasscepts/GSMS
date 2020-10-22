@@ -6,12 +6,21 @@ import androidx.databinding.Bindable;
 
 import com.chass.gsms.BR;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.scopes.ActivityRetainedScoped;
+
 /**
  * Encapsulates a Form for creating a new class.
- * If teacher is not already a GSMS user, all teacher fields are required for registration
- * All fields are required if teacher is not already a GSMS user.
+ * The className field is required
+ * All teacher fields are required if teacher is not already a GSMS user.
+ * If teacher is already a GSMS user, only the email field of the teacher fields is required.
+ * We will set the form as valid if the minimum requirement is met.
+ * If the teacher is not a user and fields were not provided, the request will fail and we can inform the user.
  */
+@ActivityRetainedScoped
 public class NewClassFormViewModel extends BaseFormViewModel{
+  @Inject
   public NewClassFormViewModel(){}
 
   private int id;

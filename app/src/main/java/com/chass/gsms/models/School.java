@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 public class School {
   private int id;
   private String name, address, email, phoneNumber, picture, adminEmail;
@@ -39,6 +41,23 @@ public class School {
 
   public String[] getClasses() {
     return classes;
+  }
+
+  /**
+   * Retrofit converts JSONArray to java Arrays and not List.
+   * We have to provide our own add method. It is not efficient but I figured we are not going to be adding a hell many classes to a class anyway.
+   * @param newClass class to add to school
+   */
+  public void addClass(Class newClass){
+    if(this.classes == null || this.classes.length == 0){
+      this.classes = new String[]{newClass.getName()};
+      return;
+    }
+    int length = this.classes.length;
+    String[] temp = new String[length + 1];
+    System.arraycopy(this.classes, 0, temp, 0, length);
+    temp[length] = newClass.getName();
+    this.classes = temp;
   }
 
   public School() {
