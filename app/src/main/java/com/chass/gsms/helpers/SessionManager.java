@@ -7,9 +7,6 @@ import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.School;
 import com.chass.gsms.models.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.net.CookieHandler;
 import java.net.CookieManager;
 
@@ -65,6 +62,7 @@ public class SessionManager {
   }
 
   public void logout(){
+    //Todo destroy local session and send request to server to do same
     user = null;
     school = null;
     loggedIn.setValue(false);
