@@ -7,6 +7,10 @@
       name="viewModel"
       type="com.chass.gsms.ui.login.LoginViewModel" />
   </data>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  android:fillViewport="true">
 
   <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/fragment_login"
@@ -14,11 +18,13 @@
       android:layout_height="match_parent"
       android:textAlignment="center"
       tools:context=".ui.login.LoginFragment">
+
     <ImageView
         android:id="@+id/img_gsmsLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/gsms_logo"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -33,7 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:background="@drawable/round_btn"
-        android:onClick="launchHome"
         android:text="@string/login"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -114,7 +119,7 @@
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:layout_marginTop="24dp"
-
+        android:layout_marginBottom="32dp"
         android:background="@drawable/no_border_btn"
         android:drawableStart="@android:drawable/ic_input_add"
         android:drawableTint="#020202"
@@ -124,10 +129,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/createNewSchColor"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
 </layout>

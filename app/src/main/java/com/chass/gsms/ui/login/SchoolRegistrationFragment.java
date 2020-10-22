@@ -1,6 +1,7 @@
 package com.chass.gsms.ui.login;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,15 @@ import com.chass.gsms.databinding.FragmentSchoolRegistrationBinding;
 
 public class SchoolRegistrationFragment extends Fragment {
   FragmentSchoolRegistrationBinding B;
+  private SchoolRegistrationViewModel viewModel;
+
   @Override
-  public View onCreateView(
-      LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState
-  ) {
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     B = FragmentSchoolRegistrationBinding.inflate(inflater, container, false);
 
     //We scope ViewModel to the Activity to retain user input after navigating to another fragment
-    SchoolRegistrationViewModel viewModel = new ViewModelProvider(requireActivity()).get(SchoolRegistrationViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(SchoolRegistrationViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }

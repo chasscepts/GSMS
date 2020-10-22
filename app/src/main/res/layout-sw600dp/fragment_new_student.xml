@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <data>
+    <variable
+      name="viewModel"
+      type="com.chass.gsms.ui.newstudent.NewStudentViewModel" />
+  </data>
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/className"
+          android:layout_width="750dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:layout_marginEnd="16dp"
+          android:textAlignment="center"
+          app:cardCornerRadius="8dp"
+          app:cardElevation="8dp"
+          app:contentPadding="4dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+          <TextView
+              android:id="@+id/txtClass"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:text="@string/class_title"
+              android:textAlignment="center"
+              android:textColor="@color/colorPrimary"
+              android:textSize="36sp"
+              android:textStyle="bold"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.47"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.cardview.widget.CardView>
+
+      <TextView
+          android:id="@+id/student"
+          android:layout_width="600dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="24dp"
+          android:text="@string/student"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/colorPrimary"
+          android:textSize="36sp"
+          android:textStyle="bold"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/className" />
+
+      <TableRow
+          android:id="@+id/studentTableRow"
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_marginTop="8dp"
+          android:background="@color/colorPrimaryDark"
+          app:layout_constraintEnd_toEndOf="@+id/student"
+          app:layout_constraintStart_toStartOf="@+id/student"
+          app:layout_constraintTop_toBottomOf="@+id/student" />
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/regStudentCardView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="8dp"
+          app:contentPadding="8dp"
+          app:layout_constraintEnd_toEndOf="@+id/student"
+          app:layout_constraintStart_toStartOf="@+id/student"
+          app:layout_constraintTop_toBottomOf="@+id/studentTableRow">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+          <EditText
+              android:id="@+id/edtStudentFirstName"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="8dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="8dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/first_name"
+              android:inputType="textPersonName"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          <EditText
+              android:id="@+id/edtStudentLastName"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/last_name"
+              android:inputType="textPersonName"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@id/edtStudentFirstName"
+              app:layout_constraintStart_toStartOf="@id/edtStudentFirstName"
+              app:layout_constraintTop_toBottomOf="@+id/edtStudentFirstName" />
+
+          <EditText
+              android:id="@+id/edtStudentProfilePicture"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:layout_marginBottom="8dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:drawableStart="@drawable/ic_baseline_folder_24"
+              android:drawablePadding="8dp"
+              android:ems="10"
+              android:hint="@string/no_file_chosen"
+              android:inputType="phone"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="@id/txtStudentProfilePicture"
+              app:layout_constraintStart_toStartOf="@id/txtStudentProfilePicture"
+              app:layout_constraintTop_toBottomOf="@+id/txtStudentProfilePicture" />
+
+          <TextView
+              android:id="@+id/txtStudentProfilePicture"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:padding="8dp"
+              android:text="@string/profile_picture"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@+id/edtStudentLastName"
+              app:layout_constraintStart_toStartOf="@+id/edtStudentLastName"
+              app:layout_constraintTop_toBottomOf="@+id/edtStudentLastName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.cardview.widget.CardView>
+
+      <TextView
+          android:id="@+id/regParent"
+          android:layout_width="600dp"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
+          android:text="@string/parent"
+          android:textAlignment="textEnd"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/colorPrimary"
+          android:textSize="36sp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/student" />
+
+      <TableRow
+          android:id="@+id/parentTableRow"
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_marginTop="8dp"
+          android:background="@color/colorPrimaryDark"
+          app:layout_constraintEnd_toEndOf="@+id/regParent"
+          app:layout_constraintStart_toStartOf="@+id/regParent"
+          app:layout_constraintTop_toBottomOf="@+id/regParent" />
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/regParentCardView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="8dp"
+          app:contentPadding="8dp"
+          app:layout_constraintEnd_toEndOf="@+id/parentTableRow"
+          app:layout_constraintStart_toStartOf="@+id/parentTableRow"
+          app:layout_constraintTop_toBottomOf="@+id/parentTableRow">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+          <EditText
+              android:id="@+id/edtParentFirstName"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="8dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="8dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/first_name"
+              android:inputType="textPersonName"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          <EditText
+              android:id="@+id/edtParentLastName"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/last_name"
+              android:inputType="textPersonName"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@id/edtParentFirstName"
+              app:layout_constraintStart_toStartOf="@id/edtParentFirstName"
+              app:layout_constraintTop_toBottomOf="@+id/edtParentFirstName" />
+
+          <EditText
+              android:id="@+id/edtParentEmail"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/email"
+              android:inputType="textEmailAddress"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@id/edtParentLastName"
+              app:layout_constraintStart_toStartOf="@id/edtParentLastName"
+              app:layout_constraintTop_toBottomOf="@id/edtParentLastName" />
+
+          <EditText
+              android:id="@+id/edtParentPhoneNumber"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/phone_number"
+              android:inputType="phone"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@id/edtParentEmail"
+              app:layout_constraintStart_toStartOf="@id/edtParentEmail"
+              app:layout_constraintTop_toBottomOf="@+id/edtParentEmail" />
+
+          <EditText
+              android:id="@+id/edtParentProfilePicture"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:layout_marginBottom="8dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:drawableStart="@drawable/ic_baseline_folder_24"
+              android:drawablePadding="8dp"
+              android:ems="10"
+              android:hint="@string/no_file_chosen"
+              android:inputType="phone"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="@id/txtParentProfilePicture"
+              app:layout_constraintStart_toStartOf="@id/txtParentProfilePicture"
+              app:layout_constraintTop_toBottomOf="@+id/txtParentProfilePicture" />
+
+          <TextView
+              android:id="@+id/txtParentProfilePicture"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:padding="8dp"
+              android:text="@string/profile_picture"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@+id/edtParentPhoneNumber"
+              app:layout_constraintStart_toStartOf="@+id/edtParentPhoneNumber"
+              app:layout_constraintTop_toBottomOf="@+id/edtParentPhoneNumber" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.cardview.widget.CardView>
+
+      <TextView
+          android:id="@+id/regParent2"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:text="@string/parent"
+          android:textAlignment="textEnd"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/colorPrimary"
+          android:textSize="36sp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="@+id/regParentCardView"
+          app:layout_constraintStart_toStartOf="@id/regParentCardView"
+          app:layout_constraintTop_toBottomOf="@+id/regParentCardView" />
+
+      <TableRow
+          android:id="@+id/parent2TableRow"
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_marginTop="8dp"
+          android:background="@color/colorPrimaryDark"
+          app:layout_constraintEnd_toEndOf="@+id/regParent2"
+          app:layout_constraintStart_toStartOf="@+id/regParent2"
+          app:layout_constraintTop_toBottomOf="@+id/regParent2" />
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/regParent2CardView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:cardCornerRadius="16dp"
+          app:cardElevation="8dp"
+          app:contentPadding="8dp"
+          app:layout_constraintEnd_toEndOf="@+id/parent2TableRow"
+          app:layout_constraintStart_toStartOf="@+id/parent2TableRow"
+          app:layout_constraintTop_toBottomOf="@+id/parent2TableRow">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+          <EditText
+              android:id="@+id/edtParent2FirstName"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="8dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginEnd="8dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/first_name"
+              android:inputType="textPersonName"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          <EditText
+              android:id="@+id/edtParent2LastName"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/last_name"
+              android:inputType="textPersonName"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@id/edtParent2FirstName"
+              app:layout_constraintStart_toStartOf="@id/edtParent2FirstName"
+              app:layout_constraintTop_toBottomOf="@+id/edtParent2FirstName" />
+
+          <EditText
+              android:id="@+id/edtParent2Email"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/email"
+              android:inputType="textEmailAddress"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@id/edtParent2LastName"
+              app:layout_constraintStart_toStartOf="@id/edtParent2LastName"
+              app:layout_constraintTop_toBottomOf="@id/edtParent2LastName" />
+
+          <EditText
+              android:id="@+id/edtParent2PhoneNumber"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/phone_number"
+              android:inputType="phone"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@id/edtParent2Email"
+              app:layout_constraintStart_toStartOf="@id/edtParent2Email"
+              app:layout_constraintTop_toBottomOf="@+id/edtParent2Email" />
+
+          <EditText
+              android:id="@+id/edtParent2ProfilePicture"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:layout_marginBottom="8dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:drawableStart="@drawable/ic_baseline_folder_24"
+              android:drawablePadding="8dp"
+              android:ems="10"
+              android:hint="@string/no_file_chosen"
+              android:inputType="phone"
+              android:padding="8dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="@id/txtParent2ProfilePicture"
+              app:layout_constraintStart_toStartOf="@id/txtParent2ProfilePicture"
+              app:layout_constraintTop_toBottomOf="@+id/txtParent2ProfilePicture" />
+
+          <TextView
+              android:id="@+id/txtParent2ProfilePicture"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:padding="8dp"
+              android:text="@string/profile_picture"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="30sp"
+              app:layout_constraintEnd_toEndOf="@+id/edtParent2PhoneNumber"
+              app:layout_constraintStart_toStartOf="@+id/edtParent2PhoneNumber"
+              app:layout_constraintTop_toBottomOf="@+id/edtParent2PhoneNumber" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.cardview.widget.CardView>
+
+      <Button
+          android:id="@+id/btn_login"
+          style="@style/Widget.AppCompat.Button.Borderless.Colored"
+          android:layout_width="750dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:layout_marginBottom="32dp"
+          android:background="@drawable/round_btn"
+          android:text="@string/add_student"
+          android:textAllCaps="true"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="#FFFFFF"
+          android:textSize="30sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/regParent2CardView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.core.widget.NestedScrollView>
+</layout>

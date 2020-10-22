@@ -5,13 +5,12 @@
   <data>
     <variable
       name="viewModel"
-      type="com.chass.gsms.helpers.BusyViewModel" />
+      type="com.chass.gsms.viewmodels.ViewStateViewModel" />
   </data>
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dim"
-    app:busy="@{viewModel.message}">
+    android:background="@color/dim">
     <ScrollView
       android:layout_width="match_parent"
       android:layout_height="0dp"
@@ -54,6 +53,7 @@
             android:id="@+id/busy_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.message}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             tools:text="Application Busy. Please wait..." />
