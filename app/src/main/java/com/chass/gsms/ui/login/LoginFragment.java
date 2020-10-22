@@ -15,10 +15,7 @@ public class LoginFragment extends Fragment {
   FragmentLoginBinding B;
 
   @Override
-  public View onCreateView(
-      LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState
-  ) {
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     B = FragmentLoginBinding.inflate(inflater, container, false);
     //We scope ViewModel to the Activity to retain user input after navigating to another fragment
