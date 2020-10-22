@@ -16,22 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-      <Button
-          android:id="@+id/btn_login2"
-          style="@style/Widget.AppCompat.Button.Borderless.Colored"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="32dp"
-          android:background="@drawable/round_btn"
-          android:text="@string/login"
-          android:textAllCaps="true"
-          android:textAppearance="@style/TextAppearance.AppCompat.Large"
-          android:textColor="#FFFFFF"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="@+id/regStudentCardView"
-          app:layout_constraintStart_toStartOf="@+id/regStudentCardView"
-          app:layout_constraintTop_toBottomOf="@+id/regStudentCardView" />
-
       <TextView
           android:id="@+id/addNewClass"
           android:layout_width="0dp"
@@ -93,7 +77,7 @@
               app:layout_constraintTop_toTopOf="parent" />
 
           <EditText
-              android:id="@+id/edtStudentFirstName"
+              android:id="@+id/edtTeacherFirstName"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="16dp"
@@ -111,7 +95,7 @@
 
 
           <EditText
-              android:id="@+id/edtStudentLastName"
+              android:id="@+id/edtTeacherLastName"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="16dp"
@@ -123,30 +107,47 @@
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textSize="24sp"
-              app:layout_constraintEnd_toEndOf="@id/edtStudentFirstName"
-              app:layout_constraintStart_toStartOf="@id/edtStudentFirstName"
-              app:layout_constraintTop_toBottomOf="@+id/edtStudentFirstName" />
+              app:layout_constraintEnd_toEndOf="@id/edtTeacherFirstName"
+              app:layout_constraintStart_toStartOf="@id/edtTeacherFirstName"
+              app:layout_constraintTop_toBottomOf="@+id/edtTeacherFirstName" />
 
           <EditText
-              android:id="@+id/edtStudentProfilePicture"
+              android:id="@+id/edtTeacherEmail"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="16dp"
-              android:layout_marginBottom="8dp"
               android:autofillHints="no"
               android:background="@drawable/edit_text_border"
-              android:drawableStart="@drawable/ic_baseline_folder_24"
-              android:drawablePadding="8dp"
               android:ems="10"
-              android:hint="@string/no_file_chosen"
+              android:hint="@string/last_name"
+              android:inputType="textEmailAddress"
+              android:padding="4dp"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:textSize="24sp"
+              app:layout_constraintEnd_toEndOf="@id/edtTeacherLastName"
+              app:layout_constraintStart_toStartOf="@id/edtTeacherLastName"
+              app:layout_constraintTop_toBottomOf="@+id/edtTeacherLastName" />
+
+          <EditText
+              android:id="@+id/edtTeacherPhoneNumber"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              android:layout_marginBottom="16dp"
+              android:autofillHints="no"
+              android:background="@drawable/edit_text_border"
+              android:ems="10"
+              android:hint="@string/last_name"
               android:inputType="phone"
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textSize="24sp"
               app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="@id/txtStudentProfilePicture"
-              app:layout_constraintStart_toStartOf="@id/txtStudentProfilePicture"
-              app:layout_constraintTop_toBottomOf="@+id/txtStudentProfilePicture" />
+              app:layout_constraintEnd_toEndOf="@id/edtTeacherEmail"
+              app:layout_constraintStart_toStartOf="@id/edtTeacherEmail"
+              app:layout_constraintTop_toBottomOf="@+id/edtTeacherEmail" />
+
+
 
           <TextView
               android:id="@+id/txtTeacher"
@@ -161,21 +162,25 @@
               app:layout_constraintStart_toStartOf="@+id/edtClassName"
               app:layout_constraintTop_toBottomOf="@+id/edtClassName" />
 
-          <TextView
-              android:id="@+id/txtStudentProfilePicture"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="16dp"
-              android:text="@string/profile_picture"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="24sp"
-              app:layout_constraintEnd_toEndOf="@+id/edtStudentLastName"
-              app:layout_constraintStart_toStartOf="@+id/edtStudentLastName"
-              app:layout_constraintTop_toBottomOf="@+id/edtStudentLastName" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
       </androidx.cardview.widget.CardView>
+
+      <Button
+          android:id="@+id/btn_login2"
+          style="@style/Widget.AppCompat.Button.Borderless.Colored"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
+          android:background="@drawable/round_btn"
+          android:text="@string/login"
+          android:textAllCaps="true"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="#FFFFFF"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="@+id/regStudentCardView"
+          app:layout_constraintStart_toStartOf="@+id/regStudentCardView"
+          app:layout_constraintTop_toBottomOf="@+id/regStudentCardView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>

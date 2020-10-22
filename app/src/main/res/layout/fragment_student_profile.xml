@@ -20,8 +20,9 @@
           android:id="@+id/txtStudentName"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
+          android:layout_marginStart="8dp"
           android:layout_marginTop="24dp"
+          android:layout_marginEnd="8dp"
           android:text="@string/student_name"
           android:textAlignment="center"
           android:textAllCaps="false"
@@ -29,6 +30,7 @@
           android:textColor="@color/colorPrimary"
           android:textSize="30sp"
           android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,22 +60,12 @@
           app:layout_constraintStart_toStartOf="@+id/txtStudentClass"
           app:layout_constraintTop_toBottomOf="@+id/txtStudentClass" />
 
-      <ImageView
-          android:id="@+id/imgStudent"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="8dp"
-          android:contentDescription="@string/student_image"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toTopOf="@+id/txtStudentName"
-          tools:srcCompat="@tools:sample/avatars" />
-
       <TextView
           android:id="@+id/txtParent"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginStart="8dp"
-          android:layout_marginTop="8dp"
+          android:layout_marginTop="16dp"
           android:layout_marginEnd="8dp"
           android:text="@string/parent"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -81,7 +73,7 @@
           android:textStyle="bold"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/imgStudent" />
+          app:layout_constraintTop_toBottomOf="@+id/txtStudentAge" />
 
       <TableRow
           android:id="@+id/tableRow"
@@ -109,19 +101,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-          <ImageView
-              android:id="@+id/imgParent1"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:layout_marginEnd="8dp"
-              android:layout_marginBottom="8dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              tools:srcCompat="@tools:sample/avatars"
-              android:contentDescription="@string/parent1_image" />
 
           <TextView
               android:id="@+id/txtParentPhoneNumber"
@@ -172,7 +151,7 @@
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textColor="@color/colorPrimary"
               android:textStyle="bold"
-              app:layout_constraintEnd_toStartOf="@+id/imgParent1"
+              app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -229,7 +208,7 @@
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textColor="@color/colorPrimary"
               android:textStyle="bold"
-              app:layout_constraintEnd_toStartOf="@+id/imgParent2"
+              app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
 
@@ -271,18 +250,6 @@
               app:layout_constraintStart_toStartOf="@+id/txtParent2Fullname"
               app:layout_constraintTop_toBottomOf="@+id/txtParent2Fullname" />
 
-          <ImageView
-              android:id="@+id/imgParent2"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:layout_marginEnd="8dp"
-              android:layout_marginBottom="8dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              tools:srcCompat="@tools:sample/avatars"
-              android:contentDescription="@string/parent2_image" />
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
 

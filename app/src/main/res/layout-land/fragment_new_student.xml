@@ -125,6 +125,8 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="8dp"
+              android:layout_marginBottom="8dp"
+              android:autofillHints="no"
               android:background="@drawable/edit_text_border"
               android:ems="10"
               android:hint="@string/last_name"
@@ -132,42 +134,10 @@
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textSize="18sp"
+              app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintEnd_toEndOf="@id/edtStudentFirstName"
               app:layout_constraintStart_toStartOf="@id/edtStudentFirstName"
-              app:layout_constraintTop_toBottomOf="@+id/edtStudentFirstName"
-              android:autofillHints="no" />
-
-          <TextView
-              android:id="@+id/txtStudentProfilePicture"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/profile_picture"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              app:layout_constraintEnd_toEndOf="@+id/edtStudentLastName"
-              app:layout_constraintStart_toStartOf="@+id/edtStudentLastName"
-              app:layout_constraintTop_toBottomOf="@+id/edtStudentLastName" />
-
-          <EditText
-              android:id="@+id/edtStudentProfilePicture"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:layout_marginBottom="8dp"
-              android:autofillHints="no"
-              android:background="@drawable/edit_text_border"
-              android:drawableStart="@drawable/ic_baseline_folder_24"
-              android:drawablePadding="8dp"
-              android:ems="10"
-              android:hint="@string/no_file_chosen"
-              android:inputType="phone"
-              android:padding="4dp"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="18sp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="@id/txtStudentProfilePicture"
-              app:layout_constraintStart_toStartOf="@id/txtStudentProfilePicture"
-              app:layout_constraintTop_toBottomOf="@+id/txtStudentProfilePicture" />
+              app:layout_constraintTop_toBottomOf="@+id/edtStudentFirstName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
@@ -266,6 +236,8 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="8dp"
+              android:layout_marginBottom="8dp"
+              android:autofillHints="no"
               android:background="@drawable/edit_text_border"
               android:ems="10"
               android:hint="@string/phone_number"
@@ -273,42 +245,10 @@
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textSize="18sp"
+              app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintEnd_toEndOf="@id/edtParentEmail"
               app:layout_constraintStart_toStartOf="@id/edtParentEmail"
-              app:layout_constraintTop_toBottomOf="@+id/edtParentEmail"
-              android:autofillHints="no" />
-
-          <TextView
-              android:id="@+id/txtParentProfilePicture"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/profile_picture"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              app:layout_constraintEnd_toEndOf="@+id/edtParentPhoneNumber"
-              app:layout_constraintStart_toStartOf="@+id/edtParentPhoneNumber"
-              app:layout_constraintTop_toBottomOf="@+id/edtParentPhoneNumber" />
-
-          <EditText
-              android:id="@+id/edtParentProfilePicture"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:layout_marginBottom="8dp"
-              android:autofillHints="no"
-              android:background="@drawable/edit_text_border"
-              android:drawableStart="@drawable/ic_baseline_folder_24"
-              android:drawablePadding="8dp"
-              android:ems="10"
-              android:hint="@string/no_file_chosen"
-              android:inputType="phone"
-              android:padding="4dp"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="18sp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="@id/txtParentProfilePicture"
-              app:layout_constraintStart_toStartOf="@id/txtParentProfilePicture"
-              app:layout_constraintTop_toBottomOf="@+id/txtParentProfilePicture" />
+              app:layout_constraintTop_toBottomOf="@+id/edtParentEmail" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
@@ -407,6 +347,8 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="8dp"
+              android:layout_marginBottom="8dp"
+              android:autofillHints="no"
               android:background="@drawable/edit_text_border"
               android:ems="10"
               android:hint="@string/phone_number"
@@ -414,42 +356,10 @@
               android:padding="4dp"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textSize="18sp"
+              app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintEnd_toEndOf="@id/edtParent2Email"
               app:layout_constraintStart_toStartOf="@id/edtParent2Email"
-              app:layout_constraintTop_toBottomOf="@+id/edtParent2Email"
-              android:autofillHints="no" />
-
-          <TextView
-              android:id="@+id/txtParent2ProfilePicture"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/profile_picture"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              app:layout_constraintEnd_toEndOf="@+id/edtParent2PhoneNumber"
-              app:layout_constraintStart_toStartOf="@+id/edtParent2PhoneNumber"
-              app:layout_constraintTop_toBottomOf="@+id/edtParent2PhoneNumber" />
-
-          <EditText
-              android:id="@+id/edtParent2ProfilePicture"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:layout_marginBottom="8dp"
-              android:autofillHints="no"
-              android:background="@drawable/edit_text_border"
-              android:drawableStart="@drawable/ic_baseline_folder_24"
-              android:drawablePadding="8dp"
-              android:ems="10"
-              android:hint="@string/no_file_chosen"
-              android:inputType="phone"
-              android:padding="4dp"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textSize="18sp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="@id/txtParent2ProfilePicture"
-              app:layout_constraintStart_toStartOf="@id/txtParent2ProfilePicture"
-              app:layout_constraintTop_toBottomOf="@+id/txtParent2ProfilePicture" />
+              app:layout_constraintTop_toBottomOf="@+id/edtParent2Email" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
