@@ -25,7 +25,7 @@ public class NewClassFormViewModel extends BaseFormViewModel{
 
   private int id;
   private String className, teacherFirstname, teacherLastname, teacherEmail, teacherPhoneNumber;
-  private boolean idValid, classNameValid, teacherFirstnameValid, teacherLastnameValid, teacherEmailValid, teacherPhoneNumberValid, formValid;
+  private boolean idValid, classNameValid, teacherFirstnameValid, teacherLastnameValid, teacherEmailValid, teacherPhoneNumberValid, valid;
 
   //region id
   @Bindable
@@ -169,21 +169,21 @@ public class NewClassFormViewModel extends BaseFormViewModel{
 
   //region Form Valid
   @Bindable
-  public boolean isFormValid(){
-    return formValid;
+  public boolean isValid(){
+    return valid;
   }
 
-  private void setFormValid(boolean valid){
-    if(valid == formValid) return;
-    this.formValid = valid;
-    notifyPropertyChanged(BR.formValid);
+  private void setValid(boolean valid){
+    if(valid == this.valid) return;
+    this.valid = valid;
+    notifyPropertyChanged(BR.valid);
   }
 
   private void validateForm(boolean valid){
     if(!valid){
-      setFormValid(false);
+      setValid(false);
     }
-    setFormValid(classNameValid && teacherEmailValid);
+    setValid(classNameValid && teacherEmailValid);
   }
   //endregion
 }

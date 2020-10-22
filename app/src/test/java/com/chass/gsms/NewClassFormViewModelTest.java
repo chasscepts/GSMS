@@ -33,53 +33,53 @@ public class NewClassFormViewModelTest {
   @Test
   public void NewFormIsInvalid(){
     form = new NewClassFormViewModel();
-    assertFalse(form.isFormValid());
+    assertFalse(form.isValid());
   }
 
   @Test
   public void FormIsValidWhenAllFieldsAreValid(){
     fillAllFormFields();
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
   }
 
   @Test
   public void InvalidClassnameMakesFormInvalid(){
     fillAllFormFields();
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
     form.setClassName("  A ");
-    assertFalse(form.isFormValid());
+    assertFalse(form.isValid());
   }
 
   @Test
   public void InvalidTeacherEmailMakesFormInvalid(){
     fillAllFormFields();
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
     form.setTeacherEmail("test.com");
-    assertFalse(form.isFormValid());
+    assertFalse(form.isValid());
   }
 
   @Test
   public void InvalidTeacherFirstnameDoesNotAffectFormValidity(){
     fillAllFormFields();
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
     form.setTeacherFirstname("A    ");
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
   }
 
   @Test
   public void InvalidTeacherLastnameDoesNotAffectFormValidity(){
     fillAllFormFields();
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
     form.setTeacherLastname("B    ");
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
   }
 
   @Test
   public void InvalidTeacherPhoneNumberDoesNotAffectFormValidity(){
     fillAllFormFields();
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
     form.setTeacherPhoneNumber("www");
-    assertTrue(form.isFormValid());
+    assertTrue(form.isValid());
   }
 
   @Test
