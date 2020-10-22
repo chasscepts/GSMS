@@ -28,7 +28,6 @@ public class LoginViewModel extends ViewModel {
   private final LoginFormViewModel formViewModel;
 
   private Call<LoginResponse> call;
-  private Call<LoginResponse> c;
 
   public ViewStateViewModel getViewState(){
     return viewState;
@@ -57,7 +56,7 @@ public class LoginViewModel extends ViewModel {
     }
     viewState.setState(ViewStates.BUSY, "Authenticating with the server. Please wait...");
     call = apiClient.login(formViewModel.getSchoolId(), formViewModel.getEmail(), formViewModel.getPassword());
-    c.enqueue(new Callback<LoginResponse>() {
+    call.enqueue(new Callback<LoginResponse>() {
       @Override
       public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
         LoginResponse loginResponse = response.body();
