@@ -5,8 +5,6 @@ import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
-import com.chass.gsms.viewmodels.ViewStateViewModel;
-
 public class ClassListViewModel extends ViewModel {
   private final SavedStateHandle savedStateHandle;
   private final ClassListAdapter adapter;
