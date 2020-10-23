@@ -6,16 +6,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.chass.gsms.helpers.ClassesCache;
 import com.chass.gsms.helpers.SessionManager;
+import com.chass.gsms.helpers.SharedDataStore;
 import com.chass.gsms.interfaces.IMain;
 import com.chass.gsms.models.Student;
-import com.chass.gsms.ui.classdetails.ClassDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import javax.inject.Inject;
@@ -26,6 +26,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class MainActivity extends AppCompatActivity implements IMain {
   @Inject
   SessionManager sessionManager;
+
+  @Inject
+  SharedDataStore dataStore;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +84,7 @@ public class MainActivity extends AppCompatActivity implements IMain {
 
   @Override
   public void selectClass(String className) {
-    ClassDetailsViewModel viewModel = new ViewModelProvider(this).get(ClassDetailsViewModel.class);
-    viewModel.setClassName(className);
+    dataStore.setSelectedClassName(className);
     View view = findViewById(R.id.nav_host_fragment);
     Navigation.findNavController(view).navigate(R.id.ClassDetailsFragment);
   }

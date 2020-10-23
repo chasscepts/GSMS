@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle;
 import com.chass.gsms.enums.ViewStates;
 import com.chass.gsms.helpers.ClassesCache;
 import com.chass.gsms.helpers.SessionManager;
+import com.chass.gsms.interfaces.ILogger;
 import com.chass.gsms.models.Class;
 import com.chass.gsms.models.School;
 import com.chass.gsms.networks.retrofit.ApiClient;
@@ -41,22 +42,6 @@ public class NewClassViewModelTest {
   @Rule
   public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
 
-  //When addClass is called and
-    //1. form is invalid,
-        //1. ViewStateViewModel will be in INFO state.
-        //2. Network request is not made
-    //2. form is valid -
-        //1. ViewStateViewModel will go to BUSY state
-        //2. ApiClient::addClass will be called once
-        //3. ApiClient request succeeds -
-            //1. ClassesCache::save will be called once
-            //2. School::addClass will be called once
-            //3. ViewStateViewModel will go to SUCCESS state
-        //4. ApiClient request fails -
-            //1. ClassesCache::save will NOT be called
-            //2. School::addClass will NOT be called
-            //3. ViewStateViewModel will go to ERROR state
-
   @Mock
   ApiClient apiClient;
 
@@ -78,6 +63,9 @@ public class NewClassViewModelTest {
   @Mock
   SessionManager sessionManager;
 
+  @Mock
+  ILogger logger;
+
   SavedStateHandle savedStateHandle;
   ViewStateViewModel viewState;
   NewClassViewModel viewModel;
@@ -95,7 +83,7 @@ public class NewClassViewModelTest {
     when(apiClient.addClass(anyInt(), anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn(apiCall);
     when(school.getId()).thenReturn(2);
     when(sessionManager.getSchool()).thenReturn(school);
-    viewModel = new NewClassViewModel(savedStateHandle, sessionManager, apiClient, viewState, form, cache);
+    viewModel = new NewClassViewModel(savedStateHandle, sessionManager, apiClient, viewState, form, cache, logger);
   }
 
   @Test
@@ -146,7 +134,7 @@ public class NewClassViewModelTest {
 
     verify(school).addClass(any());
     verify(cache).save(any());
-    assertEquals(ViewStates.NORMAL, viewState.getState());
+    assertEquals(ViewStates.SUCCESS, viewState.getState());
   }
 
 }

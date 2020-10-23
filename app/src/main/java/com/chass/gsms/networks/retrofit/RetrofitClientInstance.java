@@ -10,7 +10,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitClientInstance {
   private static Retrofit retrofit;
   private static final Object LOCK = new Object();
-  private static final String BASE_URL = "http://chass.me.ht/";
+  public static final String BASE_URL = "http://chass.me.ht/";
 
   public static Retrofit getRetrofitInstance() {
     if (retrofit == null) {

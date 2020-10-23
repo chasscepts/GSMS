@@ -3,6 +3,7 @@ package com.chass.gsms;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.databinding.Observable;
 
+import com.chass.gsms.interfaces.IValidityChangedListener;
 import com.chass.gsms.viewmodels.UserFormViewModel;
 
 import org.junit.Before;
@@ -11,23 +12,33 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(JUnit4.class)
 public class UserFormViewModelTest {
   @Rule
   public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
 
+  @Mock
+  IValidityChangedListener listener;
+
   UserFormViewModel form;
 
   @Before
   public void setup(){
-
+    MockitoAnnotations.openMocks(this);
   }
 
   @Test
@@ -116,6 +127,15 @@ public class UserFormViewModelTest {
     ArgumentCaptor<Integer> argumentCaptor = ArgumentCaptor.forClass(Integer.class);
     Mockito.verify(callback, atLeastOnce()).onPropertyChanged(any(), argumentCaptor.capture());
     assertTrue(argumentCaptor.getAllValues().contains(BR.phoneNumber));
+  }
+
+  @Test
+  public void ValidityChangesNotifiesListeners(){
+    form = new UserFormViewModel();
+    form.setValidityChangeListener(listener);
+    form.setEmail("test@test.com");   //will make form valid
+    form.setEmail("test.com");        //will make form invalid
+    verify(listener, times(2)).onValidityChanged(anyBoolean());
   }
 
   private void fillAllFormFields(){
