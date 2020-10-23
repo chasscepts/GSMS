@@ -5,24 +5,20 @@ import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
-import com.chass.gsms.hilt.RetrofitRequestDefaultTimeout;
-import com.chass.gsms.networks.retrofit.ApiClient;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 
 public class ClassListViewModel extends ViewModel {
   private final SavedStateHandle savedStateHandle;
-  private final ApiClient apiClient;
-  private final ViewStateViewModel viewState;
+  private final ClassListAdapter adapter;
 
-  public ViewStateViewModel getViewState() {
-    return viewState;
+  public ClassListAdapter getAdapter(){
+    return adapter;
   }
 
   @ViewModelInject
-  public ClassListViewModel(@Assisted SavedStateHandle savedStateHandle, @RetrofitRequestDefaultTimeout ApiClient client, ViewStateViewModel viewState){
+  public ClassListViewModel(@Assisted SavedStateHandle savedStateHandle, ClassListAdapter adapter){
     this.savedStateHandle = savedStateHandle;
-    this.viewState = viewState;
-    this.apiClient = client;
+    this.adapter = adapter;
   }
 
   /**
