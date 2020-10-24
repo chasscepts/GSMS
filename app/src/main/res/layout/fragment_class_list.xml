@@ -25,22 +25,25 @@
         tools:listitem="@layout/class_item_view" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/add_class_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_btn"
-        android:contentDescription="@string/add_class_btn_description"
-        android:drawableStart="@drawable/ic_baseline_add_24"
-        android:paddingEnd="8dp"
-        android:text="@string/add_class"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#fff"
-        app:backgroundTint="@color/colorPrimaryDark"
-        app:icon="@drawable/ic_baseline_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+      android:id="@+id/add_class_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="16dp"
+      android:background="@drawable/round_btn"
+      android:contentDescription="@string/add_class_btn_description"
+      android:drawableStart="@drawable/ic_baseline_add_24"
+      android:drawablePadding="8dp"
+      android:paddingStart="16dp"
+      android:paddingEnd="16dp"
+      android:text="@string/add_class"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:textColor="#fff"
+      android:textStyle="bold"
+      app:backgroundTint="@color/colorPrimaryDark"
+      app:icon="@drawable/ic_baseline_add_24"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

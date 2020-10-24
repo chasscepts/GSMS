@@ -70,7 +70,7 @@ public class LoginViewModel extends ViewModel {
           return;
         }
         else {
-          viewState.setState(ViewStates.ERROR, "An Unknown error occurred during Authentication. Please try again.");
+          logger.print(TAG, response.errorBody());
         }
         viewState.setState(ViewStates.ERROR, "Application encountered an error while attempting to authenticate you with the server. The server returned an unexpected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
       }
@@ -78,7 +78,7 @@ public class LoginViewModel extends ViewModel {
       @Override
       public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
         viewState.setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
-        logger.error(TAG, t.getLocalizedMessage());
+        logger.print(TAG, t);
       }
     });
   }

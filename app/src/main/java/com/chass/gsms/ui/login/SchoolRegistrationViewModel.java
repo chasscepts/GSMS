@@ -16,14 +16,10 @@ import com.chass.gsms.viewmodels.SchoolRegistrationFormViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 
 import java.io.File;
-import java.io.IOException;
-
-import javax.annotation.Nonnull;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,14 +89,7 @@ public class SchoolRegistrationViewModel extends ViewModel {
           }
         }
         else {
-          ResponseBody error = response.errorBody();
-          if(error != null){
-            try {
-              logger.error(TAG, error.string());
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-          }
+          logger.print(TAG, response.errorBody());
         }
         viewState.setState(ViewStates.ERROR, "Application encountered an error while registering school. The response we got from the server is not what we expected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
       }
@@ -108,7 +97,7 @@ public class SchoolRegistrationViewModel extends ViewModel {
       @Override
       public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
         viewState.setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
-        logger.error(TAG, t.getLocalizedMessage());
+        logger.print(TAG, t);
       }
     });
   }

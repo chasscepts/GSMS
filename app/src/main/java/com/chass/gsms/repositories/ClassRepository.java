@@ -3,6 +3,7 @@ package com.chass.gsms.repositories;
 import com.chass.gsms.helpers.ClassesCache;
 import com.chass.gsms.helpers.SessionManager;
 import com.chass.gsms.helpers.SharedDataStore;
+import com.chass.gsms.hilt.RetrofitRequestDefaultTimeout;
 import com.chass.gsms.models.Class;
 import com.chass.gsms.networks.retrofit.ApiClient;
 import com.chass.gsms.networks.retrofit.LocalGetCall;
@@ -21,14 +22,14 @@ import retrofit2.Response;
  * Manages retrieving
  */
 @ActivityRetainedScoped
-public class ClassesRepository {
+public class ClassRepository {
   SessionManager sessionManager;
   private ClassesCache cache;
   private SharedDataStore dataStore;
   private ApiClient client;
 
   @Inject
-  public ClassesRepository(SessionManager sessionManager, ClassesCache cache, SharedDataStore dataStore, ApiClient client){
+  public ClassRepository(SessionManager sessionManager, ClassesCache cache, SharedDataStore dataStore, @RetrofitRequestDefaultTimeout ApiClient client){
     this.sessionManager = sessionManager;
     this.cache = cache;
     this.dataStore = dataStore;
