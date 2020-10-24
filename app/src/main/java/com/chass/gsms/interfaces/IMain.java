@@ -1,4 +1,4 @@
-package com.chass.gsms;
+package com.chass.gsms.interfaces;
 
 import com.chass.gsms.models.Student;
 

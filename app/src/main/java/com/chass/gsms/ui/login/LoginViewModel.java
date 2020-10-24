@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.chass.gsms.enums.ViewStates;
 import com.chass.gsms.helpers.SessionManager;
 import com.chass.gsms.hilt.RetrofitRequestDefaultTimeout;
+import com.chass.gsms.interfaces.ILogger;
 import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.networks.retrofit.ApiClient;
 import com.chass.gsms.viewmodels.LoginFormViewModel;
@@ -21,11 +22,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginViewModel extends ViewModel {
+  private static final String TAG ="LoginViewModel" ;
   private final SavedStateHandle savedStateHandle;
   private final SessionManager sessionManager;
   private final ApiClient apiClient;
   private final ViewStateViewModel viewState;
   private final LoginFormViewModel formViewModel;
+  private final ILogger logger;
 
   private Call<LoginResponse> call;
 
@@ -38,12 +41,13 @@ public class LoginViewModel extends ViewModel {
   }
 
   @ViewModelInject
-  public LoginViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, @RetrofitRequestDefaultTimeout ApiClient client, ViewStateViewModel viewState, LoginFormViewModel formViewModel){
+  public LoginViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, @RetrofitRequestDefaultTimeout ApiClient client, ViewStateViewModel viewState, LoginFormViewModel formViewModel, ILogger logger){
     this.savedStateHandle = savedStateHandle;
     this.sessionManager = sessionManager;
     this.apiClient = client;
     this.viewState = viewState;
     this.formViewModel = formViewModel;
+    this.logger = logger;
   }
 
   public void login(){
@@ -63,15 +67,18 @@ public class LoginViewModel extends ViewModel {
         if(loginResponse != null){
           sessionManager.login(loginResponse);
           viewState.restoreNormalState();
+          return;
         }
         else {
-          viewState.setState(ViewStates.ERROR, "An Unknown error occurred during Authentication. Please try again.");
+          logger.print(TAG, response.errorBody());
         }
+        viewState.setState(ViewStates.ERROR, "Application encountered an error while attempting to authenticate you with the server. The server returned an unexpected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
       }
 
       @Override
       public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
-        viewState.setState(ViewStates.ERROR, "An error occurred during network request. Please try again.");
+        viewState.setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
+        logger.print(TAG, t);
       }
     });
   }

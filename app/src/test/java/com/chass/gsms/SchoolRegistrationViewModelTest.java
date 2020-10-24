@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle;
 
 import com.chass.gsms.enums.ViewStates;
 import com.chass.gsms.helpers.SessionManager;
+import com.chass.gsms.interfaces.ILogger;
 import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.School;
 import com.chass.gsms.models.User;
@@ -44,22 +45,6 @@ public class SchoolRegistrationViewModelTest {
   @Rule
   public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
 
-  //When register is called and
-    //1. form is invalid, ViewStateViewModel will be in INFO state.
-    //2. form is valid -
-        //1. ViewStateViewModel will go to BUSY state
-        //2. ApiClient::register will be called once
-        //3. ApiClient request succeeds -
-            //1. SessionManager::user will not be null
-            //2. SessionManager::school will not be null
-            //3. SessionManager::loggedIn will be true
-            //4. ViewStateViewModel will go to NORMAL state
-        //4. ApiClient request fails -
-            //1. SessionManager::user will not be null
-            //2. SessionManager::school will be null
-            //3. SessionManager::loggedIn will be false
-            //4. ViewStateViewModel will go to ERROR state
-
   @Mock
   ApiClient apiClient;
 
@@ -75,6 +60,9 @@ public class SchoolRegistrationViewModelTest {
   @Mock
   File file;
 
+  @Mock
+  ILogger logger;
+
   Response<LoginResponse> response;
 
 
@@ -89,7 +77,7 @@ public class SchoolRegistrationViewModelTest {
     savedStateHandle = new SavedStateHandle();
     viewState = new ViewStateViewModel();
     sessionManager = new SessionManager();
-    viewModel = new SchoolRegistrationViewModel(savedStateHandle, sessionManager, apiClient, viewState, form);
+    viewModel = new SchoolRegistrationViewModel(savedStateHandle, sessionManager, apiClient, viewState, form, logger);
     when(file.exists()).thenReturn(true);
     when(file.getName()).thenReturn("");
     when(form.getSchoolPicture()).thenReturn(file);
@@ -150,7 +138,7 @@ public class SchoolRegistrationViewModelTest {
     assertEquals(loginResponse.getUser(), sessionManager.getUser());
     assertEquals(loginResponse.getSchool(), sessionManager.getSchool());
     assertTrue(sessionManager.isLoggedIn().getValue());
-    assertEquals(ViewStates.NORMAL, viewState.getState());
+    assertEquals(ViewStates.SUCCESS, viewState.getState());
   }
 
 }

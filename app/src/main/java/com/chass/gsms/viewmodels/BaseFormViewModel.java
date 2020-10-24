@@ -22,7 +22,7 @@ public class BaseFormViewModel extends BaseObservable {
    * @return true if @name is a valid name, false otherwise
    */
   protected boolean isValidName(String name){
-    return !TextUtils.isEmpty(name) && name.length() >= 2;
+    return !TextUtils.isEmpty(name) && name.trim().length() >= 2;
   }
 
   /**
