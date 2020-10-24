@@ -53,6 +53,30 @@ public class ViewStateViewModel {
     setState(ViewStates.NORMAL, null);
   }
 
+  public void normal(){
+    setState(ViewStates.NORMAL, null);
+  }
+
+  public void success(String msg){
+    setState(ViewStates.SUCCESS, msg);
+  }
+
+  public void error(String msg){
+    setState(ViewStates.ERROR, msg);
+  }
+
+  public void busy(String msg){
+    setState(ViewStates.BUSY, msg);
+  }
+
+  public void info(String msg){
+    setState(ViewStates.INFO, msg);
+  }
+
+  public void connectionError(){
+    setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
+  }
+
   @BindingAdapter({"viewState", "switched"})
   public static void setState(FrameLayout container, ViewStateViewModel stateViewModel, boolean switched){
     container.removeAllViews();

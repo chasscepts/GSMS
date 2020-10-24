@@ -7,20 +7,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chass.gsms.databinding.StudentAttendanceStatusViewBinding;
+import com.chass.gsms.models.Student;
 import com.chass.gsms.viewmodels.StudentAttendanceStatusViewModel;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.inject.Inject;
 
 public class ClassAttendanceAdapter extends RecyclerView.Adapter<ClassAttendanceAdapter.AttendanceStatusViewHolder> {
-  private List<StudentAttendanceStatusViewModel> attendanceStatuses;
+  private StudentAttendanceStatusViewModel[] attendanceStatuses = {};
+
+  public StudentAttendanceStatusViewModel[] getAttendanceStatuses(){
+    return attendanceStatuses;
+  }
 
   @Inject
   public ClassAttendanceAdapter(){
-    attendanceStatuses = new ArrayList<>();   //Avoid null pointer
+
   }
 
   @NonNull
@@ -31,16 +32,21 @@ public class ClassAttendanceAdapter extends RecyclerView.Adapter<ClassAttendance
 
   @Override
   public void onBindViewHolder(@NonNull AttendanceStatusViewHolder holder, int position) {
-    holder.bind(attendanceStatuses.get(position));
+    holder.bind(attendanceStatuses[position]);
   }
 
   @Override
   public int getItemCount() {
-    return attendanceStatuses.size();
+    return attendanceStatuses.length;
   }
 
-  public void loadStatuses(StudentAttendanceStatusViewModel[] statuses){
-    this.attendanceStatuses = new ArrayList<>(Arrays.asList(statuses));
+  public void loadStudents(Student[] students){
+    if(students == null) return;
+    int length = students.length;
+    attendanceStatuses = new StudentAttendanceStatusViewModel[length];
+    for(int i = 0; i < length; i++){
+      attendanceStatuses[i] = new StudentAttendanceStatusViewModel(students[i]);
+    }
     notifyStatusChanged();
   }
 
