@@ -60,4 +60,5 @@
   <string name="class_name">Class Name</string>
   <string name="school_image">School image</string>
   <string name="close_button">Close Button</string>
+  <string name="check_mark">Check Mark</string>
 </resources>
