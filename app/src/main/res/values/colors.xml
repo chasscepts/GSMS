@@ -8,4 +8,6 @@
   <color name="dim">#50000000</color>
   <color name="linkColor">#0E5AC5</color>
   <color name="transparent">#00000000</color>
+  <color name="teal">#26A69A</color>
+  <color name="darkTeal">#095E56</color>
 </resources>

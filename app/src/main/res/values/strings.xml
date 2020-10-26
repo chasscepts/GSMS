@@ -62,4 +62,19 @@
   <string name="close_button">Close Button</string>
   <string name="check_mark">Check Mark</string>
   <string name="attendance_status">Attendance Status</string>
+  <string name="jan">Jan</string>
+  <string name="feb">Feb</string>
+  <string name="mar">Mar</string>
+  <string name="apr">Apr</string>
+  <string name="may">May</string>
+  <string name="jun">Jun</string>
+  <string name="jul">Jul</string>
+  <string name="aug">Aug</string>
+  <string name="sep">Sep</string>
+  <string name="oct">Oct</string>
+  <string name="nov">Nov</string>
+  <string name="dec">Dec</string>
+  <string name="cancel">Cancel</string>
+  <string name="done">Done</string>
+  <string name="full_name">%1$s %2$s</string>
 </resources>

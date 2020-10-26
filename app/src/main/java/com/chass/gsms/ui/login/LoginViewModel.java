@@ -77,7 +77,7 @@ public class LoginViewModel extends ViewModel {
 
       @Override
       public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
-        viewState.setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
+        viewState.connectionError();
         logger.print(TAG, t);
       }
     });

@@ -1,11 +1,13 @@
 package com.chass.gsms.helpers;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chass.gsms.R;
+import com.chass.gsms.models.Student;
 
 public class BindingAdapters {
   private BindingAdapters(){}
@@ -18,5 +20,10 @@ public class BindingAdapters {
   @BindingAdapter("checked")
   public static void setChecked(ImageView imageView, boolean checked){
     imageView.setImageResource(checked? R.drawable.ic_baseline_check_box_24 : R.drawable.ic_baseline_check_box_outline_blank_24);
+  }
+
+  @BindingAdapter("fullName")
+  public static void name(TextView tv, Student student){
+    tv.setText(tv.getContext().getString(R.string.full_name, student.getLastname(), student.getFirstname()));
   }
 }

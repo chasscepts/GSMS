@@ -1,6 +1,8 @@
 package com.chass.gsms.helpers;
 
 import com.chass.gsms.models.Class;
+import com.chass.gsms.models.Student;
+
 import javax.inject.Inject;
 
 import dagger.hilt.android.scopes.ActivityRetainedScoped;
@@ -22,6 +24,8 @@ public class SharedDataStore {
 
   private Class currentClass;
 
+  private Student currentStudent;
+
   public String getSelectedClassName() {
     //String temp = selectedClassName;
     //selectedClassName = null;
@@ -39,5 +43,13 @@ public class SharedDataStore {
 
   public void setCurrentClass(Class currentClass) {
     this.currentClass = currentClass;
+  }
+
+  public Student getCurrentStudent() {
+    return currentStudent;
+  }
+
+  public void setCurrentStudent(Student currentStudent) {
+    this.currentStudent = currentStudent;
   }
 }

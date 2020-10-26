@@ -17,63 +17,52 @@
         android:layout_height="match_parent">
 
       <TextView
-          android:id="@+id/txtStudentName"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="24dp"
-          android:layout_marginEnd="8dp"
-          android:text="@string/student_name"
-          android:textAlignment="center"
-          android:textAllCaps="false"
-          android:textAppearance="@style/TextAppearance.AppCompat.Large"
-          android:textColor="@color/colorPrimary"
-          android:textSize="30sp"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/txtStudentName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        app:fullName="@{viewModel.student}"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ezeh Ikenna"/>
 
       <TextView
-          android:id="@+id/txtStudentClass"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:text="@string/student_class"
-          android:textAlignment="center"
-          android:textColor="@color/colorPrimary"
-          android:textSize="18sp"
-          app:layout_constraintEnd_toEndOf="@+id/txtStudentName"
-          app:layout_constraintStart_toStartOf="@+id/txtStudentName"
-          app:layout_constraintTop_toBottomOf="@+id/txtStudentName" />
+        android:id="@+id/txtStudentClass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@{viewModel.studentClassName}"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtStudentName"
+        app:layout_constraintStart_toStartOf="@+id/txtStudentName"
+        app:layout_constraintTop_toBottomOf="@+id/txtStudentName"
+        tools:text="S S 1 A"/>
 
       <TextView
-          android:id="@+id/txtStudentAge"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:text="@string/student_age"
-          android:textAlignment="center"
-          android:textColor="@color/colorPrimary"
-          android:textSize="18sp"
-          app:layout_constraintEnd_toEndOf="@+id/txtStudentClass"
-          app:layout_constraintStart_toStartOf="@+id/txtStudentClass"
-          app:layout_constraintTop_toBottomOf="@+id/txtStudentClass" />
-
-      <TextView
-          android:id="@+id/txtParent"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="16dp"
-          android:layout_marginEnd="8dp"
-          android:text="@string/parent"
-          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-          android:textColor="@color/colorPrimary"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/txtStudentAge" />
+        android:id="@+id/txtParent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtStudentAge" />
 
       <TableRow
           android:id="@+id/tableRow"
@@ -87,16 +76,16 @@
           app:layout_constraintTop_toBottomOf="@+id/txtParent" />
 
       <androidx.cardview.widget.CardView
-          android:id="@+id/parent1Cardview"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
-          app:cardCornerRadius="8dp"
-          app:cardElevation="8dp"
-          app:contentPadding="8dp"
-          app:layout_constraintEnd_toEndOf="@+id/tableRow"
-          app:layout_constraintStart_toStartOf="@+id/txtParent"
-          app:layout_constraintTop_toBottomOf="@+id/txtParent">
+        android:id="@+id/parent1Cardview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:contentPadding="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tableRow"
+        app:layout_constraintStart_toStartOf="@+id/txtParent"
+        app:layout_constraintTop_toBottomOf="@+id/txtParent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -157,47 +146,46 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
 
-      <TextView
+      <LinearLayout
+        android:id="@+id/parent2_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/txtParent"
+        app:layout_constraintStart_toStartOf="@+id/txtParent"
+        app:layout_constraintTop_toBottomOf="@+id/parent1Cardview">
+        <TextView
           android:id="@+id/txtParent2"
-          android:layout_width="0dp"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="16dp"
           android:text="@string/parent"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/colorPrimary"
           android:textSize="18sp"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="@+id/txtParent"
-          app:layout_constraintStart_toStartOf="@+id/txtParent"
-          app:layout_constraintTop_toBottomOf="@+id/parent1Cardview" />
+          android:textStyle="bold" />
 
-      <TableRow
+        <TableRow
           android:id="@+id/tableRow2"
           android:layout_width="0dp"
           android:layout_height="1dp"
           android:layout_marginTop="4dp"
-          android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="@+id/txtParent2"
-          app:layout_constraintStart_toStartOf="@+id/txtParent2"
-          app:layout_constraintTop_toBottomOf="@+id/txtParent2" />
+          android:background="@color/colorPrimaryDark" />
 
-      <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView
           android:id="@+id/parent2CardView"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginTop="8dp"
           app:cardCornerRadius="8dp"
           app:cardElevation="8dp"
-          app:contentPadding="8dp"
-          app:layout_constraintEnd_toEndOf="@+id/parent1Cardview"
-          app:layout_constraintStart_toStartOf="@+id/parent1Cardview"
-          app:layout_constraintTop_toBottomOf="@+id/tableRow2">
+          app:contentPadding="8dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+          <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-          <TextView
+            <TextView
               android:id="@+id/txtParent2Fullname"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
@@ -212,7 +200,7 @@
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
 
-          <TextView
+            <TextView
               android:id="@+id/txtParent2PhoneNumber"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
@@ -231,7 +219,7 @@
               app:layout_constraintStart_toStartOf="@+id/txtParent2Fullname"
               app:layout_constraintTop_toBottomOf="@+id/txtParent2Email" />
 
-          <TextView
+            <TextView
               android:id="@+id/txtParent2Email"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
@@ -250,8 +238,9 @@
               app:layout_constraintStart_toStartOf="@+id/txtParent2Fullname"
               app:layout_constraintTop_toBottomOf="@+id/txtParent2Fullname" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-      </androidx.cardview.widget.CardView>
+          </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+      </LinearLayout>
 
       <TextView
           android:id="@+id/txtAttendance"
@@ -262,9 +251,9 @@
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/colorPrimary"
           android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="@+id/txtParent2"
-          app:layout_constraintStart_toStartOf="@+id/txtParent2"
-          app:layout_constraintTop_toBottomOf="@+id/parent2CardView" />
+          app:layout_constraintEnd_toEndOf="@+id/parent2_group"
+          app:layout_constraintStart_toStartOf="@+id/parent2_group"
+          app:layout_constraintTop_toBottomOf="@+id/parent2_group" />
 
       <TableRow
           android:id="@+id/trAttendance"
@@ -273,61 +262,72 @@
           android:layout_marginTop="4dp"
           android:background="@color/colorPrimaryDark"
           app:layout_constraintEnd_toEndOf="@+id/txtAttendance"
-          app:layout_constraintStart_toStartOf="@+id/txtParent2"
+          app:layout_constraintStart_toStartOf="@+id/parent2_group"
           app:layout_constraintTop_toBottomOf="@+id/txtAttendance" />
 
       <androidx.cardview.widget.CardView
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:layout_marginTop="8dp"
-          app:cardCornerRadius="8dp"
-          app:cardElevation="8dp"
-          app:contentPadding="8dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="@+id/parent2CardView"
-          app:layout_constraintStart_toStartOf="@+id/parent2CardView"
-          app:layout_constraintTop_toBottomOf="@+id/trAttendance" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:contentPadding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/parent2_group"
+        app:layout_constraintStart_toStartOf="@+id/parent2_group"
+        app:layout_constraintTop_toBottomOf="@+id/trAttendance">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+          <TextView
+            android:id="@+id/txtDate"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:onClick="@{()->viewModel.openPicker()}"
+            android:text="@string/date"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_baseline_date_range_24"
+            app:drawableTint="@color/colorPrimaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+          <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/txtAttendancePercentage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtDate"
+            app:spanCount="7"
+            tools:listitem="@layout/attendance_status_view">
+
+          </androidx.recyclerview.widget.RecyclerView>
 
           <TextView
-              android:id="@+id/txtDate"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="8dp"
-              android:layout_marginTop="8dp"
-              android:clickable="true"
-              android:contextClickable="true"
-              android:drawablePadding="8dp"
-              android:focusable="true"
-              android:text="@string/date"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textColor="@color/colorPrimary"
-              android:textStyle="bold"
-              app:drawableStartCompat="@drawable/ic_baseline_date_range_24"
-              app:drawableTint="@color/colorPrimaryDark"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/txtAttendancePercentage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/attendance_percentage"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtDate" />
 
-          <TextView
-              android:id="@+id/txtAttendancePercentage"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="131dp"
-              android:clickable="true"
-              android:focusable="true"
-              android:text="@string/attendance_percentage"
-              android:textAlignment="center"
-              android:textAppearance="@style/TextAppearance.AppCompat.Small"
-              android:textColor="@color/colorAccent"
-              android:textStyle="bold|italic"
-              app:layout_constraintEnd_toEndOf="@+id/txtDate"
-              app:layout_constraintHorizontal_bias="0.0"
-              app:layout_constraintStart_toStartOf="@+id/txtDate"
-              app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+          <include
+            layout="@layout/month_picker_view"
+            app:viewModel="@{viewModel.monthPicker}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>

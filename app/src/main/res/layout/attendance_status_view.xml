@@ -7,17 +7,18 @@
       name="viewModel"
       type="com.chass.gsms.viewmodels.AttendanceStatusViewModel" />
   </data>
+
   <androidx.cardview.widget.CardView
     android:layout_width="48dp"
     android:layout_height="48dp"
-    android:layout_margin="3dp"
-    app:contentPadding="2dp"
-    android:elevation="4dp">
+    android:layout_margin="2dp"
+    app:contentPadding="1dp">
 
     <ImageView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:contentDescription="@string/attendance_status"
+      android:scaleType="fitXY"
       app:attendanceStatus="@{viewModel.status}"
       tools:srcCompat="@drawable/ic_baseline_check_box_24" />
   </androidx.cardview.widget.CardView>

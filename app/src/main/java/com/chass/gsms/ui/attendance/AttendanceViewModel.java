@@ -15,6 +15,7 @@ import com.chass.gsms.interfaces.ILogger;
 import com.chass.gsms.models.Attendance;
 import com.chass.gsms.models.Class;
 import com.chass.gsms.networks.retrofit.ApiClient;
+import com.chass.gsms.viewmodels.AttendanceStatusViewModel;
 import com.chass.gsms.viewmodels.StudentAttendanceStatusViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 import com.google.gson.Gson;
@@ -24,6 +25,7 @@ import org.json.JSONArray;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -59,13 +61,7 @@ public class AttendanceViewModel extends ViewModel {
     this.apiClient = apiClient;
     this.logger = logger;
     this.adapter = adapter;
-    setTodayDate();
     setup();
-  }
-
-  private void setTodayDate(){
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-    date.set(dateFormat.format(Calendar.getInstance().getTime()));
   }
 
   private void setup(){
@@ -111,6 +107,18 @@ public class AttendanceViewModel extends ViewModel {
         logger.print(TAG, t);
       }
     });
+  }
+
+  /**
+   * Given a month and year determines the weekday of the first day of the month
+   * @param year
+   * @param month
+   * @return weekday of first day of month
+   */
+  public int monthStartWeekday(int year, int month){
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(year, month, 1);
+    return calendar.get(Calendar.DAY_OF_WEEK);
   }
 
   /**
