@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
   <data>
     <variable
-      name="viewModel"
-      type="com.chass.gsms.ui.login.SchoolRegistrationViewModel" />
+        name="viewModel"
+        type="com.chass.gsms.ui.login.SchoolRegistrationViewModel" />
   </data>
 
   <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-    android:fillViewport="true">
+      android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,7 +40,6 @@
           android:text="@string/login"
           android:textAppearance="@style/TextAppearance.AppCompat.Small"
           android:textColor="@color/colorAccent"
-          android:textSize="12sp"
           android:textStyle="bold|italic"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.826"
@@ -66,8 +65,9 @@
           android:layout_height="1dp"
           android:layout_marginStart="16dp"
           android:layout_marginTop="4dp"
+          android:layout_marginEnd="8dp"
           android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="@+id/cardViewSchool"
+          app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/txtSchool" />
@@ -76,9 +76,9 @@
           android:id="@+id/cardViewSchool"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
+          android:layout_marginStart="8dp"
           android:layout_marginTop="8dp"
-          android:layout_marginEnd="24dp"
+          android:layout_marginEnd="8dp"
           app:cardCornerRadius="8dp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
@@ -94,6 +94,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:autofillHints="no"
+              android:text="@={viewModel.formViewModel.schoolName}"
               android:ems="10"
               android:hint="@string/name_of_school"
               android:inputType="textPersonName" />
@@ -103,6 +104,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:autofillHints="no"
+              android:text="@={viewModel.formViewModel.schoolAddress}"
               android:ems="10"
               android:hint="@string/school_s_address"
               android:inputType="textPersonName" />
@@ -112,6 +114,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:autofillHints="no"
+              android:text="@={viewModel.formViewModel.schoolEmail}"
               android:ems="10"
               android:hint="@string/email"
               android:inputType="textEmailAddress" />
@@ -121,9 +124,18 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:autofillHints="no"
+              android:text="@={viewModel.formViewModel.schoolPhoneNumber}"
               android:ems="10"
               android:hint="@string/phone_number"
               android:inputType="phone" />
+
+          <TextView
+              android:id="@+id/txtProfilePicture"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="4dp"
+              android:text="@string/profile_picture"
+              android:textSize="18sp" />
 
           <EditText
               android:id="@+id/edtTxtSchoolProfilePicture"
@@ -134,17 +146,10 @@
               android:drawablePadding="8dp"
               android:drawableTint="@color/colorPrimaryDark"
               android:ems="10"
+              android:text="@{viewModel.formViewModel.schoolPicturePath}"
               android:hint="@string/no_file_chosen"
               android:inputType=""
               android:textSize="14sp" />
-
-          <TextView
-              android:id="@+id/txtProfilePicture"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="4dp"
-              android:text="@string/profile_picture"
-              android:textSize="18sp" />
 
 
         </LinearLayout>
@@ -154,7 +159,7 @@
           android:id="@+id/txtAdministrator"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
+          android:layout_marginTop="16dp"
           android:text="@string/administrator"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/colorPrimary"
@@ -169,9 +174,9 @@
           android:layout_height="1dp"
           android:layout_marginStart="16dp"
           android:layout_marginTop="4dp"
+          android:layout_marginEnd="8dp"
           android:background="@color/colorPrimaryDark"
-          android:textSize="24sp"
-          app:layout_constraintEnd_toEndOf="@+id/cardViewAdmin"
+          app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/txtAdministrator" />
@@ -180,9 +185,9 @@
           android:id="@+id/cardViewAdmin"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
+          android:layout_marginStart="8dp"
           android:layout_marginTop="8dp"
-          android:layout_marginEnd="16dp"
+          android:layout_marginEnd="8dp"
           app:cardCornerRadius="8dp"
           app:cardElevation="8dp"
           app:layout_constraintEnd_toEndOf="parent"
@@ -195,13 +200,47 @@
             android:orientation="vertical">
 
           <EditText
-              android:id="@+id/edtTxtAdminPhone"
+              android:id="@+id/edtTxtAdminFirstName"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_margin="2dp"
               android:autofillHints="no"
               android:ems="10"
+              android:text="@={viewModel.formViewModel.adminFirstname}"
               android:hint="@string/first_name"
+              android:inputType="phone" />
+
+          <EditText
+              android:id="@+id/edtTxtAdminLastName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="2dp"
+              android:autofillHints="no"
+              android:ems="10"
+              android:text="@={viewModel.formViewModel.adminLastname}"
+              android:hint="@string/last_name"
+              android:inputType="textPassword" />
+
+          <EditText
+              android:id="@+id/edtTxtAdminEmail"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="2dp"
+              android:autofillHints="no"
+              android:ems="10"
+              android:text="@={viewModel.formViewModel.adminEmail}"
+              android:hint="@string/email"
+              android:inputType="textEmailAddress" />
+
+          <EditText
+              android:id="@+id/edtTxtAdminPhone"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="2dp"
+              android:autofillHints="@string/first_name"
+              android:ems="10"
+              android:text="@={viewModel.formViewModel.adminPhoneNumber}"
+              android:hint="@string/phone_number"
               android:inputType="phone" />
 
           <EditText
@@ -211,38 +250,9 @@
               android:layout_margin="2dp"
               android:autofillHints="no"
               android:ems="10"
-              android:hint="@string/last_name"
-              android:inputType="textPassword" />
-
-          <EditText
-              android:id="@+id/edtTxtAdminLastName"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="2dp"
-              android:autofillHints="no"
-              android:ems="10"
-              android:hint="@string/email"
-              android:inputType="textPersonName" />
-
-          <EditText
-              android:id="@+id/edtTxtAdminFirstName"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="2dp"
-              android:autofillHints="@string/first_name"
-              android:ems="10"
-              android:hint="@string/phone_number"
-              android:inputType="textPersonName" />
-
-          <EditText
-              android:id="@+id/edtTxtAdminEmail"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="2dp"
-              android:autofillHints="no"
-              android:ems="10"
+              android:text="@={viewModel.formViewModel.password}"
               android:hint="@string/password"
-              android:inputType="textEmailAddress" />
+              android:inputType="textPassword" />
 
           <EditText
               android:id="@+id/edtTxtAdminRepeatPassword"
@@ -251,6 +261,7 @@
               android:layout_margin="2dp"
               android:autofillHints="no"
               android:ems="10"
+              android:text="@={viewModel.formViewModel.repeatPassword}"
               android:hint="@string/repeat_password"
               android:inputType="textPassword" />
         </LinearLayout>
@@ -259,14 +270,14 @@
 
       <Button
           android:id="@+id/btnRegister"
-          android:layout_width="300dp"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="32dp"
+          android:layout_marginStart="16dp"
           android:layout_marginTop="24dp"
-          android:layout_marginEnd="32dp"
+          android:layout_marginEnd="16dp"
           android:layout_marginBottom="32dp"
           android:background="@drawable/round_btn"
-          android:text="Register"
+          android:text="@string/register"
           android:textAllCaps="true"
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
           android:textColor="#FFFFFF"
@@ -276,7 +287,6 @@
           app:layout_constraintEnd_toEndOf="@+id/cardViewAdmin"
           app:layout_constraintStart_toStartOf="@+id/cardViewAdmin"
           app:layout_constraintTop_toBottomOf="@+id/cardViewAdmin" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>
