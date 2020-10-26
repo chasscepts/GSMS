@@ -172,20 +172,21 @@
       </androidx.cardview.widget.CardView>
 
       <Button
-          android:id="@+id/btn_login2"
-          style="@style/Widget.AppCompat.Button.Borderless.Colored"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="32dp"
-          android:background="@drawable/round_btn"
-          android:text="@string/login"
-          android:textAllCaps="true"
-          android:textAppearance="@style/TextAppearance.AppCompat.Large"
-          android:textColor="#FFFFFF"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="@+id/regStudentCardView"
-          app:layout_constraintStart_toStartOf="@+id/regStudentCardView"
-          app:layout_constraintTop_toBottomOf="@+id/regStudentCardView" />
+        android:id="@+id/btn_login2"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/round_btn"
+        android:onClick="@{()->viewModel.addClass()}"
+        android:text="@string/create_class"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/regStudentCardView"
+        app:layout_constraintStart_toStartOf="@+id/regStudentCardView"
+        app:layout_constraintTop_toBottomOf="@+id/regStudentCardView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>

@@ -25,7 +25,7 @@ public class ClassDetailsViewModel extends ViewModel {
   private final SharedDataStore dataStore;
   private final ViewStateViewModel viewState;
   private final ILogger logger;
-  private final StudentListAdapter studentsAdapter;
+  private final StudentListAdapter adapter;
 
   public ViewStateViewModel getViewState() {
     return viewState;
@@ -33,14 +33,18 @@ public class ClassDetailsViewModel extends ViewModel {
 
   public final ObservableField<Class> aClass = new ObservableField<>();
 
+  public StudentListAdapter getAdapter(){
+    return adapter;
+  }
+
   @ViewModelInject
-  public ClassDetailsViewModel(@Assisted SavedStateHandle savedStateHandle, ClassRepository repository, SharedDataStore dataStore, ViewStateViewModel viewState, ILogger logger, StudentListAdapter studentsAdapter){
+  public ClassDetailsViewModel(@Assisted SavedStateHandle savedStateHandle, ClassRepository repository, SharedDataStore dataStore, ViewStateViewModel viewState, ILogger logger, StudentListAdapter adapter){
     this.savedStateHandle = savedStateHandle;
     this.repository = repository;
     this.dataStore = dataStore;
     this.viewState = viewState;
     this.logger = logger;
-    this.studentsAdapter = studentsAdapter;
+    this.adapter = adapter;
     //We setup class and not wait for it to be called from outside to overcome the Fragment reloading a class during configuration changes.
     this.setupClass();
   }
@@ -55,7 +59,7 @@ public class ClassDetailsViewModel extends ViewModel {
           Class bClass = response.body();
           if(bClass != null){
             aClass.set(bClass);
-            studentsAdapter.loadStudents(bClass.getStudents());
+            adapter.loadStudents(bClass.getStudents());
             viewState.restoreNormalState();
             return;
           }

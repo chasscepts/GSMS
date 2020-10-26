@@ -17,6 +17,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+      <androidx.cardview.widget.CardView
+        android:id="@+id/classNameCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="false"
+        app:contentPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <TextView
+            android:id="@+id/txtClassName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.aClass.name}"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/classname" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.cardview.widget.CardView>
+
       <TableRow
           android:id="@+id/teacherHr"
           android:layout_width="0dp"
@@ -45,43 +83,6 @@
           app:layout_constraintTop_toBottomOf="@+id/classNameCardView" />
 
       <androidx.cardview.widget.CardView
-          android:id="@+id/classNameCardView"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_margin="8dp"
-          android:layout_marginTop="24dp"
-          android:textAlignment="center"
-          app:cardCornerRadius="8dp"
-          app:cardElevation="8dp"
-          app:cardPreventCornerOverlap="false"
-          app:cardUseCompatPadding="false"
-          app:contentPadding="8dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="1.0"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-          <TextView
-              android:id="@+id/txtClassName"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:text="@string/classname"
-              android:textAlignment="center"
-              android:textAppearance="@style/TextAppearance.AppCompat.Large"
-              android:textColor="@color/colorPrimary"
-              android:textSize="24sp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-      </androidx.cardview.widget.CardView>
-
-      <androidx.cardview.widget.CardView
           android:id="@+id/teacherCardView"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
@@ -98,55 +99,59 @@
             android:layout_height="match_parent">
 
           <TextView
-              android:id="@+id/txtTeacherFullName"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_margin="8dp"
-              android:layout_marginStart="8dp"
-              android:layout_marginTop="16dp"
-              android:layout_marginEnd="8dp"
-              android:text="@string/teacher_s_full_name"
-              android:textAppearance="@style/TextAppearance.AppCompat.Small"
-              android:textColor="@color/colorPrimary"
-              android:textColorHighlight="@color/colorPrimary"
-              android:textColorHint="@color/colorPrimary"
-              android:textSize="16sp"
-              android:textStyle="bold"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/txtTeacherFullName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:firstname="@{viewModel.aClass.teacher.firstname}"
+            app:lastname="@{viewModel.aClass.teacher.lastname}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/teacher_s_full_name" />
 
           <TextView
-              android:id="@+id/txtTeacherEmail"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_margin="8dp"
-              android:layout_marginTop="8dp"
-              android:drawablePadding="8dp"
-              android:text="@string/email"
-              android:textColor="@color/colorAccent"
-              android:textStyle="bold|italic"
-              app:drawableStartCompat="@drawable/ic_baseline_email_24"
-              app:drawableTint="@color/colorPrimaryDark"
-              app:layout_constraintEnd_toEndOf="@+id/txtTeacherFullName"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toBottomOf="@+id/txtTeacherFullName" />
+            android:id="@+id/txtTeacherEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            android:text="@{viewModel.aClass.teacher.email}"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold|italic"
+            app:drawableStartCompat="@drawable/ic_baseline_email_24"
+            app:drawableTint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="@+id/txtTeacherFullName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTeacherFullName"
+            tools:text="@string/email"/>
 
           <TextView
-              android:id="@+id/txtTeacherPhoneNum"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_margin="8dp"
-              android:layout_marginTop="8dp"
-              android:drawablePadding="8dp"
-              android:text="@string/phone_number"
-              android:textColor="@color/colorAccent"
-              android:textStyle="bold|italic"
-              app:drawableStartCompat="@drawable/ic_baseline_phone_24"
-              app:drawableTint="@color/colorPrimaryDark"
-              app:layout_constraintEnd_toEndOf="@+id/txtTeacherEmail"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toBottomOf="@+id/txtTeacherEmail" />
+            android:id="@+id/txtTeacherPhoneNum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            android:text="@{viewModel.aClass.teacher.email}"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold|italic"
+            app:drawableStartCompat="@drawable/ic_baseline_phone_24"
+            app:drawableTint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="@+id/txtTeacherEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTeacherEmail"
+            tools:text="@string/phone_number" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
@@ -175,14 +180,16 @@
           app:layout_constraintTop_toBottomOf="@+id/txtStudents" />
 
       <androidx.recyclerview.widget.RecyclerView
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:layout_marginTop="16dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="@+id/txtStudentTotalNumber"
-          app:layout_constraintStart_toStartOf="@+id/txtStudents"
-          app:layout_constraintTop_toBottomOf="@+id/hrStudent"
-          tools:listitem="@layout/student_item_view" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:adapter="@{viewModel.adapter}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtStudentTotalNumber"
+        app:layout_constraintStart_toStartOf="@+id/txtStudents"
+        app:layout_constraintTop_toBottomOf="@+id/hrStudent"
+        tools:listitem="@layout/student_item_view" />
 
       <TextView
           android:id="@+id/txtStudentTotalNumber"
@@ -211,3 +218,5 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>
 </layout>
+
+

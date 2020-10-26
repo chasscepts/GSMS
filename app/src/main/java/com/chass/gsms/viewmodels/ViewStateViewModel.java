@@ -77,6 +77,14 @@ public class ViewStateViewModel {
     setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
   }
 
+  public void responseError(String action){
+    StringBuilder sb = new StringBuilder();
+    sb.append("Application encountered an error while ");
+    sb.append(action);
+    sb.append(". The response we got from the server is not what we expected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
+    setState(ViewStates.ERROR, sb.toString());
+  }
+
   @BindingAdapter({"viewState", "switched"})
   public static void setState(FrameLayout container, ViewStateViewModel stateViewModel, boolean switched){
     container.removeAllViews();

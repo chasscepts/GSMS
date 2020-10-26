@@ -61,4 +61,7 @@
   <string name="school_image">School image</string>
   <string name="close_button">Close Button</string>
   <string name="check_mark">Check Mark</string>
+  <string name="create_class">Create Class</string>
+  <string name="take_attendance">Take Attendance</string>
+  <string name="submit">Submit</string>
 </resources>

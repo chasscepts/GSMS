@@ -42,6 +42,10 @@ public class NewStudentViewModel extends ViewModel {
     return formViewModel;
   }
 
+  public SharedDataStore getDataStore(){
+    return dataStore;
+  }
+
   @ViewModelInject
   public NewStudentViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, SharedDataStore dataStore, @RetrofitRequestDefaultTimeout ApiClient client, ViewStateViewModel viewState, NewStudentFormViewModel formViewModel, ILogger logger){
     this.savedStateHandle = savedStateHandle;

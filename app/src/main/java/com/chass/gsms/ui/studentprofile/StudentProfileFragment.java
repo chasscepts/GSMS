@@ -20,7 +20,7 @@ public class StudentProfileFragment extends Fragment {
   ) {
     // Inflate the layout for this fragment
     B = FragmentStudentProfileBinding.inflate(inflater, container, false);
-    StudentProfileViewModel viewModel = new ViewModelProvider(requireActivity()).get(StudentProfileViewModel.class);
+    StudentProfileViewModel viewModel = new ViewModelProvider(getViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(StudentProfileViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }

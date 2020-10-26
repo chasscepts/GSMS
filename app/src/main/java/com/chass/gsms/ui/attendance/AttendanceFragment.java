@@ -20,7 +20,7 @@ public class AttendanceFragment extends Fragment {
   ) {
     // Inflate the layout for this fragment
     B = FragmentAttendanceBinding.inflate(inflater, container, false);
-    AttendanceViewModel viewModel = new ViewModelProvider(requireActivity()).get(AttendanceViewModel.class);
+    AttendanceViewModel viewModel = new ViewModelProvider(getViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(AttendanceViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }

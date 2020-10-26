@@ -48,6 +48,10 @@ public class AttendanceViewModel extends ViewModel {
     return adapter;
   }
 
+  public SharedDataStore getDataStore(){
+    return dataStore;
+  }
+
   public final ObservableField<String> date = new ObservableField<>();
 
   @ViewModelInject

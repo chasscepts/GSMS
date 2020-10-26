@@ -20,7 +20,7 @@ public class NewClassFragment extends Fragment {
   ) {
     // Inflate the layout for this fragment
     B = FragmentNewClassBinding.inflate(inflater, container, false);
-    NewClassViewModel viewModel = new ViewModelProvider(requireActivity()).get(NewClassViewModel.class);
+    NewClassViewModel viewModel = new ViewModelProvider(getViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(NewClassViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }
