@@ -22,8 +22,8 @@ public class BindingAdapters {
     imageView.setImageResource(checked? R.drawable.ic_baseline_check_box_24 : R.drawable.ic_baseline_check_box_outline_blank_24);
   }
 
-  @BindingAdapter("fullName")
-  public static void name(TextView tv, Student student){
-    tv.setText(tv.getContext().getString(R.string.full_name, student.getLastname(), student.getFirstname()));
+  @BindingAdapter({"firstname", "lastname"})
+  public static void name(TextView tv, String firstname, String lastname){
+    tv.setText(tv.getContext().getString(R.string.full_name, lastname, firstname));
   }
 }
