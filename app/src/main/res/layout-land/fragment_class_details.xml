@@ -26,8 +26,6 @@
         android:textAlignment="center"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
-        app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="false"
         app:contentPadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -191,11 +189,10 @@
           app:layout_constraintTop_toBottomOf="@+id/txtStudents" />
 
       <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/class_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:adapter="@{viewModel.adapter}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/txtStudentTotalNumber"
         app:layout_constraintStart_toStartOf="@+id/txtStudents"

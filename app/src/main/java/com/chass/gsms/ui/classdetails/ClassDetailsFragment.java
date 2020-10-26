@@ -14,12 +14,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chass.gsms.R;
 import com.chass.gsms.databinding.FragmentClassDetailsBinding;
 
 public class ClassDetailsFragment extends Fragment {
   FragmentClassDetailsBinding B;
+  private ClassDetailsViewModel viewModel;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class ClassDetailsFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     B = FragmentClassDetailsBinding.inflate(inflater, container, false);
-    ClassDetailsViewModel viewModel = new ViewModelProvider(getViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(ClassDetailsViewModel.class);
+    viewModel = new ViewModelProvider(getViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(ClassDetailsViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }
@@ -39,6 +42,12 @@ public class ClassDetailsFragment extends Fragment {
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     B.btnAddNewStudent.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(R.id.NewStudentFragment));
+    setupRecyclerView();
+  }
+
+  private void setupRecyclerView() {
+    B.classList.setAdapter(viewModel.getAdapter());
+    B.classList.setLayoutManager(new LinearLayoutManager(requireContext()));
   }
 
   @Override

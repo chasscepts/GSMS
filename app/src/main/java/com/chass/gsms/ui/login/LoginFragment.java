@@ -21,7 +21,7 @@ public class LoginFragment extends Fragment {
     // Inflate the layout for this fragment
     B = FragmentLoginBinding.inflate(inflater, container, false);
     //We scope ViewModels to the Fragment and and use SharedDataStore to share data
-    LoginViewModel viewModel = new ViewModelProvider(getViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(LoginViewModel.class);
+    LoginViewModel viewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }

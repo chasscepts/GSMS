@@ -137,19 +137,35 @@
               android:text="@string/profile_picture"
               android:textSize="18sp" />
 
-          <EditText
-              android:id="@+id/edtTxtSchoolProfilePicture"
-              android:layout_width="match_parent"
+          <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+              android:id="@+id/folder_icon"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              app:tint="#FFA726"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              app:srcCompat="@drawable/ic_baseline_folder_24" />
+
+            <TextView
+              android:id="@+id/edtTxtSchoolProfilePicture"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="8dp"
               android:autofillHints="no"
-              android:drawableStart="@drawable/ic_baseline_folder_24"
               android:drawablePadding="8dp"
-              android:drawableTint="@color/colorPrimaryDark"
               android:ems="10"
-              android:text="@{viewModel.formViewModel.schoolPicturePath}"
               android:hint="@string/no_file_chosen"
               android:inputType=""
-              android:textSize="14sp" />
+              android:text="@{viewModel.formViewModel.schoolPicturePath}"
+              android:textSize="14sp"
+              app:layout_constraintBottom_toBottomOf="@id/folder_icon"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toEndOf="@id/folder_icon" />
+          </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>

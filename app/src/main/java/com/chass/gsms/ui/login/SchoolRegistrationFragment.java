@@ -38,7 +38,7 @@ public class SchoolRegistrationFragment extends Fragment {
     B = FragmentSchoolRegistrationBinding.inflate(inflater, container, false);
 
     //We scope all ViewModels to the Fragment and share data with SharedDataStore
-    viewModel = new ViewModelProvider(getViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(SchoolRegistrationViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(SchoolRegistrationViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }
@@ -72,8 +72,8 @@ public class SchoolRegistrationFragment extends Fragment {
     if(requestCode == CHOOSE_FILE_RESULT_CODE){
       if (resultCode == -1) {
         Uri uri = data.getData();
-        if(uri != null){
-          viewModel.getFormViewModel().setSchoolPicture(new File(URI.create(uri.getPath())));
+        if(uri != null && uri.getPath() != null){
+          viewModel.getFormViewModel().setSchoolPicture(new File(uri.getPath()));
         }
       }
     }
