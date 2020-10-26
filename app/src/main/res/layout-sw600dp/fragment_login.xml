@@ -76,7 +76,7 @@
           android:autofillHints=""
           android:background="@drawable/edit_text_border"
           android:ems="10"
-          android:text="@{viewModel.formViewModel.schoolId}"
+          android:text="@={viewModel.formViewModel.schoolIdText}"
           android:hint="@string/gsms_id"
           android:inputType="textPersonName"
           android:padding="10dp"
