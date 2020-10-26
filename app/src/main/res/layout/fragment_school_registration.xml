@@ -90,15 +90,14 @@
             android:orientation="vertical">
 
           <EditText
-              android:id="@+id/edtTxtSchoolName"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="@={viewModel.formViewModel.schoolName}"
-              android:autofillHints="no"
-              android:text="@={viewModel.formViewModel.schoolName}"
-              android:ems="10"
-              android:hint="@string/name_of_school"
-              android:inputType="textPersonName" />
+            android:id="@+id/edtTxtSchoolName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="no"
+            android:ems="10"
+            android:hint="@string/name_of_school"
+            android:inputType="textPersonName"
+            android:text="@={viewModel.formViewModel.schoolName}" />
 
           <EditText
               android:id="@+id/edtTxtSchoolAddress"
@@ -131,27 +130,27 @@
               android:inputType="phone" />
 
           <TextView
-              android:id="@+id/txtProfilePicture"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="4dp"
-              android:text="@string/profile_picture"
-              android:textSize="18sp" />
+            android:id="@+id/txtProfilePicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/profile_picture"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-          <EditText
-              android:id="@+id/edtTxtSchoolProfilePicture"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:autofillHints="no"
-              android:drawableStart="@drawable/ic_baseline_folder_24"
-              android:drawablePadding="8dp"
-              android:drawableTint="@color/colorPrimaryDark"
-              android:ems="10"
-              android:text="@{viewModel.formViewModel.schoolPicturePath}"
-              android:hint="@string/no_file_chosen"
-              android:inputType=""
-              android:textSize="14sp" />
-
+          <TextView
+            android:id="@+id/edtTxtSchoolProfilePicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="no"
+            android:drawablePadding="8dp"
+            android:ems="10"
+            android:text="@{viewModel.formViewModel.schoolPicturePath}"
+            android:hint="@string/no_file_chosen"
+            android:inputType=""
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_baseline_folder_24"
+            app:drawableTintCompat="#ff0"/>
 
         </LinearLayout>
       </androidx.cardview.widget.CardView>
@@ -278,7 +277,6 @@
           android:layout_marginEnd="16dp"
           android:layout_marginBottom="32dp"
           android:background="@drawable/round_btn"
-        android:onClick="@{()->viewModel.register()}"
           android:text="@string/register"
           android:textAllCaps="true"
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
