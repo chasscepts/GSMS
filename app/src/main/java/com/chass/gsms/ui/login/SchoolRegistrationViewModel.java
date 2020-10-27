@@ -8,18 +8,23 @@ import androidx.lifecycle.ViewModel;
 
 import com.chass.gsms.enums.ViewStates;
 import com.chass.gsms.helpers.SessionManager;
-import com.chass.gsms.hilt.RetrofitRequestDefaultTimeout;
+import com.chass.gsms.helpers.UrlHelper;
+import com.chass.gsms.hilt.RetrofitRequestExtendedTimeout;
 import com.chass.gsms.interfaces.ILogger;
 import com.chass.gsms.models.LoginResponse;
+import com.chass.gsms.networks.clients.IFormData;
+import com.chass.gsms.networks.clients.INetworkListener;
+import com.chass.gsms.networks.clients.PostHttpClient;
 import com.chass.gsms.networks.retrofit.ApiClient;
 import com.chass.gsms.viewmodels.SchoolRegistrationFormViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 
-import java.io.File;
+import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,8 +34,10 @@ public class SchoolRegistrationViewModel extends ViewModel {
   private final SavedStateHandle savedStateHandle;
   private final SessionManager sessionManager;
   private final ApiClient apiClient;
+  private final PostHttpClient client;
   private final ViewStateViewModel viewState;
   private final SchoolRegistrationFormViewModel formViewModel;
+  private final UrlHelper urlHelper;
   private final ILogger logger;
 
   public ViewStateViewModel getViewState() {
@@ -42,27 +49,27 @@ public class SchoolRegistrationViewModel extends ViewModel {
   }
 
   @ViewModelInject
-  public SchoolRegistrationViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, @RetrofitRequestDefaultTimeout ApiClient client, ViewStateViewModel viewState, SchoolRegistrationFormViewModel formViewModel, ILogger logger){
+  public SchoolRegistrationViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, PostHttpClient client, @RetrofitRequestExtendedTimeout ApiClient apiClient, ViewStateViewModel viewState, SchoolRegistrationFormViewModel formViewModel, UrlHelper urlHelper, ILogger logger){
     this.savedStateHandle = savedStateHandle;
     this.sessionManager = sessionManager;
-    this.apiClient = client;
+    this.client = client;
+    this.apiClient = apiClient;
     this.viewState = viewState;
     this.formViewModel = formViewModel;
+    this.urlHelper = urlHelper;
     this.logger = logger;
   }
 
-  public void register(){
+  public void register1(){
     if(viewState.getState() == ViewStates.BUSY) return;
     if(!formViewModel.isValid()){
       viewState.setState(ViewStates.INFO, "Please provide all required fields before submitting");
       return;
     }
 
-    viewState.setState(ViewStates.BUSY, "Registration in progress. Please wait...");
-    File file = formViewModel.getSchoolPicture();
-    RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+    viewState.setState(ViewStates.BUSY, "Registration in progress.\nPlease wait...");
 
-    MultipartBody.Part schoolPicture = MultipartBody.Part.createFormData("schoolPicture", file.getName(), requestFile);
+    MultipartBody.Part schoolPicture = MultipartBody.Part.createFormData("schoolPicture", null, formViewModel.getSchoolPictureStream());
 
     Call<LoginResponse> call = apiClient.register(
       getRequestBody(formViewModel.getSchoolName()),
@@ -89,7 +96,14 @@ public class SchoolRegistrationViewModel extends ViewModel {
           }
         }
         else {
-          logger.print(TAG, response.errorBody());
+          ResponseBody error = response.errorBody();
+          logger.print(TAG, error);
+          if(error != null){
+            try {
+              viewState.error(error.string());
+              return;
+            } catch (IOException ignored) {}
+          }
         }
         viewState.responseError("registering school");
       }
@@ -97,7 +111,37 @@ public class SchoolRegistrationViewModel extends ViewModel {
       @Override
       public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
         viewState.connectionError();
-        logger.print(TAG, t);
+        logger.print("stub", t);
+      }
+    });
+  }
+
+  public void register(){
+    if(viewState.getState() == ViewStates.BUSY) return;
+    IFormData formData = formViewModel.getFormData();
+    if(formData == null){
+      viewState.error("Please provide all required fields before submitting");
+      return;
+    }
+    viewState.setState(ViewStates.BUSY, "Registration in progress.\nPlease wait...");
+    client.setData(formData);
+    client.request(urlHelper.getRegisterUrl(), new INetworkListener() {
+      @Override
+      public void onResponse(int code, String response) {
+        if(client.isSuccessful()){
+          if(sessionManager.login(response)){
+            viewState.restoreNormalState();
+            return;
+          }
+        }
+        logger.log(TAG, response);
+        viewState.responseError("registering school");
+      }
+
+      @Override
+      public void onFailure(Throwable t) {
+        viewState.connectionError();
+        logger.print("stub", t);
       }
     });
   }

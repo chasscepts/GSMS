@@ -81,7 +81,7 @@ public class ViewStateViewModel {
     StringBuilder sb = new StringBuilder();
     sb.append("Application encountered an error while ");
     sb.append(action);
-    sb.append(". The response we got from the server is not what we expected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
+    sb.append(". The response we got from the server is not what the expected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
     setState(ViewStates.ERROR, sb.toString());
   }
 

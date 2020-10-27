@@ -1,5 +1,7 @@
 package com.chass.gsms.models;
 
+import java.util.Objects;
+
 /**
  * A container for server response after successful login or registration.
  * The purpose is for retrofit to parse the response for us.
@@ -19,4 +21,5 @@ public class LoginResponse {
   public LoginResponse(){
 
   }
+
 }

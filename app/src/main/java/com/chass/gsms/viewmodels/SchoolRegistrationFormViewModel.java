@@ -1,18 +1,21 @@
 package com.chass.gsms.viewmodels;
 
+import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Patterns;
 
-import androidx.databinding.BaseObservable;
+import androidx.annotation.Nullable;
 import androidx.databinding.Bindable;
 
 import com.chass.gsms.BR;
-
-import java.io.File;
+import com.chass.gsms.networks.clients.MultipartFormData;
+import com.chass.gsms.networks.retrofit.UploadStream;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.scopes.ActivityRetainedScoped;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.http.Part;
 
 /**
  * Encapsulates the fields of School Registration Form and provides validation for the fields and form.
@@ -20,43 +23,53 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped;
  * Our approach is that if the Email and password of the Admin fields are provided we assume that the user is attempting a login. Therefore the form can still be valid even when the other Admin fields(AdminFirstname, AdminLastname and AdminPhoneNumber) are invalid.
  */
 @ActivityRetainedScoped
-public class SchoolRegistrationFormViewModel extends BaseObservable {
+public class SchoolRegistrationFormViewModel extends BaseFormViewModel {
   @Inject
-  public SchoolRegistrationFormViewModel(){
-
+  public SchoolRegistrationFormViewModel(UploadStream stream, MultipartFormData formData){
+    this.formData = formData;
+    this.schoolPictureStream = stream;
+    stream.setMediaType("image/*");
+    test();
   }
+
+  private void test(){
+    setSchoolName("Model Secondary School");
+    setSchoolAddress("15 Crescent Avenue");
+    setSchoolEmail("magin@yahoo.com");
+    setSchoolPhoneNumber("09012345678");
+    setAdminFirstname("Brad");
+    setAdminLastname("Igwe");
+    setAdminEmail("admin@sch.com");
+    setAdminPhoneNumber("07115151515");
+    setPassword("oooooo");
+    setRepeatPassword("oooooo");
+  }
+
+  private UploadStream schoolPictureStream;
 
   private String schoolName,  schoolAddress, schoolEmail, schoolPhoneNumber, schoolPicturePath, adminFirstname, adminLastname,  adminEmail,  adminPhoneNumber,  password, repeatPassword;
   private boolean schoolNameValid,  schoolAddressValid, schoolEmailValid, schoolPhoneNumberValid,schoolPictureValid, adminFirstnameValid, adminLastnameValid,  adminEmailValid,  adminPhoneNumberValid,  passwordValid, repeatPasswordValid, valid;
 
   //region Profile Picture
-  /**
-   * The Profile Picture of school
-   * Because we need runtime permission to read file, we will handle opening file dialog from the Fragment and set schoolPicture from there.
-   */
-  private File schoolPicture;
+  private Uri schoolPictureUri;
 
   @Bindable
   public String getSchoolPicturePath(){
     return schoolPicturePath;
   }
 
-  public File getSchoolPicture() {
-    return schoolPicture;
+  public UploadStream getSchoolPictureStream() {
+    return schoolPictureStream;
   }
 
-  public void setSchoolPicture(File file){
-    schoolPicture = file;
-    String path = "";
-    boolean valid = false;
-    if(file != null){
-      path = file.getPath();
-      valid = file.exists();
-    }
-    if(!TextUtils.equals(path, schoolPicturePath)){
-      schoolPicturePath = path;
-      notifyPropertyChanged(BR.schoolPicturePath);
-    }
+  public void setSchoolPictureUri(Uri uri){
+    schoolPictureUri = uri;
+    schoolPictureStream.setUri(uri);
+    String path = uri == null? "" : uri.getPath();
+    if(TextUtils.equals(path, this.schoolPicturePath)) return;
+    this.schoolPicturePath = path;
+    notifyPropertyChanged(BR.schoolPicturePath);
+    boolean valid = !TextUtils.isEmpty(path);
     if(valid != schoolPictureValid){
       schoolPictureValid = valid;
       notifyPropertyChanged(BR.schoolPictureValid);
@@ -114,7 +127,7 @@ public class SchoolRegistrationFormViewModel extends BaseObservable {
 
   @Bindable
   public boolean isSchoolAddressValid(){
-    return isSchoolAddressValid();
+    return schoolAddressValid;
   }
   //endregion
 
@@ -128,7 +141,7 @@ public class SchoolRegistrationFormViewModel extends BaseObservable {
     if(TextUtils.equals(schoolEmail, this.schoolEmail)) return;
     this.schoolEmail = schoolEmail;
     notifyPropertyChanged(BR.schoolEmail);
-    boolean valid = Patterns.EMAIL_ADDRESS.matcher(schoolEmail).matches();
+    boolean valid = isValidEmail(schoolEmail);
     if(valid != schoolEmailValid){
       schoolEmailValid = valid;
       notifyPropertyChanged(BR.schoolEmailValid);
@@ -152,7 +165,7 @@ public class SchoolRegistrationFormViewModel extends BaseObservable {
     if(TextUtils.equals(schoolPhoneNumber, this.schoolPhoneNumber)) return;
     this.schoolPhoneNumber = schoolPhoneNumber;
     notifyPropertyChanged(BR.schoolPhoneNumber);
-    boolean valid = Patterns.PHONE.matcher(schoolPhoneNumber).matches();
+    boolean valid = isValidPhoneNumber(schoolPhoneNumber);
     if(valid != schoolPhoneNumberValid){
       schoolPhoneNumberValid = valid;
       notifyPropertyChanged(BR.schoolPhoneNumberValid);
@@ -176,7 +189,7 @@ public class SchoolRegistrationFormViewModel extends BaseObservable {
     if(TextUtils.equals(adminFirstname, this.adminFirstname)) return;
     this.adminFirstname = adminFirstname;
     notifyPropertyChanged(BR.adminFirstname);
-    boolean valid = hasMinLength(adminFirstname, 3); //TODO: Arbitrary min length 3.
+    boolean valid = isValidName(adminFirstname);
     if(valid != adminFirstnameValid){
       adminFirstnameValid = valid;
       notifyPropertyChanged(BR.adminFirstnameValid);
@@ -199,7 +212,7 @@ public class SchoolRegistrationFormViewModel extends BaseObservable {
     if(TextUtils.equals(adminLastname, this.adminLastname)) return;
     this.adminLastname = adminLastname;
     notifyPropertyChanged(BR.adminLastname);
-    boolean valid = hasMinLength(adminLastname, 3); //TODO: Arbitrary min length 3.
+    boolean valid = isValidName(adminLastname);
     if(valid != adminLastnameValid){
       adminLastnameValid = valid;
       notifyPropertyChanged(BR.adminLastnameValid);
@@ -222,7 +235,7 @@ public class SchoolRegistrationFormViewModel extends BaseObservable {
     if(TextUtils.equals(adminEmail, this.adminEmail)) return;
     this.adminEmail = adminEmail;
     notifyPropertyChanged(BR.adminEmail);
-    boolean valid = Patterns.EMAIL_ADDRESS.matcher(adminEmail).matches();
+    boolean valid = isValidEmail(adminEmail);
     if(valid != adminEmailValid){
       adminEmailValid = valid;
       notifyPropertyChanged(BR.adminEmailValid);
@@ -246,7 +259,7 @@ public class SchoolRegistrationFormViewModel extends BaseObservable {
     if(TextUtils.equals(adminPhoneNumber, this.adminPhoneNumber)) return;
     this.adminPhoneNumber = adminPhoneNumber;
     notifyPropertyChanged(BR.adminPhoneNumber);
-    boolean valid = Patterns.PHONE.matcher(adminPhoneNumber).matches();
+    boolean valid = isValidPhoneNumber(adminPhoneNumber);
     if(valid != adminPhoneNumberValid){
       adminPhoneNumberValid = valid;
       notifyPropertyChanged(BR.adminPhoneNumberValid);
@@ -330,14 +343,24 @@ public class SchoolRegistrationFormViewModel extends BaseObservable {
   }
   //endregion
 
-  /**
-   * Verify that a string has given minimum length
-   * @param text input text to verify
-   * @param length minimum length required
-   * @return false if @param text is null or it's length is less than @param length. true otherwise.
-   */
-  private boolean hasMinLength(String text, int length){
-    if(TextUtils.isEmpty(text)) return false;
-    return text.trim().length() >= length;
+  //region FormData
+  private MultipartFormData formData;
+
+  @Nullable
+  public MultipartFormData getFormData(){
+    if(!this.valid) return null;
+    formData.clear();
+    formData.append("schoolName", schoolName);
+    formData.append("schoolAddress", schoolAddress);
+    formData.append("schoolEmail", schoolEmail);
+    formData.append("schoolPhoneNumber", schoolPhoneNumber);
+    formData.append ("schoolPicture", schoolPictureUri);
+    formData.append("adminFirstname", adminFirstname);
+    formData.append("adminLastname", adminLastname);
+    formData.append("adminEmail", adminEmail);
+    formData.append("adminPhoneNumber", adminPhoneNumber);
+    formData.append("adminPassword", password);
+    return formData;
   }
+  //endregion
 }

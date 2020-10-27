@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +18,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.chass.gsms.R;
 import com.chass.gsms.databinding.FragmentSchoolRegistrationBinding;
 
-import java.io.File;
-import java.net.URI;
-
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
@@ -33,7 +29,7 @@ public class SchoolRegistrationFragment extends Fragment {
   private SchoolRegistrationViewModel viewModel;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     B = FragmentSchoolRegistrationBinding.inflate(inflater, container, false);
 
@@ -47,12 +43,8 @@ public class SchoolRegistrationFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     B.btnLoginRegister.setOnClickListener(view1 -> NavHostFragment.findNavController(SchoolRegistrationFragment.this).navigate(R.id.LoginFragment));
-    B.edtTxtSchoolProfilePicture.setOnClickListener(view1 -> {
-      openFileDialog();
-    });
-    B.btnRegister.setOnClickListener(view1 -> {
-      registerOrRequestFilePermissionIfNotGranted();
-    });
+    B.fileWrap.setOnClickListener(view1 -> openFileDialog());
+    B.btnRegister.setOnClickListener(view1 -> registerOrRequestFilePermissionIfNotGranted());
   }
 
   @Override
@@ -71,10 +63,7 @@ public class SchoolRegistrationFragment extends Fragment {
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     if(requestCode == CHOOSE_FILE_RESULT_CODE){
       if (resultCode == -1) {
-        Uri uri = data.getData();
-        if(uri != null && uri.getPath() != null){
-          viewModel.getFormViewModel().setSchoolPicture(new File(uri.getPath()));
-        }
+        viewModel.getFormViewModel().setSchoolPictureUri(data.getData());
       }
     }
   }
@@ -92,7 +81,7 @@ public class SchoolRegistrationFragment extends Fragment {
   private void openFileDialog() {
     Intent chooseFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
     chooseFileIntent.setType("*/*");
-    chooseFileIntent = Intent.createChooser(chooseFileIntent, "Choose Lecture File");
+    chooseFileIntent = Intent.createChooser(chooseFileIntent, "Choose School Profile Picture");
     startActivityForResult(chooseFileIntent, CHOOSE_FILE_RESULT_CODE);
   }
 }
