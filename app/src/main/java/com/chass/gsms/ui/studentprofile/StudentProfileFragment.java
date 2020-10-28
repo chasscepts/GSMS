@@ -14,13 +14,10 @@ import com.chass.gsms.databinding.FragmentStudentProfileBinding;
 public class StudentProfileFragment extends Fragment {
   FragmentStudentProfileBinding B;
   @Override
-  public View onCreateView(
-      LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState
-  ) {
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     B = FragmentStudentProfileBinding.inflate(inflater, container, false);
-    StudentProfileViewModel viewModel = new ViewModelProvider(getViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication())).get(StudentProfileViewModel.class);
+    StudentProfileViewModel viewModel = new ViewModelProvider(this).get(StudentProfileViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }

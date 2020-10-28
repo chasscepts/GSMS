@@ -3,25 +3,26 @@ package com.chass.gsms.viewmodels;
 import android.content.Context;
 
 import com.chass.gsms.interfaces.IMain;
+import com.chass.gsms.models.ClassSummary;
+import com.chass.gsms.ui.classlist.ClassSelectedListener;
 
 /**
  * This class binds to
  */
 public class ClassViewModel {
-  private final String className;
+  private final ClassSummary classSummary;
+  private final ClassSelectedListener listener;
 
-  public String getClassName() {
-    return className;
+  public ClassSummary getClassSummary() {
+    return classSummary;
   }
 
-  public ClassViewModel(String className) {
-    this.className = className;
+  public ClassViewModel(ClassSummary classSummary, ClassSelectedListener listener) {
+    this.classSummary = classSummary;
+    this.listener = listener;
   }
 
-  public void select(Context context){
-    IMain main = (IMain)context;
-    if(main != null){
-      main.selectClass(className);
-    }
+  public void select(){
+    listener.onClassSelected(classSummary);
   }
 }

@@ -58,4 +58,9 @@ public class AppLogger implements ILogger {
       }
     }
   }
+
+  @Override
+  public void stub(String msg) {
+    Log.d("stub", msg);
+  }
 }

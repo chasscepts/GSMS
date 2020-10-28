@@ -1,9 +1,7 @@
 package com.chass.gsms.viewmodels;
 
 import android.text.TextUtils;
-import android.util.Patterns;
 
-import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.chass.gsms.BR;
@@ -20,10 +18,17 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped;
  * All fields are required
  */
 @ActivityRetainedScoped
-public class LoginFormViewModel extends BaseObservable {
+public class LoginFormViewModel extends BaseFormViewModel {
   @Inject
   public LoginFormViewModel(){
+    test();
+  }
 
+  //Todo: remove
+  private void test() {
+    setSchoolIdText("101");
+    setEmail("admin@sch.com");
+    setPassword("oooooo");
   }
 
   private int schoolId;
@@ -62,15 +67,10 @@ public class LoginFormViewModel extends BaseObservable {
       val = Integer.parseInt(text);
     }
     catch (Exception ignored){ }
-    setSchoolId(val);
-  }
-
-  private void setSchoolId(int schoolId) {
-    if(schoolId == this.schoolId) return;
-    this.schoolId = schoolId;
-    boolean valid = schoolId > 0;
-    if(valid != schoolIdValid){
-      schoolIdValid = valid;
+    schoolId = val;
+    boolean valid = val >= 100;
+    if(valid != this.schoolIdValid){
+      this.schoolIdValid = valid;
       notifyPropertyChanged(BR.schoolIdValid);
       checkValidity(valid);
     }
@@ -92,7 +92,7 @@ public class LoginFormViewModel extends BaseObservable {
     if(TextUtils.equals(email, this.email)) return;
     this.email = email;
     notifyPropertyChanged(BR.email);
-    boolean valid = Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    boolean valid = isValidEmail(email);
     if(valid != emailValid){
       emailValid = valid;
       notifyPropertyChanged(BR.emailValid);
@@ -141,7 +141,7 @@ public class LoginFormViewModel extends BaseObservable {
     if(!valid){
       setValid(false);
     }
-    setValid(schoolIdValid && emailValid && passwordValid);
+    setValid(schoolIdValid && emailValid);
   }
   //endregion
 }

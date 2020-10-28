@@ -34,9 +34,9 @@ public class ClassesCache {
   }
 
   @Nullable
-  public Class get(String name){
+  public Class get(int id){
     for (Class aClass : store) {
-      if (TextUtils.equals(name, aClass.getName())) return aClass;
+      if (aClass != null && aClass.getId() == id) return aClass;
     }
     return null;
   }

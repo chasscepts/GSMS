@@ -16,4 +16,32 @@
 
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+  <style name="invalidFieldAlert">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginEnd">8dp</item>
+    <item name="android:contentDescription">@string/invalid_field_alert_icon</item>
+    <item name="srcCompat">@drawable/ic_baseline_error_24</item>
+  </style>
+
+  <style name="logoStyle">
+    <item name="android:layout_width">144dp</item>
+    <item name="android:layout_height">144dp</item>
+    <item name="android:layout_marginTop">16dp</item>
+    <item name="android:contentDescription">@string/gsms_logo</item>
+    <item name="android:textAlignment">center</item>
+    <item name="srcCompat">@drawable/logo</item>
+  </style>
+
+  <style name="inputFieldStyle">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginTop">16dp</item>
+    <item name="android:background">@drawable/edit_text_border</item>
+    <item name="android:ems">10</item>
+    <item name="android:padding">8dp</item>
+    <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+    <item name="android:textSize">18sp</item>
+  </style>
+
 </resources>

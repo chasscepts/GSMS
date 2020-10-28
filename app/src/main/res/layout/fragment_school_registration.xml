@@ -19,7 +19,7 @@
 
       <androidx.constraintlayout.widget.ConstraintLayout
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
+          android:layout_height="wrap_content"
           tools:context=".ui.login.SchoolRegistrationFragment">
 
         <TextView
@@ -141,43 +141,32 @@
               app:layout_constraintTop_toBottomOf="@id/edtTxtSchoolEmail" />
 
             <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:visibility="@{viewModel.formViewModel.schoolNameValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolName"
               app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolName"
               app:layout_constraintTop_toTopOf="@id/edtTxtSchoolName"
-              app:srcCompat="@drawable/ic_baseline_error_24" />
+              style="@style/invalidFieldAlert"/>
 
             <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:visibility="@{viewModel.formViewModel.schoolAddressValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolAddress"
               app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolAddress"
               app:layout_constraintTop_toTopOf="@id/edtTxtSchoolAddress"
-              app:srcCompat="@drawable/ic_baseline_error_24" />
-              <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:visibility="@{viewModel.formViewModel.schoolEmailValid? View.GONE : View.VISIBLE}"
-                app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolEmail"
-                app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolEmail"
-                app:layout_constraintTop_toTopOf="@id/edtTxtSchoolEmail"
-                app:srcCompat="@drawable/ic_baseline_error_24" />
+              style="@style/invalidFieldAlert" />
 
-              <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:visibility="@{viewModel.formViewModel.schoolPhoneNumberValid? View.GONE : View.VISIBLE}"
-                app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolPhoneNumber"
-                app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolPhoneNumber"
-                app:layout_constraintTop_toTopOf="@id/edtTxtSchoolPhoneNumber"
-                app:srcCompat="@drawable/ic_baseline_error_24" />
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.schoolEmailValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolEmail"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolEmail"
+              app:layout_constraintTop_toTopOf="@id/edtTxtSchoolEmail"
+              style="@style/invalidFieldAlert" />
+
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.schoolPhoneNumberValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolPhoneNumber"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolPhoneNumber"
+              app:layout_constraintTop_toTopOf="@id/edtTxtSchoolPhoneNumber"
+              style="@style/invalidFieldAlert"/>
 
             <TextView
               android:id="@+id/txtProfilePicture"
@@ -207,7 +196,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_folder_24"
-                app:tint="#FFA726" />
+                app:tint="#FFA726"
+                android:contentDescription="@string/folder_icon" />
 
               <TextView
                 android:id="@+id/edtTxtSchoolProfilePicture"
@@ -230,47 +220,47 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/txtAdministrator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/administrator"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/txtSchool"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewSchool" />
+          android:id="@+id/txtAdministrator"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:text="@string/administrator"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/colorPrimary"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          app:layout_constraintStart_toStartOf="@+id/txtSchool"
+          app:layout_constraintTop_toBottomOf="@+id/cardViewSchool" />
 
         <TableRow
-            android:id="@+id/hrAdmin"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtAdministrator" />
+          android:id="@+id/hrAdmin"
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="4dp"
+          android:layout_marginEnd="8dp"
+          android:background="@color/colorPrimaryDark"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/txtAdministrator" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewAdmin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hrAdmin">
+          android:id="@+id/cardViewAdmin"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          app:cardCornerRadius="8dp"
+          app:cardElevation="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/hrAdmin">
 
           <androidx.constraintlayout.widget.ConstraintLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
               android:id="@+id/edtTxtAdminFirstName"
@@ -351,64 +341,46 @@
               app:layout_constraintTop_toBottomOf="@id/edtTxtAdminPassword"/>
 
             <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:visibility="@{viewModel.formViewModel.adminFirstnameValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminFirstName"
               app:layout_constraintEnd_toEndOf="@id/edtTxtAdminFirstName"
               app:layout_constraintTop_toTopOf="@id/edtTxtAdminFirstName"
-              app:srcCompat="@drawable/ic_baseline_error_24" />
+              style="@style/invalidFieldAlert" />
 
             <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:visibility="@{viewModel.formViewModel.adminLastnameValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminLastName"
               app:layout_constraintEnd_toEndOf="@id/edtTxtAdminLastName"
               app:layout_constraintTop_toTopOf="@id/edtTxtAdminLastName"
-              app:srcCompat="@drawable/ic_baseline_error_24" />
+              style="@style/invalidFieldAlert"/>
 
             <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:visibility="@{viewModel.formViewModel.adminEmailValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminEmail"
               app:layout_constraintEnd_toEndOf="@id/edtTxtAdminEmail"
               app:layout_constraintTop_toTopOf="@id/edtTxtAdminEmail"
-              app:srcCompat="@drawable/ic_baseline_error_24" />
+              style="@style/invalidFieldAlert" />
 
             <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:visibility="@{viewModel.formViewModel.adminPhoneNumberValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminPhone"
               app:layout_constraintEnd_toEndOf="@id/edtTxtAdminPhone"
               app:layout_constraintTop_toTopOf="@id/edtTxtAdminPhone"
-              app:srcCompat="@drawable/ic_baseline_error_24" />
+              style="@style/invalidFieldAlert"/>
 
             <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:visibility="@{viewModel.formViewModel.passwordValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminPassword"
               app:layout_constraintEnd_toEndOf="@id/edtTxtAdminPassword"
               app:layout_constraintTop_toTopOf="@id/edtTxtAdminPassword"
-              app:srcCompat="@drawable/ic_baseline_error_24" />
+              style="@style/invalidFieldAlert"/>
 
             <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginEnd="8dp"
               android:visibility="@{viewModel.formViewModel.repeatPasswordValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminRepeatPassword"
               app:layout_constraintEnd_toEndOf="@id/edtTxtAdminRepeatPassword"
               app:layout_constraintTop_toTopOf="@id/edtTxtAdminRepeatPassword"
-              app:srcCompat="@drawable/ic_baseline_error_24" />
+              style="@style/invalidFieldAlert"/>
 
           </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -437,8 +409,10 @@
 
       </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
     <include
       layout="@layout/view_state"
-      viewModel="@{viewModel.viewState}"/>
+      app:viewModel="@{viewModel.viewState}"
+      tools:visibility="gone" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -74,14 +74,14 @@ public class ViewStateViewModel {
   }
 
   public void connectionError(){
-    setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
+    setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The common cause of this error is poor or no internet connection. Please ensure that you are connected to the internet then try again");
   }
 
   public void responseError(String action){
     StringBuilder sb = new StringBuilder();
     sb.append("Application encountered an error while ");
     sb.append(action);
-    sb.append(". The response we got from the server is not what the expected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
+    sb.append(". The response we got from the server was not the expected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
     setState(ViewStates.ERROR, sb.toString());
   }
 

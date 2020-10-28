@@ -12,7 +12,11 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.chass.gsms.R;
 import com.chass.gsms.databinding.FragmentLoginBinding;
+import com.chass.gsms.viewmodels.LoginFormViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class LoginFragment extends Fragment {
   FragmentLoginBinding B;
 
@@ -21,7 +25,7 @@ public class LoginFragment extends Fragment {
     // Inflate the layout for this fragment
     B = FragmentLoginBinding.inflate(inflater, container, false);
     //We scope ViewModels to the Fragment and and use SharedDataStore to share data
-    LoginViewModel viewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+    LoginViewModel viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }

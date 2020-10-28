@@ -4,31 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-import com.chass.gsms.helpers.ClassesCache;
-import com.chass.gsms.helpers.SessionManager;
-import com.chass.gsms.helpers.SharedDataStore;
-import com.chass.gsms.interfaces.IMain;
-import com.chass.gsms.models.Student;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.Navigation;
+
+import com.chass.gsms.helpers.SessionManager;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity implements IMain {
+public class MainActivity extends AppCompatActivity {
   @Inject
   SessionManager sessionManager;
-
-  @Inject
-  SharedDataStore dataStore;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +26,6 @@ public class MainActivity extends AppCompatActivity implements IMain {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     setupSession();
-
-    FloatingActionButton fab = findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show();
-      }
-    });
   }
 
   /**
@@ -75,22 +55,12 @@ public class MainActivity extends AppCompatActivity implements IMain {
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
+    if (id == R.id.logout) {
+      sessionManager.logout();
       return true;
     }
 
     return super.onOptionsItemSelected(item);
   }
 
-  @Override
-  public void selectClass(String className) {
-    dataStore.setSelectedClassName(className);
-    View view = findViewById(R.id.nav_host_fragment);
-    Navigation.findNavController(view).navigate(R.id.ClassDetailsFragment);
-  }
-
-  @Override
-  public void selectStudent(Student student){
-
-  }
 }

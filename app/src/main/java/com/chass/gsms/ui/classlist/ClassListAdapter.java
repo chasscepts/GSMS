@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chass.gsms.databinding.ClassItemViewBinding;
 import com.chass.gsms.helpers.SessionManager;
+import com.chass.gsms.models.ClassSummary;
 import com.chass.gsms.viewmodels.ClassViewModel;
 
 import java.util.ArrayList;
@@ -18,51 +19,59 @@ import javax.inject.Inject;
 
 public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.ClassViewHolder> {
 
-  private List<String> classNames;
+  private List<ClassSummary> classSummaries;
+
+  private final ClassSelectedListener listener;
+
+  public ClassSelectedListener getListener(){
+    return listener;
+  }
 
   @Inject
-  public ClassListAdapter(SessionManager sessionManager){
-    classNames = new ArrayList<>(Arrays.asList(sessionManager.getSchool().getClasses()));
+  public ClassListAdapter(SessionManager sessionManager, ClassSelectedListener listener){
+    classSummaries = new ArrayList<>(Arrays.asList(sessionManager.getSchool().getClassSummaries()));
+    this.listener = listener;
   }
 
-  public void addClass(String className){
-    classNames.add(className);
+  public void addClass(ClassSummary classSummary){
+    classSummaries.add(classSummary);
     notifyClassAdded();
   }
-
   /**
    * This method is here just to make it possible to verify that notifyItemInserted is being called.
    */
   public void notifyClassAdded(){
-    notifyItemInserted(classNames.size() - 1);
+    notifyItemInserted(classSummaries.size() - 1);
   }
 
   @NonNull
   @Override
   public ClassViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    return new ClassViewHolder(ClassItemViewBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+    return new ClassViewHolder(ClassItemViewBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false), listener);
   }
 
   @Override
   public void onBindViewHolder(@NonNull ClassViewHolder holder, int position) {
-    holder.bind(classNames.get(position));
+    holder.bind(classSummaries.get(position));
   }
 
   @Override
   public int getItemCount() {
-    return classNames.size();
+    return classSummaries.size();
   }
 
   public static class ClassViewHolder extends RecyclerView.ViewHolder{
     ClassItemViewBinding B;
+    ClassSelectedListener listener;
 
-    public ClassViewHolder(ClassItemViewBinding binding) {
+    public ClassViewHolder(ClassItemViewBinding binding, ClassSelectedListener listener) {
       super(binding.getRoot());
       B = binding;
+      this.listener = listener;
     }
 
-    public void bind(String className){
-      B.setViewModel(new ClassViewModel(className));
+    public void bind(ClassSummary classSummary){
+      B.setViewModel(new ClassViewModel(classSummary, listener));
     }
   }
 }

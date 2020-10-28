@@ -21,6 +21,7 @@ import com.chass.gsms.viewmodels.ViewStateViewModel;
 
 import java.io.IOException;
 
+import dagger.hilt.android.scopes.FragmentScoped;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -29,6 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@FragmentScoped
 public class SchoolRegistrationViewModel extends ViewModel {
   private static final String TAG = "SchoolRegistrationViewModel";
   private final SavedStateHandle savedStateHandle;

@@ -3,6 +3,7 @@ package com.chass.gsms.helpers;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.chass.gsms.hilt.NetworkModule;
 import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.School;
 import com.chass.gsms.models.User;
@@ -18,18 +19,23 @@ import javax.inject.Singleton;
 
 @Singleton
 public class SessionManager {
+
+  private CookieManager cookieManager;
+
+  public CookieManager getCookieManager(){
+    return cookieManager;
+  }
+
   @Inject
   public SessionManager(){
-    initializeCookie();
+    initCookie();
   }
 
   /**
    * We initialize cookie for managing session with the server
-   * TODO: check if retrofit manages session automatically
    */
-  private void initializeCookie() {
-    CookieManager cookieManager = new CookieManager();
-    CookieHandler.setDefault(cookieManager);  //The system automatically handles session after this.
+  private void initCookie() {
+    CookieHandler.setDefault(NetworkModule.getCookieManager());
   }
 
   /**

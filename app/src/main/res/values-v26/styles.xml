@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="inputFieldStyle">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginTop">16dp</item>
+    <item name="android:autofillHints">no</item>
+    <item name="android:background">@drawable/edit_text_border</item>
+    <item name="android:ems">10</item>
+    <item name="android:padding">8dp</item>
+    <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+    <item name="android:textSize">18sp</item>
+  </style>
+</resources>

@@ -65,4 +65,8 @@
   <string name="take_attendance">Take Attendance</string>
   <string name="submit">Submit</string>
   <string name="full_name">%1$s %2$s</string>
+  <string name="invalid_field_alert_icon">Invalid Field Alert Icon</string>
+  <string name="folder_icon">Folder Icon</string>
+  <string name="students_count">Number Of Students: %1$d</string>
+  <string name="logout">Logout</string>
 </resources>

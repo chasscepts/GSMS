@@ -57,8 +57,8 @@ public interface ApiClient {
       @Field("teacherPhoneNumber") String teacherPhoneNumber
   );
 
-  @GET("school/class/{id}/{name}")
-  Call<Class> getClass(@Path("id") int schoolId, @Path("name") String className);
+  @GET("school/class/{schoolId}/{classId}")
+  Call<Class> getClass(@Path("schoolId") int schoolId, @Path("classId") int classId);
 
   @FormUrlEncoded
   @POST("school/student")

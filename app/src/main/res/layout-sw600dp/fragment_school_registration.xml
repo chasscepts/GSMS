@@ -3,22 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
   <data>
+    <import type="android.view.View"/>
     <variable
         name="viewModel"
         type="com.chass.gsms.ui.login.SchoolRegistrationViewModel" />
   </data>
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-  <androidx.core.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+      <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.login.SchoolRegistrationFragment">
 
-      <TextView
+        <TextView
           android:id="@+id/textView"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -32,7 +36,7 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
 
-      <Button
+        <Button
           android:id="@+id/btn_login_register"
           style="@style/Widget.AppCompat.Button.Borderless"
           android:layout_width="wrap_content"
@@ -46,7 +50,7 @@
           app:layout_constraintStart_toEndOf="@+id/textView"
           app:layout_constraintTop_toTopOf="@+id/textView" />
 
-      <TextView
+        <TextView
           android:id="@+id/txtSchool"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -59,190 +63,232 @@
           app:layout_constraintStart_toStartOf="@+id/textView"
           app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-      <TableRow
-          android:id="@+id/teacherHr"
-          android:layout_width="0dp"
-          android:layout_height="1dp"
-          android:layout_marginStart="16dp"
-          android:layout_marginTop="4dp"
-          android:layout_marginEnd="8dp"
-          android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/txtSchool" />
+        <TableRow
+            android:id="@+id/teacherHr"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSchool" />
 
-      <androidx.cardview.widget.CardView
-          android:id="@+id/cardViewSchool"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
-          app:cardCornerRadius="8dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/teacherHr">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewSchool"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teacherHr">
 
-        <LinearLayout
+          <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-          <EditText
-            android:id="@+id/edtTxtSchoolName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="no"
-            android:ems="10"
-            android:hint="@string/name_of_school"
-            android:inputType="textPersonName|textCapWords"
-            android:text="@={viewModel.formViewModel.schoolName}" />
+            <EditText
+              android:id="@+id/edtTxtSchoolName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:autofillHints="no"
+              android:ems="10"
+              android:hint="@string/name_of_school"
+              android:inputType="textPersonName|textCapWords"
+              android:text="@={viewModel.formViewModel.schoolName}"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
 
-          <EditText
-            android:id="@+id/edtTxtSchoolAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="no"
-            android:ems="10"
-            android:hint="@string/school_s_address"
-            android:inputType="textPersonName|textCapWords"
-            android:text="@={viewModel.formViewModel.schoolAddress}" />
+            <EditText
+              android:id="@+id/edtTxtSchoolAddress"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:autofillHints="no"
+              android:ems="10"
+              android:hint="@string/school_s_address"
+              android:inputType="textPersonName|textCapWords"
+              android:text="@={viewModel.formViewModel.schoolAddress}"
+              app:layout_constraintStart_toStartOf="@id/edtTxtSchoolName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtSchoolName" />
 
-          <EditText
+            <EditText
               android:id="@+id/edtTxtSchoolEmail"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:autofillHints="no"
-              android:text="@={viewModel.formViewModel.schoolEmail}"
               android:ems="10"
               android:hint="@string/email"
-              android:inputType="textEmailAddress" />
+              android:inputType="textEmailAddress"
+              android:text="@={viewModel.formViewModel.schoolEmail}"
+              app:layout_constraintStart_toStartOf="@id/edtTxtSchoolName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtSchoolAddress" />
 
-          <EditText
+            <EditText
               android:id="@+id/edtTxtSchoolPhoneNumber"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:autofillHints="no"
-              android:text="@={viewModel.formViewModel.schoolPhoneNumber}"
               android:ems="10"
               android:hint="@string/phone_number"
-              android:inputType="phone" />
+              android:inputType="phone"
+              android:text="@={viewModel.formViewModel.schoolPhoneNumber}"
+              app:layout_constraintStart_toStartOf="@id/edtTxtSchoolName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtSchoolEmail" />
 
-          <TextView
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.schoolNameValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolName"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolName"
+              app:layout_constraintTop_toTopOf="@id/edtTxtSchoolName"
+              style="@style/invalidFieldAlert"/>
+
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.schoolAddressValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolAddress"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolAddress"
+              app:layout_constraintTop_toTopOf="@id/edtTxtSchoolAddress"
+              style="@style/invalidFieldAlert" />
+
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.schoolEmailValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolEmail"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolEmail"
+              app:layout_constraintTop_toTopOf="@id/edtTxtSchoolEmail"
+              style="@style/invalidFieldAlert" />
+
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.schoolPhoneNumberValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtSchoolPhoneNumber"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtSchoolPhoneNumber"
+              app:layout_constraintTop_toTopOf="@id/edtTxtSchoolPhoneNumber"
+              style="@style/invalidFieldAlert"/>
+
+            <TextView
               android:id="@+id/txtProfilePicture"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_margin="4dp"
               android:text="@string/profile_picture"
-              android:textSize="18sp" />
+              android:textSize="18sp"
+              app:layout_constraintStart_toStartOf="@id/edtTxtSchoolName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtSchoolPhoneNumber"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+              android:id="@+id/file_wrap"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@{viewModel.formViewModel.schoolPictureValid? @drawable/alert_border : @drawable/green_border}"
+              android:padding="8dp"
+              app:layout_constraintStart_toStartOf="@id/edtTxtSchoolName"
+              app:layout_constraintTop_toBottomOf="@id/txtProfilePicture"
+              tools:background="@drawable/alert_border">
+
+              <ImageView
+                android:id="@+id/folder_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/folder_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_folder_24"
+                app:tint="#FFA726" />
+
+              <TextView
+                android:id="@+id/edtTxtSchoolProfilePicture"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:autofillHints="no"
+                android:drawablePadding="8dp"
+                android:ems="10"
+                android:hint="@string/no_file_chosen"
+                android:inputType=""
+                android:text="@{viewModel.formViewModel.schoolPicturePath}"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/folder_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/folder_icon" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+          </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtAdministrator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/administrator"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txtSchool"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewSchool" />
+
+        <TableRow
+            android:id="@+id/hrAdmin"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAdministrator" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewAdmin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hrAdmin">
 
           <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/file_wrap"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@{viewModel.formViewModel.schoolPictureValid? @drawable/alert_border : @drawable/green_border}"
-            android:padding="8dp"
-            app:layout_constraintStart_toStartOf="@id/edtTxtSchoolName"
-            app:layout_constraintTop_toBottomOf="@id/txtProfilePicture"
-            tools:background="@drawable/alert_border">
+            android:layout_height="wrap_content">
 
-            <ImageView
-              android:id="@+id/folder_icon"
-              android:layout_width="wrap_content"
+            <EditText
+              android:id="@+id/edtTxtAdminFirstName"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_baseline_folder_24"
-              app:tint="#FFA726" />
-
-            <TextView
-              android:id="@+id/edtTxtSchoolProfilePicture"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="8dp"
+              android:layout_margin="2dp"
               android:autofillHints="no"
-              android:drawablePadding="8dp"
               android:ems="10"
-              android:hint="@string/no_file_chosen"
-              android:inputType=""
-              android:text="@{viewModel.formViewModel.schoolPicturePath}"
-              android:textSize="14sp"
-              app:layout_constraintBottom_toBottomOf="@id/folder_icon"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toEndOf="@id/folder_icon" />
-          </androidx.constraintlayout.widget.ConstraintLayout>
+              android:hint="@string/first_name"
+              android:inputType="textPersonName|textCapWords"
+              android:text="@={viewModel.formViewModel.adminFirstname}"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"/>
 
-        </LinearLayout>
-      </androidx.cardview.widget.CardView>
+            <EditText
+              android:id="@+id/edtTxtAdminLastName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="2dp"
+              android:autofillHints="no"
+              android:ems="10"
+              android:hint="@string/last_name"
+              android:inputType="textPersonName|textCapWords"
+              android:text="@={viewModel.formViewModel.adminLastname}"
+              app:layout_constraintStart_toStartOf="@id/edtTxtAdminFirstName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtAdminFirstName"/>
 
-      <TextView
-          android:id="@+id/txtAdministrator"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
-          android:text="@string/administrator"
-          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-          android:textColor="@color/colorPrimary"
-          android:textSize="18sp"
-          android:textStyle="bold"
-          app:layout_constraintStart_toStartOf="@+id/txtSchool"
-          app:layout_constraintTop_toBottomOf="@+id/cardViewSchool" />
-
-      <TableRow
-          android:id="@+id/hrAdmin"
-          android:layout_width="0dp"
-          android:layout_height="1dp"
-          android:layout_marginStart="16dp"
-          android:layout_marginTop="4dp"
-          android:layout_marginEnd="8dp"
-          android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/txtAdministrator" />
-
-      <androidx.cardview.widget.CardView
-          android:id="@+id/cardViewAdmin"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
-          app:cardCornerRadius="8dp"
-          app:cardElevation="8dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/hrAdmin">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-          <EditText
-            android:id="@+id/edtTxtAdminFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:autofillHints="no"
-            android:ems="10"
-            android:hint="@string/first_name"
-            android:inputType="textPersonName|textCapWords"
-            android:text="@={viewModel.formViewModel.adminFirstname}" />
-
-          <EditText
-            android:id="@+id/edtTxtAdminLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:autofillHints="no"
-            android:ems="10"
-            android:hint="@string/last_name"
-            android:inputType="textPersonName|textCapWords"
-            android:text="@={viewModel.formViewModel.adminLastname}" />
-
-          <EditText
+            <EditText
               android:id="@+id/edtTxtAdminEmail"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -251,9 +297,11 @@
               android:ems="10"
               android:text="@={viewModel.formViewModel.adminEmail}"
               android:hint="@string/email"
-              android:inputType="textEmailAddress" />
+              android:inputType="textEmailAddress"
+              app:layout_constraintStart_toStartOf="@id/edtTxtAdminFirstName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtAdminLastName"/>
 
-          <EditText
+            <EditText
               android:id="@+id/edtTxtAdminPhone"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -262,9 +310,11 @@
               android:ems="10"
               android:text="@={viewModel.formViewModel.adminPhoneNumber}"
               android:hint="@string/phone_number"
-              android:inputType="phone" />
+              android:inputType="phone"
+              app:layout_constraintStart_toStartOf="@id/edtTxtAdminFirstName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtAdminEmail"/>
 
-          <EditText
+            <EditText
               android:id="@+id/edtTxtAdminPassword"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -273,9 +323,11 @@
               android:ems="10"
               android:text="@={viewModel.formViewModel.password}"
               android:hint="@string/password"
-              android:inputType="textPassword" />
+              android:inputType="textPassword"
+              app:layout_constraintStart_toStartOf="@id/edtTxtAdminFirstName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtAdminPhone"/>
 
-          <EditText
+            <EditText
               android:id="@+id/edtTxtAdminRepeatPassword"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -284,32 +336,82 @@
               android:ems="10"
               android:text="@={viewModel.formViewModel.repeatPassword}"
               android:hint="@string/repeat_password"
-              android:inputType="textPassword" />
-        </LinearLayout>
+              android:inputType="textPassword"
+              app:layout_constraintStart_toStartOf="@id/edtTxtAdminFirstName"
+              app:layout_constraintTop_toBottomOf="@id/edtTxtAdminPassword"/>
 
-      </androidx.cardview.widget.CardView>
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.adminFirstnameValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminFirstName"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtAdminFirstName"
+              app:layout_constraintTop_toTopOf="@id/edtTxtAdminFirstName"
+              style="@style/invalidFieldAlert" />
 
-      <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/round_btn"
-        android:onClick="@{()->viewModel.register()}"
-        android:text="@string/register"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cardViewAdmin"
-        app:layout_constraintStart_toStartOf="@+id/cardViewAdmin"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewAdmin" />
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.adminLastnameValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminLastName"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtAdminLastName"
+              app:layout_constraintTop_toTopOf="@id/edtTxtAdminLastName"
+              style="@style/invalidFieldAlert"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-  </androidx.core.widget.NestedScrollView>
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.adminEmailValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminEmail"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtAdminEmail"
+              app:layout_constraintTop_toTopOf="@id/edtTxtAdminEmail"
+              style="@style/invalidFieldAlert" />
+
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.adminPhoneNumberValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminPhone"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtAdminPhone"
+              app:layout_constraintTop_toTopOf="@id/edtTxtAdminPhone"
+              style="@style/invalidFieldAlert"/>
+
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.passwordValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminPassword"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtAdminPassword"
+              app:layout_constraintTop_toTopOf="@id/edtTxtAdminPassword"
+              style="@style/invalidFieldAlert"/>
+
+            <ImageView
+              android:visibility="@{viewModel.formViewModel.repeatPasswordValid? View.GONE : View.VISIBLE}"
+              app:layout_constraintBottom_toBottomOf="@id/edtTxtAdminRepeatPassword"
+              app:layout_constraintEnd_toEndOf="@id/edtTxtAdminRepeatPassword"
+              app:layout_constraintTop_toTopOf="@id/edtTxtAdminRepeatPassword"
+              style="@style/invalidFieldAlert"/>
+
+          </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+          android:id="@+id/btnRegister"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginBottom="32dp"
+          android:background="@drawable/round_btn"
+          android:onClick="@{()->viewModel.register()}"
+          android:text="@string/register"
+          android:textAllCaps="true"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="#FFFFFF"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="@+id/cardViewAdmin"
+          app:layout_constraintStart_toStartOf="@+id/cardViewAdmin"
+          app:layout_constraintTop_toBottomOf="@+id/cardViewAdmin" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    <include
+      layout="@layout/view_state"
+      app:viewModel="@{viewModel.viewState}"
+      tools:visibility="gone" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

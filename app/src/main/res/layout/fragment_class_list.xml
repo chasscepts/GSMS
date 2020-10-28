@@ -13,9 +13,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/class_list"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:paddingBottom="80dp"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="16dp"
       app:adapter="@{viewModel.adapter}"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
@@ -26,27 +29,14 @@
       app:layout_constraintVertical_bias="0.0"
       tools:listitem="@layout/class_item_view" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
       android:id="@+id/add_class_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
-      android:layout_marginBottom="16dp"
-      android:background="@drawable/round_btn"
-      android:contentDescription="@string/add_class_btn_description"
-      android:padding="16dp"
-      android:drawableStart="@drawable/ic_baseline_add_24"
-      android:drawablePadding="8dp"
-      android:paddingStart="16dp"
-      android:paddingEnd="16dp"
-      android:text="@string/add_class"
-      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-      android:textColor="#fff"
-      android:textStyle="bold"
-      app:backgroundTint="@color/colorPrimaryDark"
-      app:icon="@drawable/ic_baseline_add_24"
+      android:layout_margin="@dimen/fab_margin"
+      app:srcCompat="@drawable/ic_baseline_add_24"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent" />
+      app:layout_constraintEnd_toEndOf="parent"/>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
