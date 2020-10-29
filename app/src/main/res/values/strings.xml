@@ -69,4 +69,10 @@
   <string name="folder_icon">Folder Icon</string>
   <string name="students_count">Number Of Students: %1$d</string>
   <string name="logout">Logout</string>
+  <string name="success_registration_details_intro">School registration was successful. Please note the details below as you will need it for subsequent login.</string>
+  <string name="identification_number">Identification Number</string>
+  <string name="administrator_email">Administrator Email</string>
+  <string name="school_registration_success_info">School registration was successful</string>
+  <string name="school_details_note_prompt">Please note the School Identification Number and Administrator Email below as you will need it for subsequent login.</string>
+  <string name="proceed">Proceed</string>
 </resources>

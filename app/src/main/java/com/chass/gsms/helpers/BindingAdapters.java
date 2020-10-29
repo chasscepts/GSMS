@@ -1,5 +1,6 @@
 package com.chass.gsms.helpers;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
@@ -48,5 +49,14 @@ public class BindingAdapters {
   @BindingAdapter("studentsCount")
   public static void setStudentsCount(TextView tv, int count){
     tv.setText(tv.getContext().getString(R.string.students_count, count));
+  }
+
+  @SuppressLint("SetTextI18n")
+  @BindingAdapter("number")
+  public static void setText(TextView tv, int number){
+    try{
+      tv.setText(Integer.toString(number));
+    }
+    catch (Exception ignore){}
   }
 }

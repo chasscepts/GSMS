@@ -70,7 +70,7 @@ public class School {
   }
 
   public static School parse(String text){
-    String CLASSES = "classes";
+    String CLASSES_SUMMARIES = "classSummaries";
     String ID = "id";
     String NAME = "name";
     String ADDRESS = "address";
@@ -80,17 +80,18 @@ public class School {
     String ADMIN_EMAIL = "adminEmail";
     try {
       JSONObject obj = new JSONObject(text);
-      List<ClassSummary> classSummaries = new ArrayList<>();
-      JSONArray classesArray = obj.getJSONArray(CLASSES);
+      ArrayList<ClassSummary> classSummariesList = new ArrayList<>();
+      JSONArray classesArray = obj.getJSONArray(CLASSES_SUMMARIES);
       int length = classesArray.length();
       if(length > 0){
         for(int i = 0; i < length; i++){
           ClassSummary classSummary = ClassSummary.parse(classesArray.getString(i));
           if(classSummary != null){
-            classSummaries.add(classSummary);
+            classSummariesList.add(classSummary);
           }
         }
       }
+
       School school = new School();
       school.id = obj.getInt(ID);
       school.name = obj.getString(NAME);
@@ -99,7 +100,13 @@ public class School {
       school.phoneNumber = obj.getString(PHONE_NUMBER);
       school.picture = obj.getString(PICTURE);
       school.adminEmail = obj.getString(ADMIN_EMAIL);
-      school.classSummaries = (ClassSummary[])classSummaries.toArray();
+
+      length = classSummariesList.size();
+      ClassSummary[] classSummaries = new ClassSummary[length];
+      if(length > 0){
+        school.classSummaries = classSummariesList.toArray(classSummaries);
+      }
+      school.classSummaries = classSummaries;
 
       return school;
     } catch (JSONException e) {

@@ -5,7 +5,7 @@
   <data>
     <variable
       name="viewModel"
-      type="com.chass.gsms.viewmodels.StudentAttendanceStatusViewModel" />
+      type="com.chass.gsms.viewmodels.AttendanceStatusViewModel" />
   </data>
   <androidx.cardview.widget.CardView
     android:layout_width="match_parent"

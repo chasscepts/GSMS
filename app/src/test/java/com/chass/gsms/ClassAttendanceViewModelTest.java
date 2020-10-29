@@ -7,14 +7,14 @@ import com.chass.gsms.enums.ViewStates;
 import com.chass.gsms.helpers.SessionManager;
 import com.chass.gsms.helpers.SharedDataStore;
 import com.chass.gsms.interfaces.ILogger;
-import com.chass.gsms.models.Attendance;
 import com.chass.gsms.models.Class;
+import com.chass.gsms.models.PlainResponse;
 import com.chass.gsms.models.School;
 import com.chass.gsms.models.Student;
 import com.chass.gsms.networks.retrofit.ApiClient;
 import com.chass.gsms.ui.attendance.AttendanceViewModel;
 import com.chass.gsms.ui.attendance.ClassAttendanceAdapter;
-import com.chass.gsms.viewmodels.StudentAttendanceStatusViewModel;
+import com.chass.gsms.viewmodels.AttendanceStatusViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 
 import org.junit.Before;
@@ -54,12 +54,12 @@ public class ClassAttendanceViewModelTest {
   Student[] students = {student1, student2};
 
   @Mock
-  StudentAttendanceStatusViewModel status1;
+  AttendanceStatusViewModel status1;
 
   @Mock
-  StudentAttendanceStatusViewModel status2;
+  AttendanceStatusViewModel status2;
 
-  StudentAttendanceStatusViewModel[] statuses = { status1, status2};
+  AttendanceStatusViewModel[] statuses = { status1, status2};
 
   @Mock
   Class aClass;
@@ -74,7 +74,7 @@ public class ClassAttendanceViewModelTest {
   ApiClient apiClient;
 
   @Mock
-  Call<Attendance> apiCall;
+  Call<PlainResponse> apiCall;
 
   @Mock
   ILogger logger;
@@ -98,8 +98,8 @@ public class ClassAttendanceViewModelTest {
     when(student2.getId()).thenReturn(2);
     when(status1.toString()).thenReturn("{\"studentId\": 1, \"isPresent\": true}");
     when(status1.toString()).thenReturn("{\"studentId\": 2, \"isPresent\": false}");
-    when(adapter.getAttendanceStatuses()).thenReturn(new StudentAttendanceStatusViewModel[] { new StudentAttendanceStatusViewModel(student1), new StudentAttendanceStatusViewModel(student2) });
-    when(apiClient.postAttendance(anyInt(), anyString(), anyString(), anyString())).thenReturn(apiCall);
+    when(adapter.getAttendanceStatuses()).thenReturn(new AttendanceStatusViewModel[] { new AttendanceStatusViewModel(student1), new AttendanceStatusViewModel(student2) });
+    when(apiClient.postAttendance(anyInt(), anyInt(), anyString(), anyString())).thenReturn(apiCall);
     savedStateHandle = new SavedStateHandle();
     viewState = new ViewStateViewModel();
   }
@@ -129,7 +129,7 @@ public class ClassAttendanceViewModelTest {
     viewState.restoreNormalState();
     viewModel.submitAttendance();
     assertEquals(ViewStates.ERROR, viewState.getState());
-    verify(apiClient, never()).postAttendance(anyInt(), anyString(), anyString(), anyString());
+    verify(apiClient, never()).postAttendance(anyInt(), anyInt(), anyString(), anyString());
   }
 
   @SuppressWarnings("unchecked")
@@ -141,11 +141,11 @@ public class ClassAttendanceViewModelTest {
     viewModel.submitAttendance();
     assertEquals(ViewStates.BUSY, viewState.getState());
 
-    ArgumentCaptor<Callback<Attendance>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);
+    ArgumentCaptor<Callback<PlainResponse>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);
 
     verify(apiCall).enqueue(argumentCaptor.capture());
 
-    Callback<Attendance> callback = argumentCaptor.getValue();
+    Callback<PlainResponse> callback = argumentCaptor.getValue();
     callback.onFailure(apiCall, new Throwable());
 
     assertEquals(ViewStates.ERROR, viewState.getState());
@@ -160,13 +160,13 @@ public class ClassAttendanceViewModelTest {
     viewModel.submitAttendance();
     assertEquals(ViewStates.BUSY, viewState.getState());
 
-    ArgumentCaptor<Callback<Attendance>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);
+    ArgumentCaptor<Callback<PlainResponse>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);
 
     Mockito.verify(apiCall).enqueue(argumentCaptor.capture());
 
-    Callback<Attendance> callback = argumentCaptor.getValue();
-    Attendance attendance = Mockito.mock(Attendance.class);
-    callback.onResponse(apiCall, Response.success(attendance));
+    Callback<PlainResponse> callback = argumentCaptor.getValue();
+    PlainResponse response = Mockito.mock(PlainResponse.class);
+    callback.onResponse(apiCall, Response.success(response));
 
     assertEquals(ViewStates.SUCCESS, viewState.getState());
   }

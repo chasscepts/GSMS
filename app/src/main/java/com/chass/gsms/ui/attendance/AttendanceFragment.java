@@ -11,6 +11,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.chass.gsms.databinding.FragmentAttendanceBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class AttendanceFragment extends Fragment {
   FragmentAttendanceBinding B;
   @Override

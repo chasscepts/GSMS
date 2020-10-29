@@ -1,6 +1,7 @@
 package com.chass.gsms.ui.login;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.ObservableField;
 import androidx.hilt.Assisted;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.SavedStateHandle;
@@ -11,7 +12,9 @@ import com.chass.gsms.helpers.SessionManager;
 import com.chass.gsms.helpers.UrlHelper;
 import com.chass.gsms.hilt.RetrofitRequestExtendedTimeout;
 import com.chass.gsms.interfaces.ILogger;
+import com.chass.gsms.models.CIError;
 import com.chass.gsms.models.LoginResponse;
+import com.chass.gsms.models.School;
 import com.chass.gsms.networks.clients.IFormData;
 import com.chass.gsms.networks.clients.INetworkListener;
 import com.chass.gsms.networks.clients.PostHttpClient;
@@ -42,6 +45,8 @@ public class SchoolRegistrationViewModel extends ViewModel {
   private final UrlHelper urlHelper;
   private final ILogger logger;
 
+  private LoginResponse loginResponse;
+
   public ViewStateViewModel getViewState() {
     return viewState;
   }
@@ -49,6 +54,8 @@ public class SchoolRegistrationViewModel extends ViewModel {
   public SchoolRegistrationFormViewModel getFormViewModel(){
     return formViewModel;
   }
+
+  public final ObservableField<School> school = new ObservableField<>();
 
   @ViewModelInject
   public SchoolRegistrationViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, PostHttpClient client, @RetrofitRequestExtendedTimeout ApiClient apiClient, ViewStateViewModel viewState, SchoolRegistrationFormViewModel formViewModel, UrlHelper urlHelper, ILogger logger){
@@ -60,6 +67,7 @@ public class SchoolRegistrationViewModel extends ViewModel {
     this.formViewModel = formViewModel;
     this.urlHelper = urlHelper;
     this.logger = logger;
+    logger.stub("Created!");
   }
 
   public void register1(){
@@ -131,12 +139,24 @@ public class SchoolRegistrationViewModel extends ViewModel {
       @Override
       public void onResponse(int code, String response) {
         if(client.isSuccessful()){
-          if(sessionManager.login(response)){
+          loginResponse = LoginResponse.parse(response);
+          if(loginResponse != null){
             viewState.restoreNormalState();
+            school.set(loginResponse.getSchool());
             return;
           }
         }
-        logger.log(TAG, response);
+        CIError ciError = CIError.fromJson(response);
+        if(canDisplay(ciError)){
+          String error = ciError.getMessages().getError();
+          if(error == null || error.length() <= 0){
+            error = "The server failed to provide reasons for this error.";
+          }
+          viewState.error("The following error was encountered while attempting to register school.\n\n" + error);
+          return;
+        }
+
+        logger.error(TAG, response);
         viewState.responseError("registering school");
       }
 
@@ -146,6 +166,21 @@ public class SchoolRegistrationViewModel extends ViewModel {
         logger.print("stub", t);
       }
     });
+  }
+
+  private boolean canDisplay(CIError error){
+    logger.info(TAG, "Checking if CIError can be displayed");
+    if(error == null) return false;
+    logger.info(TAG, "CIError is NOT NULL");
+    if(error.getMessages() == null) return false;
+    logger.info(TAG, "CIError:messages is NOT NULL");
+    int status = error.getStatus();
+    logger.info(TAG, "Error status code is: " + status);
+    return status == 400 || status == 401 || status == 500;
+  }
+
+  public void login(){
+    sessionManager.login(loginResponse);
   }
 
   private RequestBody getRequestBody(String text) {

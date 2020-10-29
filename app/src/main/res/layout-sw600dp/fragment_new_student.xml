@@ -209,7 +209,7 @@
               app:layout_constraintTop_toBottomOf="@+id/edtParentEmail" />
 
             <ImageView
-              android:visibility="@{viewModel.formViewModel.parent1Form.valid? View.GONE : View.VISIBLE}"
+              android:visibility="@{viewModel.formViewModel.parent1Form.firstnameValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtParentFirstName"
               app:layout_constraintEnd_toEndOf="@id/edtParentFirstName"
               app:layout_constraintTop_toTopOf="@id/edtParentFirstName"
@@ -321,7 +321,7 @@
               style="@style/inputFieldStyle"/>
 
             <ImageView
-              android:visibility="@{viewModel.formViewModel.parent2Form.valid? View.GONE : View.VISIBLE}"
+              android:visibility="@{viewModel.formViewModel.parent2Form.firstnameValid? View.GONE : View.VISIBLE}"
               app:layout_constraintBottom_toBottomOf="@id/edtParent2FirstName"
               app:layout_constraintEnd_toEndOf="@id/edtParent2FirstName"
               app:layout_constraintTop_toTopOf="@id/edtParent2FirstName"

@@ -1,5 +1,12 @@
 package com.chass.gsms.models;
 
+import androidx.annotation.Nullable;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONObject;
+
 import java.util.Objects;
 
 /**
@@ -22,4 +29,22 @@ public class LoginResponse {
 
   }
 
+  @Nullable
+  public static LoginResponse parse(String response){
+    try{
+      JSONObject json = new JSONObject(response);
+      School school = School.parse(json.getString("school"));
+      User user = User.parse(json.getString("user"));
+      if(school != null && user != null){
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.school = school;
+        loginResponse.user = user;
+        return loginResponse;
+      }
+    }
+    catch (Exception e){
+      e.printStackTrace();
+    }
+    return null;
+  }
 }

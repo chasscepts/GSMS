@@ -14,13 +14,12 @@ import com.chass.gsms.hilt.RetrofitRequestDefaultTimeout;
 import com.chass.gsms.interfaces.ILogger;
 import com.chass.gsms.models.Attendance;
 import com.chass.gsms.models.Class;
+import com.chass.gsms.models.PlainResponse;
 import com.chass.gsms.networks.retrofit.ApiClient;
-import com.chass.gsms.viewmodels.StudentAttendanceStatusViewModel;
+import com.chass.gsms.viewmodels.AttendanceStatusViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-
-import org.json.JSONArray;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -88,17 +87,12 @@ public class AttendanceViewModel extends ViewModel {
       return;
     }
     viewState.busy("Submitting Attendance. Please wait...");
-    StudentAttendanceStatusViewModel[] statuses = adapter.getAttendanceStatuses();
-    Gson gson = new Gson();
-
-    JsonArray attendance = new JsonArray();
-    for (StudentAttendanceStatusViewModel status : statuses) {
-      attendance.add(status.toString());
-    }
-    Call<Attendance> call = apiClient.postAttendance(sessionManager.getSchool().getId(), aClass.getName(), date.get(), attendance.toString());
-    call.enqueue(new Callback<Attendance>() {
+    AttendanceStatusViewModel[] statuses = adapter.getAttendanceStatuses();
+    String json = AttendanceStatusViewModel.getJsonString(adapter.getAttendanceStatuses());
+    Call<PlainResponse> call = apiClient.postAttendance(sessionManager.getSchool().getId(), aClass.getId(), date.get(), json);
+    call.enqueue(new Callback<PlainResponse>() {
       @Override
-      public void onResponse(@NonNull Call<Attendance> call, @NonNull Response<Attendance> response) {
+      public void onResponse(@NonNull Call<PlainResponse> call, @NonNull Response<PlainResponse> response) {
         if(response.isSuccessful()){
           viewState.success("Attendance successfully submitted!");
           return;
@@ -110,7 +104,7 @@ public class AttendanceViewModel extends ViewModel {
       }
 
       @Override
-      public void onFailure(@NonNull Call<Attendance> call, @NonNull Throwable t) {
+      public void onFailure(@NonNull Call<PlainResponse> call, @NonNull Throwable t) {
         viewState.connectionError();
         logger.print(TAG, t);
       }

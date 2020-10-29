@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chass.gsms.databinding.StudentAttendanceStatusViewBinding;
 import com.chass.gsms.models.Student;
-import com.chass.gsms.viewmodels.StudentAttendanceStatusViewModel;
+import com.chass.gsms.viewmodels.AttendanceStatusViewModel;
 
 import javax.inject.Inject;
 
 public class ClassAttendanceAdapter extends RecyclerView.Adapter<ClassAttendanceAdapter.AttendanceStatusViewHolder> {
-  private StudentAttendanceStatusViewModel[] attendanceStatuses = {};
+  private AttendanceStatusViewModel[] attendanceStatuses = {};
 
-  public StudentAttendanceStatusViewModel[] getAttendanceStatuses(){
+  public AttendanceStatusViewModel[] getAttendanceStatuses(){
     return attendanceStatuses;
   }
 
@@ -43,9 +43,9 @@ public class ClassAttendanceAdapter extends RecyclerView.Adapter<ClassAttendance
   public void loadStudents(Student[] students){
     if(students == null) return;
     int length = students.length;
-    attendanceStatuses = new StudentAttendanceStatusViewModel[length];
+    attendanceStatuses = new AttendanceStatusViewModel[length];
     for(int i = 0; i < length; i++){
-      attendanceStatuses[i] = new StudentAttendanceStatusViewModel(students[i]);
+      attendanceStatuses[i] = new AttendanceStatusViewModel(students[i]);
     }
     notifyStatusChanged();
   }
@@ -63,7 +63,7 @@ public class ClassAttendanceAdapter extends RecyclerView.Adapter<ClassAttendance
       B = binding;
     }
 
-    public void bind(StudentAttendanceStatusViewModel attendanceStatus){
+    public void bind(AttendanceStatusViewModel attendanceStatus){
       B.setViewModel(attendanceStatus);
     }
   }

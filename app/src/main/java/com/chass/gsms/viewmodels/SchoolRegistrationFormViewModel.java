@@ -33,7 +33,7 @@ public class SchoolRegistrationFormViewModel extends BaseFormViewModel {
   }
 
   private void test(){
-    setSchoolName("Girls High School");
+    setSchoolName("City High School");
     setSchoolAddress("101 Airport Road");
     setSchoolEmail("ghsi@yahoo.com");
     setSchoolPhoneNumber("05012345678");

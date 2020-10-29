@@ -410,6 +410,10 @@
       </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
     <include
+      layout="@layout/success_registration_popup"
+      app:viewModel="@{viewModel}"
+      tools:visibility="gone" />
+    <include
       layout="@layout/view_state"
       app:viewModel="@{viewModel.viewState}"
       tools:visibility="gone" />
