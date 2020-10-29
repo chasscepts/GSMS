@@ -1,18 +1,10 @@
 package com.chass.gsms.viewmodels;
 
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.BindingAdapter;
 import androidx.databinding.ObservableBoolean;
-import androidx.databinding.ObservableField;
 
-import com.chass.gsms.enums.AttendanceStatus;
 import com.chass.gsms.models.Student;
-import com.chass.gsms.models.StudentAttendanceStatus;
-import com.google.gson.JsonObject;
 
 public class AttendanceStatusViewModel {
   private final Student student;
@@ -25,10 +17,10 @@ public class AttendanceStatusViewModel {
     this.student = student;
   }
 
-  public final ObservableBoolean present = new ObservableBoolean();
+  public final ObservableBoolean status = new ObservableBoolean();
 
   public void toggleCheck(){
-    present.set(!present.get());
+    status.set(!status.get());
   }
 
   @NonNull
@@ -37,7 +29,7 @@ public class AttendanceStatusViewModel {
     sb.append("{\"studentId\":");
     sb.append(student.getId());
     sb.append(",\"status\":\"");
-    sb.append(present.get()? 'P' : 'A');
+    sb.append(status.get()? 'P' : 'A');
     sb.append("\"}");
     return sb.toString();
   }

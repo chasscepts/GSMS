@@ -59,4 +59,17 @@ public class BindingAdapters {
     }
     catch (Exception ignore){}
   }
+
+  @BindingAdapter("attendanceStatusDisplay")
+  public static void setAttendanceStatus(ImageView imageView, String status){
+    if("P".equals(status)){
+      imageView.setImageResource(R.drawable.ic_baseline_check_box_24);
+    }
+    else if("A".equals(status)){
+      imageView.setImageResource(R.drawable.ic_baseline_close_24);
+    }
+    else {
+      imageView.setImageResource(android.R.color.transparent);
+    }
+  }
 }

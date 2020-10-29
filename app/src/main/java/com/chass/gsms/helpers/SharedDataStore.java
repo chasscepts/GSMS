@@ -2,6 +2,7 @@ package com.chass.gsms.helpers;
 
 import com.chass.gsms.models.Class;
 import com.chass.gsms.models.ClassSummary;
+import com.chass.gsms.models.Student;
 
 import javax.inject.Inject;
 
@@ -24,6 +25,8 @@ public class SharedDataStore {
 
   private Class currentClass;
 
+  private Student currentStudent;
+
   public ClassSummary getSelectedClassSummary() {
     //String temp = selectedClassSummary;
     //selectedClassSummary = null;
@@ -41,5 +44,13 @@ public class SharedDataStore {
 
   public void setCurrentClass(Class currentClass) {
     this.currentClass = currentClass;
+  }
+
+  public Student getCurrentStudent() {
+    return currentStudent;
+  }
+
+  public void setCurrentStudent(Student currentStudent) {
+    this.currentStudent = currentStudent;
   }
 }

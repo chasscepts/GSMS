@@ -12,14 +12,11 @@ import com.chass.gsms.helpers.SessionManager;
 import com.chass.gsms.helpers.SharedDataStore;
 import com.chass.gsms.hilt.RetrofitRequestDefaultTimeout;
 import com.chass.gsms.interfaces.ILogger;
-import com.chass.gsms.models.Attendance;
 import com.chass.gsms.models.Class;
 import com.chass.gsms.models.PlainResponse;
 import com.chass.gsms.networks.retrofit.ApiClient;
 import com.chass.gsms.viewmodels.AttendanceStatusViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

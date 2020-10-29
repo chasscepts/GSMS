@@ -11,6 +11,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.chass.gsms.databinding.FragmentStudentProfileBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class StudentProfileFragment extends Fragment {
   FragmentStudentProfileBinding B;
   @Override

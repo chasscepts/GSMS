@@ -25,7 +25,7 @@
         android:text="@{viewModel.student.firstname}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ikenna" />
+        tools:text="Emmanuel" />
 
       <TextView
         android:id="@+id/lastname"
@@ -36,14 +36,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="@id/firstname"
         app:layout_constraintTop_toBottomOf="@id/firstname"
-        tools:text="Ezeh" />
+        tools:text="Simon" />
 
       <ImageView
         android:layout_width="32dp"
         android:layout_height="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:checked="@{viewModel.present}"
+        app:checked="@{viewModel.status}"
         tools:srcCompat="@drawable/ic_baseline_check_box_24"
         android:contentDescription="@string/check_mark"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

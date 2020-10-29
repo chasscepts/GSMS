@@ -7,11 +7,8 @@ import androidx.databinding.Bindable;
 import com.chass.gsms.BR;
 import com.chass.gsms.interfaces.IMonthSelectedListener;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -27,11 +24,19 @@ public class MonthPicker extends BaseFormViewModel {
     this.listener = listener;
   }
 
-  private int month, year, tempYear;
+  private int month, year, tempYear, daysInMonth, startWeekday;
 
   private boolean open, valid;
 
-  private String yearText, firstDay, lastDay;
+  private String yearText;
+
+  public int getDaysInMonth() {
+    return daysInMonth;
+  }
+
+  public int getStartWeekday(){
+    return startWeekday;
+  }
 
   @Bindable
   public int getMonth() {
@@ -61,14 +66,6 @@ public class MonthPicker extends BaseFormViewModel {
 
   public int getYear() {
     return year;
-  }
-
-  public String getFirstDay(){
-    return firstDay;
-  }
-
-  public String getLastDay(){
-    return lastDay;
   }
 
   @Bindable
@@ -101,7 +98,7 @@ public class MonthPicker extends BaseFormViewModel {
   public void select(){
     setOpen(false);
     year =  tempYear;
-    setRange();
+    setFields();
     if(this.listener != null){
       this.listener.onMonthSelected(this);
     }
@@ -113,16 +110,36 @@ public class MonthPicker extends BaseFormViewModel {
     year = calendar.get(Calendar.YEAR);
     setMonth(calendar.get(Calendar.MONTH) + 1);
     setYearText(Integer.toString(year));
-    setRange();
+    setFields();
   }
 
-  private void setRange(){
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+  private void setFields(){
     Calendar calendar = Calendar.getInstance();
     calendar.set(year, month - 1, 1);
-    int days = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-    firstDay = formatter.format(calendar.getTime());
-    calendar.set(Calendar.DAY_OF_MONTH, days);
-    lastDay = formatter.format(calendar.getTime());
+    daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    int day = calendar.get(Calendar.DAY_OF_WEEK);
+    switch (day){
+      case Calendar.MONDAY:
+        startWeekday = 1;
+        break;
+      case Calendar.TUESDAY:
+        startWeekday = 2;
+        break;
+      case Calendar.WEDNESDAY:
+        startWeekday = 3;
+        break;
+      case Calendar.THURSDAY:
+        startWeekday = 4;
+        break;
+      case Calendar.FRIDAY:
+        startWeekday = 5;
+        break;
+      case Calendar.SATURDAY:
+        startWeekday = 6;
+        break;
+      default:
+        startWeekday = 0;
+        break;
+    }
   }
 }

@@ -7,23 +7,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chass.gsms.databinding.AttendanceStatusViewBinding;
-import com.chass.gsms.viewmodels.AttendanceStatusViewModel;
 
 import javax.inject.Inject;
 
 public class AttendanceStatusAdapter extends RecyclerView.Adapter<AttendanceStatusAdapter.AttendanceStatusViewHolder> {
-  private AttendanceStatusViewModel[] statuses;
+  private String[] statuses;
 
   @Inject
   public AttendanceStatusAdapter(){
-    statuses = new AttendanceStatusViewModel[]{};
+    statuses = new String[]{};
   }
 
-  public AttendanceStatusViewModel[] getStatuses(){
+  public String[] getStatuses(){
     return statuses;
   }
 
-  public void setStatuses(AttendanceStatusViewModel[] statuses){
+  public void setStatuses(String[] statuses){
     this.statuses = statuses;
     notifyStatusesChanged();
   }
@@ -59,8 +58,8 @@ public class AttendanceStatusAdapter extends RecyclerView.Adapter<AttendanceStat
       B = binding;
     }
 
-    public void bind(AttendanceStatusViewModel viewModel){
-      B.setViewModel(viewModel);
+    public void bind(String status){
+      B.setStatus(status);
     }
   }
 }

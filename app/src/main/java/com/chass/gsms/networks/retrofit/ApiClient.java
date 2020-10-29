@@ -1,6 +1,5 @@
 package com.chass.gsms.networks.retrofit;
 
-import com.chass.gsms.models.Attendance;
 import com.chass.gsms.models.Class;
 import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.PlainResponse;
@@ -128,7 +127,7 @@ public interface ApiClient {
    * @return A retrofit Call wrapper network response
    */
   @GET("school/attendance/student/{schoolId}/{classId}/{studentId}/{year}/{month}/{startDate}/{count}")
-  Call<Attendance> getStudentAttendance(
+  Call<List<String>> getStudentAttendance(
       @Path("schoolId") int schoolId,
       @Path("classId") int classId,
       @Path("studentId") int studentId,

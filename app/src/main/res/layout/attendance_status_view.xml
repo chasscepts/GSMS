@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  <data>
+    <variable
+      name="status"
+      type="String" />
+  </data>
+
+  <androidx.cardview.widget.CardView
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:layout_margin="2dp"
+    app:contentPadding="1dp">
+
+    <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:contentDescription="@string/attendance_status"
+      android:scaleType="fitXY"
+      app:attendanceStatusDisplay="@{status}"
+      tools:srcCompat="@drawable/ic_baseline_check_box_24" />
+  </androidx.cardview.widget.CardView>
+</layout>
