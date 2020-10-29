@@ -1,218 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:android="http://schemas.android.com/apk/res/android">
   <data>
     <variable
       name="viewModel"
       type="com.chass.gsms.ui.studentprofile.StudentProfileViewModel" />
   </data>
   <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:animateLayoutChanges="true">
 
       <TextView
-          android:id="@+id/txtStudentName"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="24dp"
-          android:layout_marginEnd="8dp"
-          android:text="@string/student_name"
-          android:textAlignment="center"
-          android:textAllCaps="false"
-          android:textAppearance="@style/TextAppearance.AppCompat.Large"
-          android:textColor="@color/colorPrimary"
-          android:textSize="30sp"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/txtStudentName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:firstname="@{viewModel.student.firstname}"
+        app:lastname="@{viewModel.student.lastname}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ezeh Ikenna" />
 
       <TextView
-          android:id="@+id/txtStudentClass"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:text="@string/student_class"
-          android:textAlignment="center"
-          android:textColor="@color/colorPrimary"
-          android:textSize="18sp"
-          app:layout_constraintEnd_toEndOf="@+id/txtStudentName"
-          app:layout_constraintStart_toStartOf="@+id/txtStudentName"
-          app:layout_constraintTop_toBottomOf="@+id/txtStudentName" />
+        android:id="@+id/txtStudentClass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@{viewModel.studentClassName}"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtStudentName"
+        app:layout_constraintStart_toStartOf="@+id/txtStudentName"
+        app:layout_constraintTop_toBottomOf="@+id/txtStudentName"
+        tools:text="S S 1 A" />
 
       <TextView
-          android:id="@+id/txtStudentAge"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:text="@string/student_age"
-          android:textAlignment="center"
-          android:textColor="@color/colorPrimary"
-          android:textSize="18sp"
-          app:layout_constraintEnd_toEndOf="@+id/txtStudentClass"
-          app:layout_constraintStart_toStartOf="@+id/txtStudentClass"
-          app:layout_constraintTop_toBottomOf="@+id/txtStudentClass" />
-
-      <TextView
-          android:id="@+id/txtParent"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="16dp"
-          android:layout_marginEnd="8dp"
-          android:text="@string/parent"
-          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-          android:textColor="@color/colorPrimary"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/txtStudentAge" />
+        android:id="@+id/txtParent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtStudentClass" />
 
       <TableRow
-          android:id="@+id/tableRow"
-          android:layout_width="0dp"
-          android:layout_height="1dp"
-          android:layout_marginTop="4dp"
-          android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="@+id/txtParent"
-          app:layout_constraintHorizontal_bias="1.0"
-          app:layout_constraintStart_toStartOf="@+id/txtParent"
-          app:layout_constraintTop_toBottomOf="@+id/txtParent" />
+        android:id="@+id/tableRow"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="@+id/txtParent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/txtParent"
+        app:layout_constraintTop_toBottomOf="@+id/txtParent" />
 
       <androidx.cardview.widget.CardView
-          android:id="@+id/parent1Cardview"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
-          app:cardCornerRadius="8dp"
-          app:cardElevation="8dp"
-          app:contentPadding="8dp"
-          app:layout_constraintEnd_toEndOf="@+id/tableRow"
-          app:layout_constraintStart_toStartOf="@+id/txtParent"
-          app:layout_constraintTop_toBottomOf="@+id/txtParent">
+        android:id="@+id/parent1Cardview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:contentPadding="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tableRow"
+        app:layout_constraintStart_toStartOf="@+id/txtParent"
+        app:layout_constraintTop_toBottomOf="@+id/txtParent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
 
           <TextView
-              android:id="@+id/txtParentPhoneNumber"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:clickable="true"
-              android:drawablePadding="8dp"
-              android:focusable="true"
-              android:text="@android:string/emptyPhoneNumber"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textColor="@color/colorAccent"
-              android:textStyle="italic"
-              app:drawableStartCompat="@drawable/ic_baseline_phone_24"
-              app:drawableTint="@color/colorPrimaryDark"
-              app:layout_constraintEnd_toEndOf="@+id/txtParentFullname"
-              app:layout_constraintHorizontal_bias="1.0"
-              app:layout_constraintStart_toStartOf="@+id/txtParentFullname"
-              app:layout_constraintTop_toBottomOf="@+id/txtParentEmail" />
+            android:id="@+id/txtParentPhoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:text="@{viewModel.student.parent1.phoneNumber}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorAccent"
+            android:textStyle="italic"
+            app:drawableStartCompat="@drawable/ic_baseline_phone_24"
+            app:drawableTint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="@+id/txtParentFullname"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txtParentFullname"
+            app:layout_constraintTop_toBottomOf="@+id/txtParentEmail"
+            tools:text="@android:string/emptyPhoneNumber" />
 
           <TextView
-              android:id="@+id/txtParentEmail"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:clickable="true"
-              android:drawablePadding="8dp"
-              android:focusable="true"
-              android:text="@string/email"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textColor="@color/colorAccent"
-              android:textStyle="italic"
-              app:drawableStartCompat="@drawable/ic_baseline_email_24"
-              app:drawableTint="@color/colorPrimaryDark"
-              app:layout_constraintEnd_toEndOf="@+id/txtParentFullname"
-              app:layout_constraintHorizontal_bias="0.0"
-              app:layout_constraintStart_toStartOf="@+id/txtParentFullname"
-              app:layout_constraintTop_toBottomOf="@+id/txtParentFullname" />
+            android:id="@+id/txtParentEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:text="@{viewModel.student.parent1.email}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorAccent"
+            android:textStyle="italic"
+            app:drawableStartCompat="@drawable/ic_baseline_email_24"
+            app:drawableTint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="@+id/txtParentFullname"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtParentFullname"
+            app:layout_constraintTop_toBottomOf="@+id/txtParentFullname"
+            tools:text="@string/email" />
 
           <TextView
-              android:id="@+id/txtParentFullname"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="8dp"
-              android:layout_marginTop="8dp"
-              android:layout_marginEnd="8dp"
-              android:text="@string/fullname_of_parent"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textColor="@color/colorPrimary"
-              android:textStyle="bold"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/txtParentFullname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:firstname="@{viewModel.student.parent1.firstname}"
+            app:lastname="@{viewModel.student.parent1.lastname}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/fullname_of_parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
 
-      <TextView
+      <LinearLayout
+        android:id="@+id/parent2_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/txtParent"
+        app:layout_constraintStart_toStartOf="@+id/txtParent"
+        app:layout_constraintTop_toBottomOf="@+id/parent1Cardview">
+
+        <TextView
           android:id="@+id/txtParent2"
-          android:layout_width="0dp"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="16dp"
           android:text="@string/parent"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/colorPrimary"
           android:textSize="18sp"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="@+id/txtParent"
-          app:layout_constraintStart_toStartOf="@+id/txtParent"
-          app:layout_constraintTop_toBottomOf="@+id/parent1Cardview" />
+          android:textStyle="bold" />
 
-      <TableRow
+        <TableRow
           android:id="@+id/tableRow2"
-          android:layout_width="0dp"
+          android:layout_width="match_parent"
           android:layout_height="1dp"
           android:layout_marginTop="4dp"
-          android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="@+id/txtParent2"
-          app:layout_constraintStart_toStartOf="@+id/txtParent2"
-          app:layout_constraintTop_toBottomOf="@+id/txtParent2" />
+          android:background="@color/colorPrimaryDark" />
 
-      <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView
           android:id="@+id/parent2CardView"
-          android:layout_width="0dp"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="8dp"
           app:cardCornerRadius="8dp"
           app:cardElevation="8dp"
-          app:contentPadding="8dp"
-          app:layout_constraintEnd_toEndOf="@+id/parent1Cardview"
-          app:layout_constraintStart_toStartOf="@+id/parent1Cardview"
-          app:layout_constraintTop_toBottomOf="@+id/tableRow2">
+          app:contentPadding="8dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+          <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-          <TextView
+            <TextView
               android:id="@+id/txtParent2Fullname"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginStart="8dp"
               android:layout_marginTop="8dp"
               android:layout_marginEnd="8dp"
-              android:text="@string/fullname_of_parent"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textColor="@color/colorPrimary"
               android:textStyle="bold"
+              app:firstname="@{viewModel.student.parent2.firstname}"
+              app:lastname="@{viewModel.student.parent2.lastname}"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+              app:layout_constraintTop_toTopOf="parent"
+              tools:text="@string/fullname_of_parent" />
 
-          <TextView
+            <TextView
               android:id="@+id/txtParent2PhoneNumber"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
@@ -220,7 +217,7 @@
               android:clickable="true"
               android:drawablePadding="8dp"
               android:focusable="true"
-              android:text="@android:string/emptyPhoneNumber"
+              android:text="@{viewModel.student.parent2.phoneNumber}"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textColor="@color/colorAccent"
               android:textStyle="italic"
@@ -229,9 +226,10 @@
               app:layout_constraintEnd_toEndOf="@+id/txtParent2Fullname"
               app:layout_constraintHorizontal_bias="1.0"
               app:layout_constraintStart_toStartOf="@+id/txtParent2Fullname"
-              app:layout_constraintTop_toBottomOf="@+id/txtParent2Email" />
+              app:layout_constraintTop_toBottomOf="@+id/txtParent2Email"
+              tools:text="@android:string/emptyPhoneNumber" />
 
-          <TextView
+            <TextView
               android:id="@+id/txtParent2Email"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
@@ -239,7 +237,7 @@
               android:clickable="true"
               android:drawablePadding="8dp"
               android:focusable="true"
-              android:text="@string/email"
+              android:text="@{viewModel.student.parent2.email}"
               android:textAppearance="@style/TextAppearance.AppCompat.Medium"
               android:textColor="@color/colorAccent"
               android:textStyle="italic"
@@ -248,86 +246,106 @@
               app:layout_constraintEnd_toEndOf="@+id/txtParent2Fullname"
               app:layout_constraintHorizontal_bias="0.0"
               app:layout_constraintStart_toStartOf="@+id/txtParent2Fullname"
-              app:layout_constraintTop_toBottomOf="@+id/txtParent2Fullname" />
+              app:layout_constraintTop_toBottomOf="@+id/txtParent2Fullname"
+              tools:text="@string/email" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-      </androidx.cardview.widget.CardView>
+          </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+      </LinearLayout>
 
       <TextView
-          android:id="@+id/txtAttendance"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
-          android:text="@string/attendance"
-          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-          android:textColor="@color/colorPrimary"
-          android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="@+id/txtParent2"
-          app:layout_constraintStart_toStartOf="@+id/txtParent2"
-          app:layout_constraintTop_toBottomOf="@+id/parent2CardView" />
+        android:id="@+id/txtAttendance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/attendance"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/parent2_group"
+        app:layout_constraintStart_toStartOf="@+id/parent2_group"
+        app:layout_constraintTop_toBottomOf="@+id/parent2_group" />
 
       <TableRow
-          android:id="@+id/trAttendance"
-          android:layout_width="0dp"
-          android:layout_height="1dp"
-          android:layout_marginTop="4dp"
-          android:background="@color/colorPrimaryDark"
-          app:layout_constraintEnd_toEndOf="@+id/txtAttendance"
-          app:layout_constraintStart_toStartOf="@+id/txtParent2"
-          app:layout_constraintTop_toBottomOf="@+id/txtAttendance" />
+        android:id="@+id/trAttendance"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="@+id/txtAttendance"
+        app:layout_constraintStart_toStartOf="@+id/parent2_group"
+        app:layout_constraintTop_toBottomOf="@+id/txtAttendance" />
 
       <androidx.cardview.widget.CardView
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:layout_marginTop="8dp"
-          app:cardCornerRadius="8dp"
-          app:cardElevation="8dp"
-          app:contentPadding="8dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="@+id/parent2CardView"
-          app:layout_constraintStart_toStartOf="@+id/parent2CardView"
-          app:layout_constraintTop_toBottomOf="@+id/trAttendance" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:contentPadding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/parent2_group"
+        app:layout_constraintStart_toStartOf="@+id/parent2_group"
+        app:layout_constraintTop_toBottomOf="@+id/trAttendance">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+          <TextView
+            android:id="@+id/txtDate"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:onClick="@{()->viewModel.openPicker()}"
+            android:text="@string/date"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_baseline_date_range_24"
+            app:drawableTint="@color/colorPrimaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-          <TextView
-              android:id="@+id/txtDate"
-              android:layout_width="0dp"
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtDate">
+
+            <androidx.recyclerview.widget.RecyclerView
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginStart="8dp"
-              android:layout_marginTop="8dp"
-              android:clickable="true"
-              android:contextClickable="true"
-              android:drawablePadding="8dp"
-              android:focusable="true"
-              android:text="@string/date"
-              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-              android:textColor="@color/colorPrimary"
-              android:textStyle="bold"
-              app:drawableStartCompat="@drawable/ic_baseline_date_range_24"
-              app:drawableTint="@color/colorPrimaryDark"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+              android:layout_marginTop="16dp"
+              app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+              app:spanCount="7"
+              tools:listitem="@layout/attendance_status_view">
 
-          <TextView
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
               android:id="@+id/txtAttendancePercentage"
-              android:layout_width="0dp"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginTop="131dp"
-              android:clickable="true"
-              android:focusable="true"
               android:text="@string/attendance_percentage"
-              android:textAlignment="center"
               android:textAppearance="@style/TextAppearance.AppCompat.Small"
               android:textColor="@color/colorAccent"
               android:textStyle="bold|italic"
-              app:layout_constraintEnd_toEndOf="@+id/txtDate"
-              app:layout_constraintHorizontal_bias="0.0"
-              app:layout_constraintStart_toStartOf="@+id/txtDate"
-              app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="@+id/txtDate" />
+          </LinearLayout>
+
+          <include
+            layout="@layout/month_picker_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:viewModel="@{viewModel.monthPicker}"
+            tools:visibility="gone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
