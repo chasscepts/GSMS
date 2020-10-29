@@ -59,13 +59,4 @@ public class ClassListAdapterTest {
     assertEquals(classSummaries.length, adapter.getItemCount());
   }
 
-  @Test
-  public void AddClassCorrectAddsItemToListAndNotifiesObservers(){
-    adapter = spy(new ClassListAdapter(sessionManager, classSelectedListener));
-    int length = classSummaries.length;
-    doNothing().when(adapter).notifyClassAdded();
-    adapter.addClass(classSummary3);
-    verify(adapter).notifyClassAdded();
-    assertEquals(length + 1, adapter.getItemCount());
-  }
 }

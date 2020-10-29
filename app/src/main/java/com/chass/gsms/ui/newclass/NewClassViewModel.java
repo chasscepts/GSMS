@@ -67,7 +67,7 @@ public class NewClassViewModel extends ViewModel {
       viewState.setState(ViewStates.INFO, "Please complete all fields before submitting form!");
       return;
     }
-    viewState.setState(ViewStates.BUSY, "Retrieving class information from the server. Please wait...");
+    viewState.setState(ViewStates.BUSY, "Setting up class on the server. Please wait...");
     call = apiClient.addClass(sessionManager.getSchool().getId(), formViewModel.getClassName(), formViewModel.getTeacherFirstname(), formViewModel.getTeacherLastname(), formViewModel.getTeacherEmail(), formViewModel.getTeacherPhoneNumber());
     call.enqueue(new Callback<Class>() {
       @Override

@@ -51,7 +51,6 @@ public class ClassDetailsViewModel extends ViewModel {
     this.viewState = viewState;
     this.logger = logger;
     this.adapter = adapter;
-    //We setup class and not wait for it to be called from outside to overcome the Fragment reloading a class during configuration changes.
     this.setupClass();
   }
 
@@ -72,8 +71,8 @@ public class ClassDetailsViewModel extends ViewModel {
           if(bClass != null){
             aClass.set(bClass);
             dataStore.setCurrentClass(bClass);
+            adapter.reload();
             repository.cache(bClass);
-            adapter.loadStudents(bClass.getStudents());
             viewState.restoreNormalState();
             return;
           }

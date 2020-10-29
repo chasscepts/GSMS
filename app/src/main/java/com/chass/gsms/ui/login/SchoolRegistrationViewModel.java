@@ -67,7 +67,6 @@ public class SchoolRegistrationViewModel extends ViewModel {
     this.formViewModel = formViewModel;
     this.urlHelper = urlHelper;
     this.logger = logger;
-    logger.stub("Created!");
   }
 
   public void register1(){

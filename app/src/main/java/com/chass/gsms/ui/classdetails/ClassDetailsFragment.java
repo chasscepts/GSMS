@@ -22,7 +22,11 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.chass.gsms.R;
 import com.chass.gsms.databinding.FragmentClassDetailsBinding;
+import com.chass.gsms.helpers.SharedDataStore;
+import com.chass.gsms.interfaces.IStudentSelectedListener;
 import com.chass.gsms.models.Class;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -31,6 +35,12 @@ public class ClassDetailsFragment extends Fragment {
   private static final int CALL_PHONE = 9;
   FragmentClassDetailsBinding B;
   private ClassDetailsViewModel viewModel;
+
+  @Inject
+  SharedDataStore dataStore;
+
+  @Inject
+  IStudentSelectedListener listener;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,15 +53,26 @@ public class ClassDetailsFragment extends Fragment {
     // Inflate the layout for this fragment
     B = FragmentClassDetailsBinding.inflate(inflater, container, false);
     viewModel = new ViewModelProvider(this).get(ClassDetailsViewModel.class);
+    viewModel.getAdapter().reload();
     B.setViewModel(viewModel);
     return B.getRoot();
   }
 
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
     super.onViewCreated(view, savedInstanceState);
+    setupListener();
     B.btnAddNewStudent.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(R.id.NewStudentFragment));
     B.txtTeacherEmail.setOnClickListener(view1 -> send());
     B.txtTeacherPhoneNum.setOnClickListener(view1 -> makeCallOrRequestCallPhonePermissionIfNotGranted());
+  }
+
+  private void setupListener() {
+    listener.getSelectedStudent().observe(getViewLifecycleOwner(), student -> {
+      if(student == null) return;
+      listener.clearSelection();
+      dataStore.setCurrentStudent(student);
+      NavHostFragment.findNavController(this).navigate(R.id.StudentProfileFragment);
+    });
   }
 
   @Override

@@ -27,11 +27,13 @@ public class ClassListFragment extends Fragment {
   SharedDataStore dataStore;
 
   FragmentClassListBinding B;
+
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     B = FragmentClassListBinding.inflate(inflater, container, false);
     ClassListViewModel viewModel = new ViewModelProvider(this).get(ClassListViewModel.class);
+    viewModel.getAdapter().reload();
     B.setViewModel(viewModel);
     return B.getRoot();
   }

@@ -19,7 +19,9 @@ import javax.inject.Inject;
 
 public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.ClassViewHolder> {
 
-  private List<ClassSummary> classSummaries;
+  ClassSummary[] classSummaries;
+
+  private final SessionManager sessionManager;
 
   private final ClassSelectedListener listener;
 
@@ -29,19 +31,21 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
 
   @Inject
   public ClassListAdapter(SessionManager sessionManager, ClassSelectedListener listener){
-    classSummaries = new ArrayList<>(Arrays.asList(sessionManager.getSchool().getClassSummaries()));
+    this.sessionManager = sessionManager;
     this.listener = listener;
+    classSummaries = sessionManager.getSchool().getClassSummaries();
   }
 
-  public void addClass(ClassSummary classSummary){
-    classSummaries.add(classSummary);
-    notifyClassAdded();
+  public void reload(){
+    classSummaries = sessionManager.getSchool().getClassSummaries();
+    notifyClassListChanged();
   }
+
   /**
    * This method is here just to make it possible to verify that notifyItemInserted is being called.
    */
-  public void notifyClassAdded(){
-    notifyItemInserted(classSummaries.size() - 1);
+  public void notifyClassListChanged(){
+    notifyDataSetChanged();
   }
 
   @NonNull
@@ -52,12 +56,12 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
 
   @Override
   public void onBindViewHolder(@NonNull ClassViewHolder holder, int position) {
-    holder.bind(classSummaries.get(position));
+    holder.bind(classSummaries[position]);
   }
 
   @Override
   public int getItemCount() {
-    return classSummaries.size();
+    return classSummaries.length;
   }
 
   public static class ClassViewHolder extends RecyclerView.ViewHolder{

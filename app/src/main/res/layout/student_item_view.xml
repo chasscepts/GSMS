@@ -14,7 +14,7 @@
         android:layout_margin="4dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="@{()->viewModel.select(context)}"
+        android:onClick="@{()->viewModel.select()}"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
 
