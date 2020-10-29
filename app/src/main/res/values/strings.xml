@@ -75,4 +75,18 @@
   <string name="school_registration_success_info">School registration was successful</string>
   <string name="school_details_note_prompt">Please note the School Identification Number and Administrator Email below as you will need it for subsequent login.</string>
   <string name="proceed">Proceed</string>
+  <string name="jan">Jan</string>
+  <string name="feb">Feb</string>
+  <string name="mar">Mar</string>
+  <string name="apr">Apr</string>
+  <string name="may">May</string>
+  <string name="jun">Jun</string>
+  <string name="jul">Jul</string>
+  <string name="aug">Aug</string>
+  <string name="sep">Sep</string>
+  <string name="oct">Oct</string>
+  <string name="nov">Nov</string>
+  <string name="dec">Dec</string>
+  <string name="cancel">Cancel</string>
+  <string name="done">Done</string>
 </resources>
