@@ -27,6 +27,12 @@ public class BindingAdapters {
 
   @BindingAdapter({"firstname", "lastname"})
   public static void setFullname(TextView tv, String firstname, String lastname){
+    if(firstname == null){
+      firstname = "";
+    }
+    if(lastname == null){
+      lastname = "";
+    }
     tv.setText(tv.getContext().getString(R.string.full_name, lastname, firstname));
   }
 

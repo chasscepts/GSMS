@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chass.gsms.databinding.StudentItemViewBinding;
 import com.chass.gsms.helpers.SharedDataStore;
 import com.chass.gsms.interfaces.IStudentSelectedListener;
+import com.chass.gsms.models.Class;
 import com.chass.gsms.models.Student;
 import com.chass.gsms.viewmodels.StudentViewModel;
 
 import javax.inject.Inject;
 
 public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder> {
+  private final Student[] EMPTY_STUDENTS = {};
   private final SharedDataStore dataStore;
   private final StudentSelectedListener listener;
   private Student[] students;
@@ -23,11 +25,17 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
   public StudentListAdapter(SharedDataStore dataStore, StudentSelectedListener listener){
     this.dataStore = dataStore;
     this.listener = listener;
-    students = new Student[]{};
+    students = EMPTY_STUDENTS;
   }
 
   public void reload(){
-    students = dataStore.getCurrentClass().getStudents();
+    Class aClass = dataStore.getCurrentClass();
+    if(aClass == null) return;
+    Student[] students = aClass.getStudents();
+    if(students == null){
+      students = EMPTY_STUDENTS;
+    }
+    this.students = students;
     notifyStudentsChanged();
   }
 

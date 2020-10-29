@@ -126,7 +126,7 @@ public interface ApiClient {
    * @param studentId id of student
    * @return A retrofit Call wrapper network response
    */
-  @GET("school/attendance/student/{schoolId}/{classId}/{studentId}/{year}/{month}/{startDate}/{count}")
+  @GET("school/attendance/student/{schoolId}/{classId}/{studentId}/{year}/{month}/{start}/{count}")
   Call<List<String>> getStudentAttendance(
       @Path("schoolId") int schoolId,
       @Path("classId") int classId,
