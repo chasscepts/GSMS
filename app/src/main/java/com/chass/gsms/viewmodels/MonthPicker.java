@@ -54,10 +54,11 @@ public class MonthPicker extends BaseFormViewModel {
 
   public void setYearText(String year){
     if(TextUtils.equals(year, this.yearText)) return;
+    yearText = year;
     try{
-      int x = Integer.parseInt(year);
-      tempYear = x;
+      tempYear = Integer.parseInt(year);
       notifyPropertyChanged(BR.yearText);
+      setValid(true);
     }
     catch (Exception ex){
       setValid(false);

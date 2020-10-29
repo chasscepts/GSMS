@@ -33,14 +33,14 @@ public class SchoolRegistrationFormViewModel extends BaseFormViewModel {
   }
 
   private void test(){
-    setSchoolName("City High School");
-    setSchoolAddress("101 Airport Road");
-    setSchoolEmail("ghsi@yahoo.com");
-    setSchoolPhoneNumber("05012345678");
-    setAdminFirstname("Okeh");
-    setAdminLastname("Collins");
-    setAdminEmail("admin@ghsi.com");
-    setAdminPhoneNumber("07014263377");
+    setSchoolName("Mendel Model College");
+    setSchoolAddress("Sea Deep Avenue");
+    setSchoolEmail("medel@gmail.com");
+    setSchoolPhoneNumber("08033885500");
+    setAdminFirstname("Norton");
+    setAdminLastname("Bailey");
+    setAdminEmail("admin@mmcs.com");
+    setAdminPhoneNumber("07137812008");
     setPassword("oooooo");
     setRepeatPassword("oooooo");
   }

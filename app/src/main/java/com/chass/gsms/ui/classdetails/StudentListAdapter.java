@@ -12,19 +12,15 @@ import com.chass.gsms.interfaces.IStudentSelectedListener;
 import com.chass.gsms.models.Student;
 import com.chass.gsms.viewmodels.StudentViewModel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.inject.Inject;
 
 public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder> {
   private final SharedDataStore dataStore;
-  private final IStudentSelectedListener listener;
+  private final StudentSelectedListener listener;
   private Student[] students;
 
   @Inject
-  public StudentListAdapter(SharedDataStore dataStore, IStudentSelectedListener listener){
+  public StudentListAdapter(SharedDataStore dataStore, StudentSelectedListener listener){
     this.dataStore = dataStore;
     this.listener = listener;
     students = new Student[]{};
@@ -66,7 +62,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
       B = binding;
     }
 
-    public void bind(Student student, IStudentSelectedListener listener){
+    public void bind(Student student, StudentSelectedListener listener){
       B.setViewModel(new StudentViewModel(student, listener));
     }
   }

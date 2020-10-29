@@ -1,8 +1,8 @@
 package com.chass.gsms;
 
-import com.chass.gsms.interfaces.IStudentSelectedListener;
 import com.chass.gsms.models.Student;
 import com.chass.gsms.ui.classdetails.StudentListAdapter;
+import com.chass.gsms.ui.classdetails.StudentSelectedListener;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +10,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
 
 @RunWith(JUnit4.class)
 public class StudentListAdapterTest {
@@ -34,7 +29,7 @@ public class StudentListAdapterTest {
   StudentListAdapter adapter;
 
   @Mock
-  IStudentSelectedListener listener;
+  StudentSelectedListener listener;
 
 
 

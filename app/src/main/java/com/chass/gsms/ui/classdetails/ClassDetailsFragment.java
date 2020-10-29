@@ -40,7 +40,7 @@ public class ClassDetailsFragment extends Fragment {
   SharedDataStore dataStore;
 
   @Inject
-  IStudentSelectedListener listener;
+  StudentSelectedListener listener;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
