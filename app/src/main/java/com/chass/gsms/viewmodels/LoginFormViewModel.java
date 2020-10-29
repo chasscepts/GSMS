@@ -27,7 +27,7 @@ public class LoginFormViewModel extends BaseFormViewModel {
   //Todo: remove
   private void test() {
     setSchoolIdText("100");
-    setEmail("ghsi@yahoo.com");
+    setEmail("admin@mmcs.com");
     setPassword("oooooo");
   }
 
