@@ -84,7 +84,7 @@ public class LoginViewModelTest {
   public void LoginWhenFormIsInvalidSetsStateToInfo() {
     when(form.isValid()).thenReturn(false);
     viewModel.login();
-    assertEquals(ViewStates.INFO, viewState.getState());
+    assertEquals(ViewStates.ERROR, viewState.getState());
     verify(apiClient, never()).login(anyInt(), anyString(), anyString());
   }
 

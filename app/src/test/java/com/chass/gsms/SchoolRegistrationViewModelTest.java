@@ -5,11 +5,16 @@ import androidx.lifecycle.SavedStateHandle;
 
 import com.chass.gsms.enums.ViewStates;
 import com.chass.gsms.helpers.SessionManager;
+import com.chass.gsms.helpers.UrlHelper;
 import com.chass.gsms.interfaces.ILogger;
 import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.School;
 import com.chass.gsms.models.User;
+import com.chass.gsms.networks.clients.INetworkListener;
+import com.chass.gsms.networks.clients.MultipartFormData;
+import com.chass.gsms.networks.clients.PostHttpClient;
 import com.chass.gsms.networks.retrofit.ApiClient;
+import com.chass.gsms.networks.retrofit.UploadStream;
 import com.chass.gsms.ui.login.SchoolRegistrationViewModel;
 import com.chass.gsms.viewmodels.SchoolRegistrationFormViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
@@ -35,6 +40,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -57,18 +63,32 @@ public class SchoolRegistrationViewModelTest {
   @Mock
   SchoolRegistrationFormViewModel form;
 
-  @Mock
-  File file;
+  //@Mock
+  //File file;
 
   @Mock
   ILogger logger;
+
+  @Mock
+  UploadStream uploadStream;
+
+  @Mock
+  UrlHelper urlHelper;
+
+  @Mock
+  PostHttpClient client;
+
+  @Mock
+  MultipartFormData formData;
+
+  @Mock
+  SessionManager sessionManager;
 
   Response<LoginResponse> response;
 
 
   SavedStateHandle savedStateHandle;
   ViewStateViewModel viewState;
-  SessionManager sessionManager;
   SchoolRegistrationViewModel viewModel;
 
   @Before
@@ -76,20 +96,18 @@ public class SchoolRegistrationViewModelTest {
     MockitoAnnotations.openMocks(this);
     savedStateHandle = new SavedStateHandle();
     viewState = new ViewStateViewModel();
-    sessionManager = new SessionManager();
-    viewModel = new SchoolRegistrationViewModel(savedStateHandle, sessionManager, apiClient, viewState, form, logger);
-    when(file.exists()).thenReturn(true);
-    when(file.getName()).thenReturn("");
-    when(form.getSchoolPicture()).thenReturn(file);
+    viewModel = new SchoolRegistrationViewModel(savedStateHandle, sessionManager, client, apiClient, viewState, form, urlHelper, logger);
+    when(form.getFormData()).thenReturn(formData);
+    when(form.getSchoolPictureStream()).thenReturn(uploadStream);
     when(apiClient.register(any(), any(), any(), any(), any(), any(), any(), any(), any(), any())).thenReturn(apiCall);
   }
 
   @Test
   public void RegisterWhenFormIsInvalidSetsStateToInfo() {
-    when(form.isValid()).thenReturn(false);
+    when(form.getFormData()).thenReturn(null);
     viewModel.register();
-    assertEquals(ViewStates.INFO, viewState.getState());
-    verify(apiClient, never()).register(any(), any(), any(), any(), any(), any(), any(), any(), any(), any());
+    assertEquals(ViewStates.ERROR, viewState.getState());
+    verify(client, never()).request(any(), any());
   }
 
   @SuppressWarnings("unchecked")
@@ -101,26 +119,25 @@ public class SchoolRegistrationViewModelTest {
     viewModel.register();
     assertEquals(ViewStates.BUSY, viewState.getState());
 
-    ArgumentCaptor<Callback<LoginResponse>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);
+    //ArgumentCaptor<Callback<LoginResponse>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);
+    //Mockito.verify(apiCall).enqueue(argumentCaptor.capture());
 
-    //verify(apiClient).register(any(), any(), any(), any(), any(), any(), any(), any(), any(), any());
-    Mockito.verify(apiCall).enqueue(argumentCaptor.capture());
+    //Callback<LoginResponse> callback = argumentCaptor.getValue();
+    //callback.onFailure(apiCall, new Throwable());
 
-    Callback<LoginResponse> callback = argumentCaptor.getValue();
-    callback.onFailure(apiCall, new Throwable());
+    ArgumentCaptor<INetworkListener> captor = ArgumentCaptor.forClass(INetworkListener.class);
+    verify(client).request(any(), captor.capture());
+    INetworkListener listener = captor.getValue();
+    listener.onFailure(new Throwable());
 
-    assertNull(sessionManager.getUser());
-    assertNull(sessionManager.getSchool());
-    assertFalse(sessionManager.isLoggedIn().getValue());
+    verify(sessionManager, never()).login(anyString());
     assertEquals(ViewStates.ERROR, viewState.getState());
   }
 
   @SuppressWarnings("unchecked")
   @Test
   public void RegisterWhenNetworkRequestSucceeds(){
-    when(form.isValid()).thenReturn(true);
-    when(loginResponse.getSchool()).thenReturn(new School());
-    when(loginResponse.getUser()).thenReturn(new User());
+    when(client.isSuccessful()).thenReturn(true);
 
     response = Response.success(loginResponse);
     sessionManager.logout();
@@ -128,17 +145,22 @@ public class SchoolRegistrationViewModelTest {
     viewModel.register();
     assertEquals(ViewStates.BUSY, viewState.getState());
 
-    ArgumentCaptor<Callback<LoginResponse>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);
+    //ArgumentCaptor<Callback<LoginResponse>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);
 
-    Mockito.verify(apiCall, times(1)).enqueue(argumentCaptor.capture());
+    //Mockito.verify(apiCall, times(1)).enqueue(argumentCaptor.capture());
 
-    Callback<LoginResponse> callback = argumentCaptor.getValue();
-    callback.onResponse(apiCall, response);
+    //Callback<LoginResponse> callback = argumentCaptor.getValue();
+    //callback.onResponse(apiCall, response);
 
-    assertEquals(loginResponse.getUser(), sessionManager.getUser());
-    assertEquals(loginResponse.getSchool(), sessionManager.getSchool());
-    assertTrue(sessionManager.isLoggedIn().getValue());
-    assertEquals(ViewStates.SUCCESS, viewState.getState());
+    ArgumentCaptor<INetworkListener> captor = ArgumentCaptor.forClass(INetworkListener.class);
+    verify(client).request(any(), captor.capture());
+    INetworkListener listener = captor.getValue();
+
+    String response = "Server response";
+    when(sessionManager.login(response)).thenReturn(true);
+    listener.onResponse(200, response);
+
+    verify(sessionManager).login(response);
+    assertEquals(ViewStates.NORMAL, viewState.getState());
   }
-
 }

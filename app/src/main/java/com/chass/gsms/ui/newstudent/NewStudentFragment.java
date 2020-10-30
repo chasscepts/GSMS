@@ -11,16 +11,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.chass.gsms.databinding.FragmentNewStudentBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class NewStudentFragment extends Fragment {
   FragmentNewStudentBinding B;
   @Override
-  public View onCreateView(
-      LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState
-  ) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     B = FragmentNewStudentBinding.inflate(inflater, container, false);
-    NewStudentViewModel viewModel = new ViewModelProvider(requireActivity()).get(NewStudentViewModel.class);
+    NewStudentViewModel viewModel = new ViewModelProvider(this).get(NewStudentViewModel.class);
     B.setViewModel(viewModel);
     return B.getRoot();
   }

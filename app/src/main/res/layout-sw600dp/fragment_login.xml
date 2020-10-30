@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
   <data>
+    <import type="android.view.View"/>
     <variable
-        name="viewModel"
-        type="com.chass.gsms.ui.login.LoginViewModel" />
+      name="viewModel"
+      type="com.chass.gsms.ui.login.LoginViewModel" />
   </data>
-  <androidx.core.widget.NestedScrollView
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginFragment">
+
+    <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+      <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragment_login"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAlignment="center"
-        tools:context=".ui.login.LoginFragment">
+        android:layout_height="wrap_content">
 
-      <ImageView
+        <ImageView
           android:id="@+id/img_gsmsLogo"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
-          android:contentDescription="@string/gsms_logo"
-          android:textAlignment="center"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.497"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
-          app:srcCompat="@drawable/logo" />
+          style="@style/logoStyle" />
 
-      <Button
+        <Button
           android:id="@+id/btn_login"
           style="@style/Widget.AppCompat.Button.Borderless.Colored"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginTop="64dp"
           android:background="@drawable/round_btn"
+          android:onClick="@{()->viewModel.login()}"
           android:text="@string/login"
           android:textAllCaps="true"
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
           android:textColor="#FFFFFF"
           android:textStyle="bold"
-          app:layout_constraintEnd_toEndOf="@+id/edtTxtPassword"
           app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="@+id/edtTxtPassword"
+          app:layout_constraintEnd_toEndOf="@+id/edtTxtPassword"
           app:layout_constraintTop_toBottomOf="@+id/edtTxtPassword" />
 
-      <EditText
+        <EditText
           android:id="@+id/edtTxtPassword"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
           app:layout_constraintStart_toStartOf="@+id/edtTxtEmail"
           app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail" />
 
-      <EditText
+        <EditText
           android:id="@+id/edtTxtGsmsId"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/txt_SignIn" />
 
-      <EditText
+        <EditText
           android:id="@+id/edtTxtEmail"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
           app:layout_constraintStart_toStartOf="@+id/edtTxtGsmsId"
           app:layout_constraintTop_toBottomOf="@+id/edtTxtGsmsId" />
 
-      <TextView
+        <TextView
           android:id="@+id/txt_SignIn"
           android:layout_width="147dp"
           android:layout_height="73dp"
@@ -117,12 +117,11 @@
           app:layout_constraintStart_toStartOf="@+id/img_gsmsLogo"
           app:layout_constraintTop_toBottomOf="@+id/img_gsmsLogo" />
 
-      <Button
+        <Button
           android:id="@+id/btn_createNewSchool"
           android:layout_width="158dp"
           android:layout_height="43dp"
-          android:layout_marginTop="24dp"
-          android:layout_marginBottom="32dp"
+          android:layout_marginTop="32dp"
           android:background="@drawable/no_border_btn"
           android:drawableStart="@android:drawable/ic_input_add"
           android:drawableTint="#020202"
@@ -132,14 +131,29 @@
           android:textAppearance="@style/TextAppearance.AppCompat.Small"
           android:textColor="@color/createNewSchColor"
           android:textStyle="bold|italic"
-          app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="@+id/btn_login"
-          app:layout_constraintHorizontal_bias="0.497"
-          app:layout_constraintStart_toStartOf="@+id/btn_login"
           app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+          android:visibility="@{viewModel.formViewModel.schoolIdValid? View.GONE : View.VISIBLE}"
+          app:layout_constraintBottom_toBottomOf="@id/edtTxtGsmsId"
+          app:layout_constraintEnd_toEndOf="@id/edtTxtGsmsId"
+          app:layout_constraintTop_toTopOf="@id/edtTxtGsmsId"
+          style="@style/invalidFieldAlert" />
 
-  </androidx.core.widget.NestedScrollView>
+        <ImageView
+          android:visibility="@{viewModel.formViewModel.emailValid? View.GONE : View.VISIBLE}"
+          app:layout_constraintBottom_toBottomOf="@id/edtTxtEmail"
+          app:layout_constraintEnd_toEndOf="@id/edtTxtEmail"
+          app:layout_constraintTop_toTopOf="@id/edtTxtEmail"
+          style="@style/invalidFieldAlert" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    <include
+      layout="@layout/view_state"
+      app:viewModel="@{viewModel.viewState}"
+      tools:visibility="gone" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

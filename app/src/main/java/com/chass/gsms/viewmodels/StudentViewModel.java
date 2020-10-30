@@ -1,25 +1,23 @@
 package com.chass.gsms.viewmodels;
 
-import android.content.Context;
-
-import com.chass.gsms.interfaces.IMain;
+import com.chass.gsms.interfaces.IStudentSelectedListener;
 import com.chass.gsms.models.Student;
+import com.chass.gsms.ui.classdetails.StudentSelectedListener;
 
 public class StudentViewModel {
   private final Student student;
+  private final StudentSelectedListener listener;
 
   public Student getStudent() {
     return student;
   }
 
-  public StudentViewModel(Student student) {
+  public StudentViewModel(Student student, StudentSelectedListener listener) {
     this.student = student;
+    this.listener = listener;
   }
 
-  public void select(Context context){
-    IMain main = (IMain)context;
-    if(main != null){
-      main.selectStudent(student);
-    }
+  public void select(){
+    listener.onStudentSelected(student);
   }
 }

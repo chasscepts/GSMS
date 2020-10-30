@@ -3,9 +3,13 @@ package com.chass.gsms.helpers;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.chass.gsms.hilt.NetworkModule;
 import com.chass.gsms.models.LoginResponse;
 import com.chass.gsms.models.School;
 import com.chass.gsms.models.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -15,18 +19,23 @@ import javax.inject.Singleton;
 
 @Singleton
 public class SessionManager {
+
+  private CookieManager cookieManager;
+
+  public CookieManager getCookieManager(){
+    return cookieManager;
+  }
+
   @Inject
   public SessionManager(){
-    initializeCookie();
+    initCookie();
   }
 
   /**
    * We initialize cookie for managing session with the server
-   * TODO: check if retrofit manages session automatically
    */
-  private void initializeCookie() {
-    CookieManager cookieManager = new CookieManager();
-    CookieHandler.setDefault(cookieManager);  //The system automatically handles session after this.
+  private void initCookie() {
+    CookieHandler.setDefault(NetworkModule.getCookieManager());
   }
 
   /**
@@ -55,10 +64,26 @@ public class SessionManager {
    * Retrofit is handling conversion for us
    * @param response converted network response
    */
-  public void login(LoginResponse response){
+  public boolean login(LoginResponse response){
     user = response.getUser();
     school = response.getSchool();
-    loggedIn.setValue(user != null && school != null);
+    boolean success = user != null && school != null;
+    loggedIn.setValue(success);
+    return success;
+  }
+
+  public boolean login(String response){
+    try {
+      JSONObject jsonObject = new JSONObject(response);
+      this.user = User.parse(jsonObject.getString("user"));
+      this.school = School.parse(jsonObject.getString("school"));
+      boolean success = user != null && school != null;
+      loggedIn.setValue(success);
+      return success;
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    return false;
   }
 
   public void logout(){

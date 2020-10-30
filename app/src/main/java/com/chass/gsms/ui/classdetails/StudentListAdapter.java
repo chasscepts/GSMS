@@ -7,25 +7,35 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chass.gsms.databinding.StudentItemViewBinding;
+import com.chass.gsms.helpers.SharedDataStore;
+import com.chass.gsms.interfaces.IStudentSelectedListener;
+import com.chass.gsms.models.Class;
 import com.chass.gsms.models.Student;
 import com.chass.gsms.viewmodels.StudentViewModel;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.inject.Inject;
 
 public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder> {
-  private List<Student> students;
+  private final Student[] EMPTY_STUDENTS = {};
+  private final SharedDataStore dataStore;
+  private final StudentSelectedListener listener;
+  private Student[] students;
 
   @Inject
-  public StudentListAdapter(){
-    students = new ArrayList<>();
+  public StudentListAdapter(SharedDataStore dataStore, StudentSelectedListener listener){
+    this.dataStore = dataStore;
+    this.listener = listener;
+    students = EMPTY_STUDENTS;
   }
 
-  public void loadStudents(Student[] students){
-    this.students = new ArrayList<>(Arrays.asList(students));
+  public void reload(){
+    Class aClass = dataStore.getCurrentClass();
+    if(aClass == null) return;
+    Student[] students = aClass.getStudents();
+    if(students == null){
+      students = EMPTY_STUDENTS;
+    }
+    this.students = students;
     notifyStudentsChanged();
   }
 
@@ -44,12 +54,12 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
 
   @Override
   public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-    holder.bind(students.get(position));
+    holder.bind(students[position], listener);
   }
 
   @Override
   public int getItemCount() {
-    return students.size();
+    return students.length;
   }
 
   public static class StudentViewHolder extends RecyclerView.ViewHolder{
@@ -60,8 +70,8 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
       B = binding;
     }
 
-    public void bind(Student student){
-      B.setViewModel(new StudentViewModel(student));
+    public void bind(Student student, StudentSelectedListener listener){
+      B.setViewModel(new StudentViewModel(student, listener));
     }
   }
 }

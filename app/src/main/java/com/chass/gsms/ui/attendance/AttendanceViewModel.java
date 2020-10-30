@@ -12,15 +12,11 @@ import com.chass.gsms.helpers.SessionManager;
 import com.chass.gsms.helpers.SharedDataStore;
 import com.chass.gsms.hilt.RetrofitRequestDefaultTimeout;
 import com.chass.gsms.interfaces.ILogger;
-import com.chass.gsms.models.Attendance;
 import com.chass.gsms.models.Class;
+import com.chass.gsms.models.PlainResponse;
 import com.chass.gsms.networks.retrofit.ApiClient;
-import com.chass.gsms.viewmodels.StudentAttendanceStatusViewModel;
+import com.chass.gsms.viewmodels.AttendanceStatusViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
-import org.json.JSONArray;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,7 +44,25 @@ public class AttendanceViewModel extends ViewModel {
     return adapter;
   }
 
+  public SharedDataStore getDataStore(){
+    return dataStore;
+  }
+
   public final ObservableField<String> date = new ObservableField<>();
+
+  private int day, month, year;
+
+  public int getDay() {
+    return day;
+  }
+
+  public int getMonth() {
+    return month;
+  }
+
+  public int getYear() {
+    return year;
+  }
 
   @ViewModelInject
   public AttendanceViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, SharedDataStore dataStore, ViewStateViewModel viewState, @RetrofitRequestDefaultTimeout ApiClient apiClient, ILogger logger, ClassAttendanceAdapter adapter){
@@ -63,9 +77,19 @@ public class AttendanceViewModel extends ViewModel {
     setup();
   }
 
+  public void setDate(int day, int month, int year){
+    this.day = day;
+    this.month = month;
+    this.year = year;
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(year, month, day);
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+    this.date.set(formatter.format(calendar.getTime()));
+  }
+
   private void setTodayDate(){
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-    date.set(dateFormat.format(Calendar.getInstance().getTime()));
+    Calendar calendar = Calendar.getInstance();
+    setDate(calendar.get(Calendar.DATE), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
   }
 
   private void setup(){
@@ -84,17 +108,14 @@ public class AttendanceViewModel extends ViewModel {
       return;
     }
     viewState.busy("Submitting Attendance. Please wait...");
-    StudentAttendanceStatusViewModel[] statuses = adapter.getAttendanceStatuses();
-    Gson gson = new Gson();
-
-    JsonArray attendance = new JsonArray();
-    for (StudentAttendanceStatusViewModel status : statuses) {
-      attendance.add(status.toString());
-    }
-    Call<Attendance> call = apiClient.postAttendance(sessionManager.getSchool().getId(), aClass.getName(), date.get(), attendance.toString());
-    call.enqueue(new Callback<Attendance>() {
+    AttendanceStatusViewModel[] statuses = adapter.getAttendanceStatuses();
+    String json = AttendanceStatusViewModel.getJsonString(adapter.getAttendanceStatuses());
+    logger.stub(json);
+    logger.stub("Class Id: " + aClass.getId());
+    Call<PlainResponse> call = apiClient.postAttendance(sessionManager.getSchool().getId(), aClass.getId(), date.get(), json);
+    call.enqueue(new Callback<PlainResponse>() {
       @Override
-      public void onResponse(@NonNull Call<Attendance> call, @NonNull Response<Attendance> response) {
+      public void onResponse(@NonNull Call<PlainResponse> call, @NonNull Response<PlainResponse> response) {
         if(response.isSuccessful()){
           viewState.success("Attendance successfully submitted!");
           return;
@@ -106,7 +127,7 @@ public class AttendanceViewModel extends ViewModel {
       }
 
       @Override
-      public void onFailure(@NonNull Call<Attendance> call, @NonNull Throwable t) {
+      public void onFailure(@NonNull Call<PlainResponse> call, @NonNull Throwable t) {
         viewState.connectionError();
         logger.print(TAG, t);
       }

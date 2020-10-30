@@ -17,9 +17,6 @@ import com.chass.gsms.viewmodels.NewStudentFormViewModel;
 import com.chass.gsms.viewmodels.UserFormViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,6 +37,10 @@ public class NewStudentViewModel extends ViewModel {
 
   public NewStudentFormViewModel getFormViewModel() {
     return formViewModel;
+  }
+
+  public SharedDataStore getDataStore(){
+    return dataStore;
   }
 
   @ViewModelInject
@@ -71,7 +72,7 @@ public class NewStudentViewModel extends ViewModel {
     Call<Student> call = parent2Form.isValid()?
       apiClient.addStudent(
         sessionManager.getSchool().getId(),
-        dataStore.getSelectedClassName(),
+        dataStore.getCurrentClass().getName(),
         formViewModel.getFirstname(),
         formViewModel.getLastname(),
         parent1Form.getFirstname(),
@@ -85,7 +86,7 @@ public class NewStudentViewModel extends ViewModel {
       ):
       apiClient.addStudent(
         sessionManager.getSchool().getId(),
-        dataStore.getSelectedClassName(),
+        dataStore.getCurrentClass().getName(),
         formViewModel.getFirstname(),
         formViewModel.getLastname(),
         parent1Form.getFirstname(),

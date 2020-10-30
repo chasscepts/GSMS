@@ -9,4 +9,5 @@ public interface ILogger {
   void error(String tag, String msg);
   void print(String tag, Throwable t);
   void print(String tag, ResponseBody responseBody);
+  void stub(String msg);
 }

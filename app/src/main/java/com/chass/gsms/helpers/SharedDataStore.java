@@ -1,6 +1,9 @@
 package com.chass.gsms.helpers;
 
 import com.chass.gsms.models.Class;
+import com.chass.gsms.models.ClassSummary;
+import com.chass.gsms.models.Student;
+
 import javax.inject.Inject;
 
 import dagger.hilt.android.scopes.ActivityRetainedScoped;
@@ -18,19 +21,21 @@ public class SharedDataStore {
   @Inject
   public SharedDataStore(){}
 
-  private String selectedClassName;
+  private ClassSummary selectedClassSummary;
 
   private Class currentClass;
 
-  public String getSelectedClassName() {
-    //String temp = selectedClassName;
-    //selectedClassName = null;
+  private Student currentStudent;
+
+  public ClassSummary getSelectedClassSummary() {
+    //String temp = selectedClassSummary;
+    //selectedClassSummary = null;
     //return temp;
-    return selectedClassName;
+    return selectedClassSummary;
   }
 
-  public void setSelectedClassName(String selectedClassName) {
-    this.selectedClassName = selectedClassName;
+  public void setSelectedClassSummary(ClassSummary selectedClassSummary) {
+    this.selectedClassSummary = selectedClassSummary;
   }
 
   public Class getCurrentClass() {
@@ -39,5 +44,13 @@ public class SharedDataStore {
 
   public void setCurrentClass(Class currentClass) {
     this.currentClass = currentClass;
+  }
+
+  public Student getCurrentStudent() {
+    return currentStudent;
+  }
+
+  public void setCurrentStudent(Student currentStudent) {
+    this.currentStudent = currentStudent;
   }
 }

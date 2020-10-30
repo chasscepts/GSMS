@@ -17,10 +17,12 @@ import com.chass.gsms.networks.retrofit.ApiClient;
 import com.chass.gsms.viewmodels.LoginFormViewModel;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 
+import dagger.hilt.android.scopes.FragmentScoped;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@FragmentScoped
 public class LoginViewModel extends ViewModel {
   private static final String TAG ="LoginViewModel" ;
   private final SavedStateHandle savedStateHandle;
@@ -55,7 +57,7 @@ public class LoginViewModel extends ViewModel {
       return;
     }
     if(!formViewModel.isValid()){
-      viewState.setState(ViewStates.INFO, "Please complete all fields before submitting form!");
+      viewState.error("Please complete all fields before submitting form!");
       return;
     }
     viewState.setState(ViewStates.BUSY, "Authenticating with the server. Please wait...");
@@ -63,21 +65,30 @@ public class LoginViewModel extends ViewModel {
     call.enqueue(new Callback<LoginResponse>() {
       @Override
       public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
-        LoginResponse loginResponse = response.body();
-        if(loginResponse != null){
-          sessionManager.login(loginResponse);
-          viewState.restoreNormalState();
+        if(response.isSuccessful()){
+          LoginResponse loginResponse = response.body();
+          if(loginResponse != null){
+            sessionManager.login(loginResponse);
+            viewState.restoreNormalState();
+            return;
+          }
+          else {
+            viewState.responseError("trying to authenticate with the server");
+            logger.print(TAG, response.errorBody());
+          }
           return;
         }
-        else {
-          logger.print(TAG, response.errorBody());
+        if(response.code() == 401){
+          viewState.error("The server failed to authenticate you. This is most likely because at least one of the information you provided is incorrect. Please try again.");
+          return;
         }
-        viewState.setState(ViewStates.ERROR, "Application encountered an error while attempting to authenticate you with the server. The server returned an unexpected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
+        viewState.error("A server error occurred during authentication. Please keep trying while we work to resolve the issue.");
+        logger.print(TAG, response.errorBody());
       }
 
       @Override
       public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
-        viewState.setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
+        viewState.connectionError();
         logger.print(TAG, t);
       }
     });

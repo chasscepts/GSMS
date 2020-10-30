@@ -67,7 +67,7 @@ public class NewClassViewModel extends ViewModel {
       viewState.setState(ViewStates.INFO, "Please complete all fields before submitting form!");
       return;
     }
-    viewState.setState(ViewStates.BUSY, "Retrieving class information from the server. Please wait...");
+    viewState.setState(ViewStates.BUSY, "Setting up class on the server. Please wait...");
     call = apiClient.addClass(sessionManager.getSchool().getId(), formViewModel.getClassName(), formViewModel.getTeacherFirstname(), formViewModel.getTeacherLastname(), formViewModel.getTeacherEmail(), formViewModel.getTeacherPhoneNumber());
     call.enqueue(new Callback<Class>() {
       @Override
@@ -84,12 +84,12 @@ public class NewClassViewModel extends ViewModel {
         else {
           logger.print(TAG, response.errorBody());
         }
-        viewState.setState(ViewStates.ERROR, "Application encountered an error while registering school. The response we got from the server is not what we expected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
+        viewState.responseError("registering school");
       }
 
       @Override
       public void onFailure(@NonNull Call<Class> call, @NonNull Throwable t) {
-        viewState.setState(ViewStates.ERROR, "An error occurred while trying to communicate with the server. The most observed cause of this error is unavailability of internet connection. Please ensure that you are connected to the internet then try again");
+        viewState.connectionError();
         logger.print(TAG, t);
       }
     });

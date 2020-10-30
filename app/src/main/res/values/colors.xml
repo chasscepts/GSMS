@@ -8,4 +8,9 @@
   <color name="dim">#50000000</color>
   <color name="linkColor">#0E5AC5</color>
   <color name="transparent">#00000000</color>
+  <color name="logoDark">#FF01233F</color>
+  <color name="logoLight">#FF083B66</color>
+  <color name="greenDark">#076A07</color>
+  <color name="teal">#26A69A</color>
+  <color name="darkTeal">#13514C</color>
 </resources>

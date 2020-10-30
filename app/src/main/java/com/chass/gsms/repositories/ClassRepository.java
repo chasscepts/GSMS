@@ -37,14 +37,18 @@ public class ClassRepository {
   }
 
   @SuppressWarnings({"unchecked"})
-  public Call<Class> getClass(String className){
-    Class aClass = dataStore.getCurrentClass();
+  public Call<Class> getClass(int classId){
+    Class aClass = cache.get(classId);
     if(aClass != null){
       return new LocalGetCall.Builder<Class>()
-          .url("chass.me.ht/school/class/" + sessionManager.getSchool().getId() + "/" + className)
+          .url("http://chass.me.ht/school/class/" + sessionManager.getSchool().getId() + "/" + classId)
           .response(aClass)
           .build();
     }
-    return client.getClass(sessionManager.getSchool().getId(), className);
+    return client.getClass(sessionManager.getSchool().getId(), classId);
+  }
+
+  public void cache(Class aClass){
+    cache.save(aClass);
   }
 }
