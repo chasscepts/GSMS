@@ -50,6 +50,20 @@ public class AttendanceViewModel extends ViewModel {
 
   public final ObservableField<String> date = new ObservableField<>();
 
+  private int day, month, year;
+
+  public int getDay() {
+    return day;
+  }
+
+  public int getMonth() {
+    return month;
+  }
+
+  public int getYear() {
+    return year;
+  }
+
   @ViewModelInject
   public AttendanceViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, SharedDataStore dataStore, ViewStateViewModel viewState, @RetrofitRequestDefaultTimeout ApiClient apiClient, ILogger logger, ClassAttendanceAdapter adapter){
     this.savedStateHandle = savedStateHandle;
@@ -63,9 +77,19 @@ public class AttendanceViewModel extends ViewModel {
     setup();
   }
 
+  public void setDate(int day, int month, int year){
+    this.day = day;
+    this.month = month;
+    this.year = year;
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(year, month, day);
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+    this.date.set(formatter.format(calendar.getTime()));
+  }
+
   private void setTodayDate(){
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-    date.set(dateFormat.format(Calendar.getInstance().getTime()));
+    Calendar calendar = Calendar.getInstance();
+    setDate(calendar.get(Calendar.DATE), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
   }
 
   private void setup(){
@@ -86,6 +110,8 @@ public class AttendanceViewModel extends ViewModel {
     viewState.busy("Submitting Attendance. Please wait...");
     AttendanceStatusViewModel[] statuses = adapter.getAttendanceStatuses();
     String json = AttendanceStatusViewModel.getJsonString(adapter.getAttendanceStatuses());
+    logger.stub(json);
+    logger.stub("Class Id: " + aClass.getId());
     Call<PlainResponse> call = apiClient.postAttendance(sessionManager.getSchool().getId(), aClass.getId(), date.get(), json);
     call.enqueue(new Callback<PlainResponse>() {
       @Override
