@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.chass.gsms.helpers.SessionManager;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -25,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    //getSupportActionBar().setDisplayShowHomeEnabled(true);
+    toolbar.setNavigationOnClickListener(view -> {
+      onBackPressed();
+    });
     setupSession();
   }
 

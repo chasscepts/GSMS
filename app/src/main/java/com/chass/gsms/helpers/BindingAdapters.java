@@ -2,7 +2,6 @@ package com.chass.gsms.helpers;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +25,7 @@ public class BindingAdapters {
   }
 
   @BindingAdapter({"firstname", "lastname"})
-  public static void setFullname(TextView tv, String firstname, String lastname){
+  public static void setFullName(TextView tv, String firstname, String lastname){
     if(firstname == null){
       firstname = "";
     }
@@ -75,7 +74,7 @@ public class BindingAdapters {
       imageView.setImageResource(R.drawable.ic_baseline_close_24);
     }
     else {
-      imageView.setImageResource(android.R.color.transparent);
+      imageView.setImageResource(R.drawable.ic_baseline_home_24);
     }
   }
 }

@@ -44,7 +44,9 @@ public class MonthPicker extends BaseFormViewModel {
   }
 
   public void setMonth(int month) {
+    if(this.month == month) return;
     this.month = month;
+    notifyPropertyChanged(BR.month);
   }
 
   @Bindable
@@ -62,6 +64,17 @@ public class MonthPicker extends BaseFormViewModel {
     }
     catch (Exception ex){
       setValid(false);
+    }
+  }
+
+  public void incrementYear(){
+    setYearText(Integer.toString(tempYear + 1));
+  }
+
+  public void decrementYear(){
+    int year = tempYear - 1;
+    if(year > 0){
+      setYearText(Integer.toString(year));
     }
   }
 
@@ -109,14 +122,14 @@ public class MonthPicker extends BaseFormViewModel {
     Calendar calendar = Calendar.getInstance();
     calendar.setTime(new Date());
     year = calendar.get(Calendar.YEAR);
-    setMonth(calendar.get(Calendar.MONTH) + 1);
+    setMonth(calendar.get(Calendar.MONTH));
     setYearText(Integer.toString(year));
     setFields();
   }
 
   private void setFields(){
     Calendar calendar = Calendar.getInstance();
-    calendar.set(year, month - 1, 1);
+    calendar.set(year, month, 1);
     daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     int day = calendar.get(Calendar.DAY_OF_WEEK);
     switch (day){

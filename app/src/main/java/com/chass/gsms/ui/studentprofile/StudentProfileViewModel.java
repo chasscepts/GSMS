@@ -19,7 +19,10 @@ import com.chass.gsms.networks.retrofit.ApiClient;
 import com.chass.gsms.viewmodels.MonthPicker;
 import com.chass.gsms.viewmodels.ViewStateViewModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,6 +69,10 @@ public class StudentProfileViewModel extends ViewModel implements IMonthSelected
   //A loading status indicator should bind to this to indicate when loading is in progress.
   public final ObservableBoolean loadingAttendance = new ObservableBoolean();
 
+  public final ObservableBoolean attendanceHasError = new ObservableBoolean();
+
+  public final ObservableField<String> month = new ObservableField<>();
+
   @ViewModelInject
   public StudentProfileViewModel(@Assisted SavedStateHandle savedStateHandle, SessionManager sessionManager, SharedDataStore dataStore, @RetrofitRequestDefaultTimeout ApiClient client, ViewStateViewModel viewState, ILogger logger, AttendanceStatusAdapter adapter, MonthPicker monthPicker){
     this.savedStateHandle = savedStateHandle;
@@ -75,9 +82,10 @@ public class StudentProfileViewModel extends ViewModel implements IMonthSelected
     this.apiClient = client;
     this.logger = logger;
     this.adapter = adapter;
+    this.student = dataStore.getCurrentStudent();
     this.monthPicker =  monthPicker;
     monthPicker.setOnMonthSelectedListener(this);
-    this.student = dataStore.getCurrentStudent();
+    setMonth();
     setupAttendanceStatuses();
     getAttendance();
   }
@@ -116,7 +124,7 @@ public class StudentProfileViewModel extends ViewModel implements IMonthSelected
       return;
     }
     loadingAttendance.set(true);
-    Call<List<String>> call = apiClient.getStudentAttendance(sessionManager.getSchool().getId(), aClass.getId(), student.getId(), monthPicker.getYear(), monthPicker.getMonth(), 1, monthPicker.getDaysInMonth());
+    Call<List<String>> call = apiClient.getStudentAttendance(sessionManager.getSchool().getId(), aClass.getId(), student.getId(), monthPicker.getYear(), monthPicker.getMonth() + 1, 1, monthPicker.getDaysInMonth());
     call.enqueue(new Callback<List<String>>() {
       @Override
       public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
@@ -125,15 +133,18 @@ public class StudentProfileViewModel extends ViewModel implements IMonthSelected
           if(attendances != null){
             loadAttendances(attendances);
             loadingAttendance.set(false);
+            attendanceHasError.set(false);
             return;
           }
         }
+        attendanceHasError.set(true);
         loadingAttendance.set(false);
         viewState.error("Application encountered an error while loading attendance. The response we got from the server is not what we expected response. Be assured that we are working to resolve the issue. If the problem persists, please contact us so we can resolve it.");
       }
 
       @Override
       public void onFailure(@NonNull Call<List<String>> call, @NonNull Throwable t) {
+        attendanceHasError.set(true);
         loadingAttendance.set(false);
         viewState.connectionError();
         logger.print(TAG, t);
@@ -151,6 +162,50 @@ public class StudentProfileViewModel extends ViewModel implements IMonthSelected
 
   @Override
   public void onMonthSelected(MonthPicker picker) {
+    setMonth();
     getAttendance();
+  }
+
+  private void setMonth() {
+    String month;
+    switch (monthPicker.getMonth()){
+      case 0:
+        month = "January";
+        break;
+      case 1:
+        month = "February";
+        break;
+      case 2:
+        month = "March";
+        break;
+      case 3:
+        month = "April";
+        break;
+      case 4:
+        month = "May";
+        break;
+      case 5:
+        month = "June";
+        break;
+      case 6:
+        month = "July";
+        break;
+      case 7:
+        month = "August";
+        break;
+      case 8:
+        month = "September";
+        break;
+      case 9:
+        month = "October";
+        break;
+      case 10:
+        month = "November";
+        break;
+      default:
+        month = "December";
+        break;
+    }
+    this.month.set(month);
   }
 }

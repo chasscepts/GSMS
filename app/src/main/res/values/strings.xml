@@ -90,4 +90,11 @@
   <string name="cancel">Cancel</string>
   <string name="done">Done</string>
   <string name="attendance_status">Attendance Status</string>
+  <string name="month">Month</string>
+  <string name="increment_year">Increment Year</string>
+  <string name="decrement_year">Decrement Year</string>
+  <string name="year">Year</string>
+  <string name="attendance_loading_error_prompt">
+    Application encountered network error while loading attendance.\nTap on this error to reload.
+  </string>
 </resources>

@@ -32,18 +32,26 @@
         android:layout_width="112dp"
         android:layout_height="32dp"
         android:background="@{viewModel.valid? @drawable/dark_teal_border_white_background : @drawable/alert_border_white_background}"
+        android:hint="@string/year"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:paddingBottom="4dp"
         android:text="@={viewModel.yearText}"
         android:textAlignment="center"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/inc_btn"
         app:layout_constraintStart_toEndOf="@id/dec_btn"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/alert_border_white_background"/>
+        tools:background="@drawable/alert_border_white_background"
+        tools:text="2020" />
 
       <ImageButton
         android:id="@+id/dec_btn"
         android:layout_width="32dp"
         android:layout_height="0dp"
         android:background="@color/transparent"
+        android:contentDescription="@string/decrement_year"
+        android:onClick="@{()->viewModel.decrementYear()}"
         android:scaleType="fitXY"
         android:src="@drawable/ic_arrow_left_bold_box"
         app:layout_constraintBottom_toBottomOf="@id/year_txt"
@@ -55,6 +63,8 @@
         android:layout_width="32dp"
         android:layout_height="0dp"
         android:background="@color/transparent"
+        android:contentDescription="@string/increment_year"
+        android:onClick="@{()->viewModel.incrementYear()}"
         android:scaleType="fitXY"
         android:src="@drawable/ic_arrow_right_bold_box"
         app:layout_constraintBottom_toBottomOf="@id/year_txt"
@@ -78,28 +88,28 @@
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==0? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(1)}"
+            android:onClick="@{()->viewModel.setMonth(0)}"
             android:text="@string/jan"
             tools:background="@color/teal" />
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==1? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(2)}"
+            android:onClick="@{()->viewModel.setMonth(1)}"
             android:text="@string/feb"
             tools:background="@color/teal"/>
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==2? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(3)}"
+            android:onClick="@{()->viewModel.setMonth(2)}"
             android:text="@string/mar"
             tools:background="@color/teal"/>
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==3? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(4)}"
+            android:onClick="@{()->viewModel.setMonth(3)}"
             android:text="@string/apr"
             tools:background="@color/teal"/>
         </TableRow>
@@ -109,28 +119,28 @@
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==4? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(5)}"
+            android:onClick="@{()->viewModel.setMonth(4)}"
             android:text="@string/may"
             tools:background="@color/teal"/>
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==5? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(6)}"
+            android:onClick="@{()->viewModel.setMonth(5)}"
             android:text="@string/jun"
             tools:background="@color/teal"/>
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==6? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(7)}"
+            android:onClick="@{()->viewModel.setMonth(6)}"
             android:text="@string/jul"
             tools:background="@color/teal"/>
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==7? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(8)}"
+            android:onClick="@{()->viewModel.setMonth(7)}"
             android:text="@string/aug"
             tools:background="@color/teal"/>
         </TableRow>
@@ -140,28 +150,28 @@
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==8? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(9)}"
+            android:onClick="@{()->viewModel.setMonth(8)}"
             android:text="@string/sep"
             tools:background="@color/teal"/>
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==9? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(10)}"
+            android:onClick="@{()->viewModel.setMonth(9)}"
             android:text="@string/oct"
             tools:background="@color/teal"/>
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==10? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(11)}"
+            android:onClick="@{()->viewModel.setMonth(10)}"
             android:text="@string/nov"
             tools:background="@color/teal"/>
 
           <Button
             style="@style/picker_month_button_style"
             android:background="@{viewModel.month==11? @color/colorPrimary : @color/teal}"
-            android:onClick="@{()->viewModel.setMonth(12)}"
+            android:onClick="@{()->viewModel.setMonth(11)}"
             android:text="@string/dec"
             tools:background="@color/teal"/>
         </TableRow>
@@ -173,18 +183,20 @@
             android:layout_marginEnd="4dp"
             android:layout_span="2"
             android:background="@color/teal"
-            android:onClick="@{()->viewModel.select()}"
+            android:onClick="@{()->viewModel.revert()}"
             android:text="@string/cancel"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            style="?android:attr/buttonBarButtonStyle"/>
 
           <Button
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:layout_span="2"
             android:background="@color/teal"
-            android:onClick="@{()->viewModel.revert()}"
+            android:onClick="@{()->viewModel.select()}"
             android:text="@string/done"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            style="?android:attr/buttonBarButtonStyle" />
         </TableRow>
       </TableLayout>
     </androidx.cardview.widget.CardView>
