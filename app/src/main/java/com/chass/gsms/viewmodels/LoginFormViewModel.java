@@ -21,7 +21,7 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped;
 public class LoginFormViewModel extends BaseFormViewModel {
   @Inject
   public LoginFormViewModel(){
-    test();
+    //test();
   }
 
   //Todo: remove

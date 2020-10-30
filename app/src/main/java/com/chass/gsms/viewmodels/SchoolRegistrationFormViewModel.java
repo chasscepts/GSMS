@@ -29,7 +29,7 @@ public class SchoolRegistrationFormViewModel extends BaseFormViewModel {
     this.formData = formData;
     this.schoolPictureStream = stream;
     stream.setMediaType("image/*");
-    test();
+    //test();
   }
 
   private void test(){
